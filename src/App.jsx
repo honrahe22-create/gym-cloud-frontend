@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
-const API_URL = "http://localhost:10000";
+const API_URL =
+  import.meta.env.VITE_API_URL || "https://gym-cloud-backend.onrender.com";
 
 const FRONT_BODY_IMAGE = "/map.png";
 const BACK_BODY_IMAGE = "/map.png";
@@ -196,20 +197,26 @@ useEffect(() => {
 }, [dragInfo, vistaCuerpo]);
 
   const cargarSocios = async () => {
-    try {
-      const res = await fetch(`${API_URL}/api/socios`);
-      const data = await res.json();
+  try {
+    console.log("API_URL frontend:", API_URL);
 
-      if (data.ok) {
-        setSocios(data.socios || []);
-      } else {
-        setMensaje(data.error || "No se pudo cargar la lista de socios");
-      }
-    } catch (error) {
-      console.error("Error cargando socios:", error);
-      setMensaje("Error de conexión con el servidor");
+    const res = await fetch(`${API_URL}/api/socios`);
+    console.log("STATUS /api/socios:", res.status);
+
+    const data = await res.json();
+    console.log("DATA /api/socios:", data);
+
+    if (data.ok) {
+      setSocios(data.socios || []);
+      setMensaje("");
+    } else {
+      setMensaje(data.error || "No se pudo cargar la lista de socios");
     }
-  };
+  } catch (error) {
+    console.error("Error cargando socios:", error);
+    setMensaje("Error de conexión con el servidor");
+  }
+};
 
   const cargarMusculos = async () => {
     try {
