@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
-const API_URL =
-  import.meta.env.VITE_API_URL || "https://gym-cloud-backend.onrender.com";
+const API_URL = "http://localhost:10000";
 
 const FRONT_BODY_IMAGE = "/map.png";
 const BACK_BODY_IMAGE = "/map.png";
@@ -45,40 +44,62 @@ const BACK_GROUPS = [
 ];
 
 const FRONT_HOTSPOTS = [
-  { muscle: "Hombros", label: "Hombros", top: "17%", left: "30%", width: "40%", height: "9%" },
+  { muscle: "Hombros", top: "18%", left: "28%", width: "44%", height: "8%" },
 
-  { muscle: "Pecho alto", label: "Pecho alto", top: "23%", left: "36%", width: "28%", height: "5%" },
-  { muscle: "Pecho medio", label: "Pecho medio", top: "29%", left: "37%", width: "26%", height: "5.5%" },
-  { muscle: "Pecho bajo", label: "Pecho bajo", top: "35%", left: "38%", width: "24%", height: "5%" },
+  { muscle: "Pecho alto", top: "23%", left: "35%", width: "30%", height: "6%" },
+  { muscle: "Pecho medio", top: "30%", left: "36%", width: "28%", height: "6%" },
+  { muscle: "Pecho bajo", top: "37%", left: "37%", width: "26%", height: "6%" },
 
-  { muscle: "Bíceps", label: "Bíceps", top: "31%", left: "18%", width: "8%", height: "16%" },
-  { muscle: "Bíceps", label: "Bíceps", top: "31%", left: "74%", width: "8%", height: "16%" },
+  { muscle: "Bíceps", top: "30%", left: "18%", width: "8%", height: "18%" },
+  { muscle: "Bíceps", top: "30%", left: "74%", width: "8%", height: "18%" },
 
-  { muscle: "Abdomen", label: "Abdomen", top: "41%", left: "41%", width: "18%", height: "16%" },
+  { muscle: "Abdomen", top: "45%", left: "40%", width: "20%", height: "18%" },
 
-  { muscle: "Cuádriceps", label: "Cuádriceps", top: "66%", left: "37%", width: "10%", height: "19%" },
-  { muscle: "Cuádriceps", label: "Cuádriceps", top: "66%", left: "53%", width: "10%", height: "19%" },
+  { muscle: "Cuádriceps", top: "65%", left: "36%", width: "12%", height: "20%" },
+  { muscle: "Cuádriceps", top: "65%", left: "52%", width: "12%", height: "20%" },
 
-  { muscle: "Pantorrillas", label: "Pantorrillas", top: "85%", left: "39%", width: "8%", height: "11%" },
-  { muscle: "Pantorrillas", label: "Pantorrillas", top: "85%", left: "53%", width: "8%", height: "11%" },
+  { muscle: "Pantorrillas", top: "86%", left: "38%", width: "9%", height: "10%" },
+  { muscle: "Pantorrillas", top: "86%", left: "52%", width: "9%", height: "10%" },
 ];
 
 const BACK_HOTSPOTS = [
-  { muscle: "Espalda alta", label: "Espalda alta", top: "10%", left: "43%", width: "22%", height: "6.5%" },
-  { muscle: "Espalda media", label: "Espalda media", top: "18.5%", left: "40%", width: "28%", height: "12%" },
-  { muscle: "Espalda baja", label: "Espalda baja", top: "31.5%", left: "43%", width: "22%", height: "7.5%" },
+  { muscle: "Espalda alta", top: "12%", left: "42%", width: "24%", height: "7%" },
+  { muscle: "Espalda media", top: "20%", left: "40%", width: "28%", height: "12%" },
+  { muscle: "Espalda baja", top: "34%", left: "43%", width: "22%", height: "8%" },
 
-  { muscle: "Tríceps", label: "Tríceps", top: "24%", left: "31%", width: "10%", height: "18%" },
-  { muscle: "Tríceps", label: "Tríceps", top: "24%", left: "69%", width: "10%", height: "18%" },
+  { muscle: "Tríceps", top: "25%", left: "30%", width: "10%", height: "18%" },
+  { muscle: "Tríceps", top: "25%", left: "70%", width: "10%", height: "18%" },
 
-  { muscle: "Glúteos", label: "Glúteos", top: "50%", left: "44%", width: "20%", height: "11%" },
+  { muscle: "Glúteos", top: "52%", left: "43%", width: "22%", height: "12%" },
 
-  { muscle: "Isquiotibiales", label: "Isquiotibiales", top: "61.5%", left: "43%", width: "10%", height: "18%" },
-  { muscle: "Isquiotibiales", label: "Isquiotibiales", top: "61.5%", left: "57%", width: "10%", height: "18%" },
+  { muscle: "Isquiotibiales", top: "65%", left: "42%", width: "12%", height: "18%" },
+  { muscle: "Isquiotibiales", top: "65%", left: "56%", width: "12%", height: "18%" },
 
-  { muscle: "Pantorrillas posterior", label: "Pantorrillas posterior", top: "77.5%", left: "44%", width: "9%", height: "10%" },
-  { muscle: "Pantorrillas posterior", label: "Pantorrillas posterior", top: "77.5%", left: "57%", width: "9%", height: "10%" },
+  { muscle: "Pantorrillas posterior", top: "82%", left: "44%", width: "10%", height: "10%" },
+  { muscle: "Pantorrillas posterior", top: "82%", left: "56%", width: "10%", height: "10%" },
 ];
+
+const EJERCICIOS_POR_MUSCULO = {
+  "Pecho alto": ["Press inclinado", "Aperturas inclinadas"],
+  "Pecho medio": ["Press plano", "Aperturas planas"],
+  "Pecho bajo": ["Press declinado", "Fondos en paralelas"],
+
+  "Hombros": ["Press militar", "Elevaciones laterales"],
+  "Bíceps": ["Curl con barra", "Curl alterno"],
+  "Tríceps": ["Extensión polea", "Fondos"],
+  
+  "Abdomen": ["Crunch", "Elevaciones de piernas"],
+  "Espalda alta": ["Remo alto", "Face pull"],
+  "Espalda media": ["Remo con barra", "Remo máquina"],
+  "Espalda baja": ["Peso muerto", "Hiperextensiones"],
+
+  "Glúteos": ["Hip thrust", "Patada glúteo"],
+  "Cuádriceps": ["Sentadillas", "Prensa"],
+  "Isquiotibiales": ["Curl femoral", "Peso muerto rumano"],
+  
+  "Pantorrillas": ["Elevaciones de talón"],
+  "Pantorrillas posterior": ["Elevaciones sentado"],
+};
 
 const getZoomStyleByMuscle = (view, muscle) => {
   const base = {
@@ -197,26 +218,20 @@ useEffect(() => {
 }, [dragInfo, vistaCuerpo]);
 
   const cargarSocios = async () => {
-  try {
-    console.log("API_URL frontend:", API_URL);
+    try {
+      const res = await fetch(`${API_URL}/api/socios`);
+      const data = await res.json();
 
-    const res = await fetch(`${API_URL}/api/socios`);
-    console.log("STATUS /api/socios:", res.status);
-
-    const data = await res.json();
-    console.log("DATA /api/socios:", data);
-
-    if (data.ok) {
-      setSocios(data.socios || []);
-      setMensaje("");
-    } else {
-      setMensaje(data.error || "No se pudo cargar la lista de socios");
+      if (data.ok) {
+        setSocios(data.socios || []);
+      } else {
+        setMensaje(data.error || "No se pudo cargar la lista de socios");
+      }
+    } catch (error) {
+      console.error("Error cargando socios:", error);
+      setMensaje("Error de conexión con el servidor");
     }
-  } catch (error) {
-    console.error("Error cargando socios:", error);
-    setMensaje("Error de conexión con el servidor");
-  }
-};
+  };
 
   const cargarMusculos = async () => {
     try {
