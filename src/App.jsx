@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 
 const API_URL = "https://gym-cloud-backend.onrender.com";
 
-const FRONT_BODY_IMAGE = "/map.png";
-const BACK_BODY_IMAGE = "/map.png";
+const FRONT_BODY_IMAGE = "/body-front.png";
+const BACK_BODY_IMAGE = "/body-back.png";
 
 const initialForm = {
   nombres: "",
@@ -1198,23 +1198,21 @@ const bodyZoomLayerStyle = {
 
 const bodyImageFrontStyle = {
   position: "absolute",
-  top: "0",
-  left: "-18%",
-  width: "200%",
+  inset: 0,
+  width: "100%",
   height: "100%",
-  objectFit: "cover",
-  objectPosition: "left center",
+  objectFit: "contain",
+  objectPosition: "center center",
   display: "block",
 };
 
 const bodyImageBackStyle = {
   position: "absolute",
-  top: "0",
-  left: "-140%",
-  width: "260%",
+  inset: 0,
+  width: "100%",
   height: "100%",
-  objectFit: "cover",
-  objectPosition: "left center",
+  objectFit: "contain",
+  objectPosition: "center center",
   display: "block",
 };
 
