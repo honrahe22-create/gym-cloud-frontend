@@ -44,40 +44,22 @@ const BACK_GROUPS = [
 ];
 
 const FRONT_HOTSPOTS = [
+  { muscle: "Hombros", label: "Hombros", top: "25%", left: "27%", width: "46%", height: "8%" },
 
-{ muscle:"Hombros",label:"Hombros",
-top:"22%",left:"25%",width:"50%",height:"8%"},
+  { muscle: "Pecho alto", label: "Pecho alto", top: "34%", left: "36%", width: "28%", height: "5%" },
+  { muscle: "Pecho medio", label: "Pecho medio", top: "39%", left: "36%", width: "28%", height: "6%" },
+  { muscle: "Pecho bajo", label: "Pecho bajo", top: "45%", left: "39%", width: "22%", height: "5%" },
 
-{ muscle:"Pecho alto",label:"Pecho alto",
-top:"34%",left:"38%",width:"24%",height:"5%"},
+  { muscle: "Bíceps", label: "Bíceps", top: "39%", left: "23%", width: "8%", height: "16%" },
+  { muscle: "Bíceps", label: "Bíceps", top: "39%", left: "69%", width: "8%", height: "16%" },
 
-{ muscle:"Pecho medio",label:"Pecho medio",
-top:"43%",left:"37%",width:"26%",height:"5%"},
+  { muscle: "Abdomen", label: "Abdomen", top: "49%", left: "41%", width: "18%", height: "17%" },
 
-{ muscle:"Pecho bajo",label:"Pecho bajo",
-top:"50%",left:"40%",width:"20%",height:"4%"},
+  { muscle: "Cuádriceps", label: "Cuádriceps", top: "66%", left: "36%", width: "13%", height: "18%" },
+  { muscle: "Cuádriceps", label: "Cuádriceps", top: "66%", left: "51%", width: "13%", height: "18%" },
 
-{ muscle:"Bíceps",label:"Bíceps",
-top:"42%",left:"22%",width:"8%",height:"15%"},
-
-{ muscle:"Bíceps",label:"Bíceps",
-top:"42%",left:"70%",width:"8%",height:"15%"},
-
-{ muscle:"Abdomen",label:"Abdomen",
-top:"56%",left:"43%",width:"14%",height:"14%"},
-
-{ muscle:"Cuádriceps",label:"Cuádriceps",
-top:"74%",left:"37%",width:"12%",height:"17%"},
-
-{ muscle:"Cuádriceps",label:"Cuádriceps",
-top:"74%",left:"52%",width:"12%",height:"17%"},
-
-{ muscle:"Pantorrillas",label:"Pantorrillas",
-top:"91%",left:"40%",width:"8%",height:"8%"},
-
-{ muscle:"Pantorrillas",label:"Pantorrillas",
-top:"91%",left:"52%",width:"8%",height:"8%"}
-
+  { muscle: "Pantorrillas", label: "Pantorrillas", top: "85%", left: "38%", width: "10%", height: "12%" },
+  { muscle: "Pantorrillas", label: "Pantorrillas", top: "85%", left: "52%", width: "10%", height: "12%" },
 ];
 
 const BACK_HOTSPOTS = [
@@ -115,49 +97,11 @@ const EJERCICIOS_POR_MUSCULO = {
   "Pantorrillas posterior": ["Elevaciones sentado"],
 };
 
-const getZoomStyleByMuscle = (view, muscle) => {
-  const base = {
+const getZoomStyleByMuscle = () => {
+  return {
     transform: "scale(1)",
     transformOrigin: "50% 50%",
   };
-
-  if (!muscle) return base;
-
-  if (view === "front") {
-    const zoomMap = {
-      Hombros: { transform: "scale(1.25)", transformOrigin: "50% 18%" },
-
-      "Pecho alto": { transform: "scale(1.3)", transformOrigin: "50% 24%" },
-      "Pecho medio": { transform: "scale(1.3)", transformOrigin: "50% 29%" },
-      "Pecho bajo": { transform: "scale(1.3)", transformOrigin: "50% 34%" },
-
-      Bíceps: { transform: "scale(1.22)", transformOrigin: "50% 32%" },
-
-      Abdomen: { transform: "scale(1.25)", transformOrigin: "50% 43%" },
-
-      Cuádriceps: { transform: "scale(1.22)", transformOrigin: "50% 68%" },
-
-      Pantorrillas: { transform: "scale(1.22)", transformOrigin: "50% 87%" },
-    };
-
-    return zoomMap[muscle] || base;
-  }
-
-  const zoomMap = {
-    "Espalda alta": { transform: "scale(1.28)", transformOrigin: "50% 20%" },
-    "Espalda media": { transform: "scale(1.28)", transformOrigin: "50% 30%" },
-    "Espalda baja": { transform: "scale(1.28)", transformOrigin: "50% 40%" },
-
-    Tríceps: { transform: "scale(1.22)", transformOrigin: "50% 32%" },
-
-    Glúteos: { transform: "scale(1.25)", transformOrigin: "50% 55%" },
-
-    Isquiotibiales: { transform: "scale(1.22)", transformOrigin: "50% 72%" },
-
-    "Pantorrillas posterior": { transform: "scale(1.22)", transformOrigin: "50% 88%" },
-  };
-
-  return zoomMap[muscle] || base;
 };
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
