@@ -44,39 +44,30 @@ const BACK_GROUPS = [
 ];
 
 const FRONT_HOTSPOTS = [
-  { muscle: "Hombros", top: "18%", left: "28%", width: "44%", height: "8%" },
-
-  { muscle: "Pecho alto", top: "23%", left: "35%", width: "30%", height: "6%" },
-  { muscle: "Pecho medio", top: "30%", left: "36%", width: "28%", height: "6%" },
-  { muscle: "Pecho bajo", top: "37%", left: "37%", width: "26%", height: "6%" },
-
-  { muscle: "Bíceps", top: "30%", left: "18%", width: "8%", height: "18%" },
-  { muscle: "Bíceps", top: "30%", left: "74%", width: "8%", height: "18%" },
-
-  { muscle: "Abdomen", top: "45%", left: "40%", width: "20%", height: "18%" },
-
-  { muscle: "Cuádriceps", top: "65%", left: "36%", width: "12%", height: "20%" },
-  { muscle: "Cuádriceps", top: "65%", left: "52%", width: "12%", height: "20%" },
-
-  { muscle: "Pantorrillas", top: "86%", left: "38%", width: "9%", height: "10%" },
-  { muscle: "Pantorrillas", top: "86%", left: "52%", width: "9%", height: "10%" },
+  { muscle: "Hombros", label: "Hombros", top: "16%", left: "27%", width: "46%", height: "8%" },
+  { muscle: "Pecho alto", label: "Pecho alto", top: "24%", left: "35%", width: "30%", height: "6%" },
+  { muscle: "Pecho medio", label: "Pecho medio", top: "30%", left: "35%", width: "30%", height: "7%" },
+  { muscle: "Pecho bajo", label: "Pecho bajo", top: "37%", left: "37%", width: "26%", height: "6%" },
+  { muscle: "Bíceps", label: "Bíceps", top: "28%", left: "18%", width: "10%", height: "20%" },
+  { muscle: "Bíceps", label: "Bíceps", top: "28%", left: "72%", width: "10%", height: "20%" },
+  { muscle: "Abdomen", label: "Abdomen", top: "44%", left: "40%", width: "20%", height: "18%" },
+  { muscle: "Cuádriceps", label: "Cuádriceps", top: "65%", left: "35%", width: "13%", height: "20%" },
+  { muscle: "Cuádriceps", label: "Cuádriceps", top: "65%", left: "52%", width: "13%", height: "20%" },
+  { muscle: "Pantorrillas", label: "Pantorrillas", top: "85%", left: "37%", width: "11%", height: "11%" },
+  { muscle: "Pantorrillas", label: "Pantorrillas", top: "85%", left: "52%", width: "11%", height: "11%" },
 ];
 
 const BACK_HOTSPOTS = [
-  { muscle: "Espalda alta", top: "12%", left: "42%", width: "24%", height: "7%" },
-  { muscle: "Espalda media", top: "20%", left: "40%", width: "28%", height: "12%" },
-  { muscle: "Espalda baja", top: "34%", left: "43%", width: "22%", height: "8%" },
-
-  { muscle: "Tríceps", top: "25%", left: "30%", width: "10%", height: "18%" },
-  { muscle: "Tríceps", top: "25%", left: "70%", width: "10%", height: "18%" },
-
-  { muscle: "Glúteos", top: "52%", left: "43%", width: "22%", height: "12%" },
-
-  { muscle: "Isquiotibiales", top: "65%", left: "42%", width: "12%", height: "18%" },
-  { muscle: "Isquiotibiales", top: "65%", left: "56%", width: "12%", height: "18%" },
-
-  { muscle: "Pantorrillas posterior", top: "82%", left: "44%", width: "10%", height: "10%" },
-  { muscle: "Pantorrillas posterior", top: "82%", left: "56%", width: "10%", height: "10%" },
+  { muscle: "Espalda alta", label: "Espalda alta", top: "15%", left: "38%", width: "24%", height: "8%" },
+  { muscle: "Espalda media", label: "Espalda media", top: "24%", left: "36%", width: "28%", height: "12%" },
+  { muscle: "Espalda baja", label: "Espalda baja", top: "38%", left: "39%", width: "22%", height: "8%" },
+  { muscle: "Tríceps", label: "Tríceps", top: "25%", left: "25%", width: "10%", height: "19%" },
+  { muscle: "Tríceps", label: "Tríceps", top: "25%", left: "65%", width: "10%", height: "19%" },
+  { muscle: "Glúteos", label: "Glúteos", top: "51%", left: "39%", width: "22%", height: "12%" },
+  { muscle: "Isquiotibiales", label: "Isquiotibiales", top: "65%", left: "37%", width: "12%", height: "18%" },
+  { muscle: "Isquiotibiales", label: "Isquiotibiales", top: "65%", left: "52%", width: "12%", height: "18%" },
+  { muscle: "Pantorrillas posterior", label: "Pantorrillas posterior", top: "84%", left: "39%", width: "10%", height: "10%" },
+  { muscle: "Pantorrillas posterior", label: "Pantorrillas posterior", top: "84%", left: "52%", width: "10%", height: "10%" },
 ];
 
 const EJERCICIOS_POR_MUSCULO = {
@@ -439,29 +430,8 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
   setMusculoSeleccionado({ nombre: nombreMusculo });
   setZoomMusculo(nombreMusculo);
 
-  const mapaBackend = {
-    "Pecho alto": "pecho",
-    "Pecho medio": "pecho",
-    "Pecho bajo": "pecho",
-    "Hombros": "hombros",
-    "Bíceps": "biceps",
-    "Abdomen": "abdomen",
-    "Cuádriceps": "piernas",
-    "Pantorrillas": "pantorrillas",
-
-    "Espalda alta": "espalda",
-    "Espalda media": "espalda",
-    "Espalda baja": "espalda",
-    "Tríceps": "triceps",
-    "Glúteos": "gluteos",
-    "Isquiotibiales": "piernas",
-    "Pantorrillas posterior": "pantorrillas",
-  };
-
-  const musculoBackend = mapaBackend[nombreMusculo] || nombreMusculo;
-
   try {
-    const res = await fetch(`${API_URL}/api/ejercicios/musculo/${musculoBackend}`);
+    const res = await fetch(`${API_URL}/api/ejercicios/musculo/${encodeURIComponent(nombreMusculo)}`);
     const data = await res.json();
 
     if (data.ok) {
@@ -899,43 +869,47 @@ const RealBodyMap = React.forwardRef(function RealBodyMap(
   return (
     <div style={bodyMapWrapperStyle} ref={ref}>
       <div style={bodyViewportStyle}>
-        <img
-          src={view === "front" ? FRONT_BODY_IMAGE : BACK_BODY_IMAGE}
-          alt="cuerpo"
+        <div
           style={{
-            ...(view === "front" ? bodyImageFrontStyle : bodyImageBackStyle),
+            ...bodyZoomLayerStyle,
             transition: "transform 0.28s ease, transform-origin 0.28s ease",
             ...zoomStyle,
           }}
-        />
+        >
+          <img
+            src={view === "front" ? FRONT_BODY_IMAGE : BACK_BODY_IMAGE}
+            alt="cuerpo"
+            style={view === "front" ? bodyImageFrontStyle : bodyImageBackStyle}
+          />
+
+          {hotspots.map((spot, index) => {
+            const active = selectedMuscle === spot.muscle;
+
+            return (
+              <button
+                key={`${spot.muscle}-${index}`}
+                type="button"
+                onClick={() => onSelect(spot.muscle)}
+                style={{
+                  ...hotspotStyle,
+                  top: spot.top,
+                  left: spot.left,
+                  width: spot.width,
+                  height: spot.height,
+                  borderRadius: "14px",
+                  borderColor: active ? "#00e0ff" : "rgba(255,255,255,0.12)",
+                  background: active ? "rgba(0,224,255,0.22)" : "rgba(255,255,255,0.02)",
+                  boxShadow: active
+                    ? "0 0 0 2px rgba(0,224,255,0.50), 0 0 24px rgba(0,224,255,0.32)"
+                    : "none",
+                }}
+              >
+                {active && <span style={hotspotLabelStyle}>{spot.label || spot.muscle}</span>}
+              </button>
+            );
+          })}
+        </div>
       </div>
-
-      {hotspots.map((spot, index) => {
-        const active = selectedMuscle === spot.muscle;
-
-        return (
-          <button
-            key={`${spot.muscle}-${index}`}
-            type="button"
-            onClick={() => onSelect(spot.muscle)}
-            style={{
-              ...hotspotStyle,
-              top: spot.top,
-              left: spot.left,
-              width: spot.width,
-              height: spot.height,
-              borderRadius: "14px",
-              borderColor: active ? "#00e0ff" : "transparent",
-              background: active ? "rgba(0,224,255,0.20)" : "transparent",
-              boxShadow: active
-                ? "0 0 0 2px rgba(0,224,255,0.45), 0 0 20px rgba(0,224,255,0.25)"
-                : "none",
-            }}
-          >
-            {active && <span style={hotspotLabelStyle}>{spot.label || spot.muscle}</span>}
-          </button>
-        );
-      })}
     </div>
   );
 });
@@ -1193,6 +1167,12 @@ const bodyViewportStyle = {
   background: "#000",
   borderRadius: "16px",
   overflow: "hidden",
+};
+
+const bodyZoomLayerStyle = {
+  position: "absolute",
+  inset: 0,
+  transformOrigin: "50% 50%",
 };
 
 const bodyImageFrontStyle = {
