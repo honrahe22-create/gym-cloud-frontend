@@ -44,22 +44,40 @@ const BACK_GROUPS = [
 ];
 
 const FRONT_HOTSPOTS = [
-  { muscle: "Hombros", label: "Hombros", top: "17%", left: "27%", width: "46%", height: "7%" },
 
-  { muscle: "Pecho alto", label: "Pecho alto", top: "24%", left: "36%", width: "28%", height: "5%" },
-  { muscle: "Pecho medio", label: "Pecho medio", top: "30%", left: "35%", width: "30%", height: "6%" },
-  { muscle: "Pecho bajo", label: "Pecho bajo", top: "37%", left: "38%", width: "24%", height: "5%" },
+{ muscle:"Hombros",label:"Hombros",
+top:"22%",left:"25%",width:"50%",height:"8%"},
 
-  { muscle: "Bíceps", label: "Bíceps", top: "30%", left: "20%", width: "8%", height: "17%" },
-  { muscle: "Bíceps", label: "Bíceps", top: "30%", left: "72%", width: "8%", height: "17%" },
+{ muscle:"Pecho alto",label:"Pecho alto",
+top:"34%",left:"38%",width:"24%",height:"5%"},
 
-  { muscle: "Abdomen", label: "Abdomen", top: "45%", left: "41%", width: "18%", height: "17%" },
+{ muscle:"Pecho medio",label:"Pecho medio",
+top:"43%",left:"37%",width:"26%",height:"5%"},
 
-  { muscle: "Cuádriceps", label: "Cuádriceps", top: "66%", left: "36%", width: "13%", height: "19%" },
-  { muscle: "Cuádriceps", label: "Cuádriceps", top: "66%", left: "51%", width: "13%", height: "19%" },
+{ muscle:"Pecho bajo",label:"Pecho bajo",
+top:"50%",left:"40%",width:"20%",height:"4%"},
 
-  { muscle: "Pantorrillas", label: "Pantorrillas", top: "85%", left: "38%", width: "10%", height: "11%" },
-  { muscle: "Pantorrillas", label: "Pantorrillas", top: "85%", left: "52%", width: "10%", height: "11%" },
+{ muscle:"Bíceps",label:"Bíceps",
+top:"42%",left:"22%",width:"8%",height:"15%"},
+
+{ muscle:"Bíceps",label:"Bíceps",
+top:"42%",left:"70%",width:"8%",height:"15%"},
+
+{ muscle:"Abdomen",label:"Abdomen",
+top:"56%",left:"43%",width:"14%",height:"14%"},
+
+{ muscle:"Cuádriceps",label:"Cuádriceps",
+top:"74%",left:"37%",width:"12%",height:"17%"},
+
+{ muscle:"Cuádriceps",label:"Cuádriceps",
+top:"74%",left:"52%",width:"12%",height:"17%"},
+
+{ muscle:"Pantorrillas",label:"Pantorrillas",
+top:"91%",left:"40%",width:"8%",height:"8%"},
+
+{ muscle:"Pantorrillas",label:"Pantorrillas",
+top:"91%",left:"52%",width:"8%",height:"8%"}
+
 ];
 
 const BACK_HOTSPOTS = [
@@ -1228,6 +1246,7 @@ const bodyImageStyle = {
 const hotspotStyle = {
   position: "absolute",
   border: "2px solid",
+  borderRadius:"18px",
   cursor: "pointer",
   transition: "0.2s",
   zIndex: 3,
