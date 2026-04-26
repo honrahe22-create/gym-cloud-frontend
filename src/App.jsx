@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
-const API_URL = "http://localhost:10000";
+const API_URL = "https://gym-cloud-backend.onrender.com";
 
 const FRONT_BODY_IMAGE = "/map.png";
 const BACK_BODY_IMAGE = "/map.png";
@@ -173,13 +173,16 @@ function App() {
   const [rutinasSocio, setRutinasSocio] = useState([]);
   const [rutinaActiva, setRutinaActiva] = useState(null);
   const [detalleRutina, setDetalleRutina] = useState([]);
-  const [vistaCuerpo, setVistaCuerpo] = useState("front");const [modoAjuste, setModoAjuste] = useState(false);
+  const [vistaCuerpo, setVistaCuerpo] = useState("front");
+  const [modoAjuste, setModoAjuste] = useState(false);
   const [zoomMusculo, setZoomMusculo] = useState(null);
-const [frontHotspotsEditables, setFrontHotspotsEditables] = useState(FRONT_HOTSPOTS);
-const [backHotspotsEditables, setBackHotspotsEditables] = useState(BACK_HOTSPOTS);
-const [dragInfo, setDragInfo] = useState(null);
+  const [frontHotspotsEditables, setFrontHotspotsEditables] = useState(FRONT_HOTSPOTS);
+  const [backHotspotsEditables, setBackHotspotsEditables] = useState(BACK_HOTSPOTS);
+  const [dragInfo, setDragInfo] = useState(null);
 
-const mapRef = useRef(null);
+  const mapRef = useRef(null);
+
+  const setEditableHotspots = vistaCuerpo === "front" ? setFrontHotspotsEditables : setBackHotspotsEditables;
 
 useEffect(() => {
   if (!dragInfo) return;
@@ -225,7 +228,7 @@ useEffect(() => {
       if (data.ok) {
         setSocios(data.socios || []);
       } else {
-        setMensaje(data.error || "No se pudo cargar la lista de socios");
+        setMensaje(typeof data.error === "string" ? data.error : "No se pudo cargar la lista de socios");
       }
     } catch (error) {
       console.error("Error cargando socios:", error);
@@ -929,7 +932,7 @@ const RealBodyMap = React.forwardRef(function RealBodyMap(
                 : "none",
             }}
           >
-            {active && <span style={hotspotLabelStyle}>{spot.label}</span>}
+            {active && <span style={hotspotLabelStyle}>{spot.label || spot.muscle}</span>}
           </button>
         );
       })}
