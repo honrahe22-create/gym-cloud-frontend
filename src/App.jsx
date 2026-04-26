@@ -44,17 +44,22 @@ const BACK_GROUPS = [
 ];
 
 const FRONT_HOTSPOTS = [
-  { muscle: "Hombros", label: "Hombros", top: "16%", left: "27%", width: "46%", height: "8%" },
-  { muscle: "Pecho alto", label: "Pecho alto", top: "24%", left: "35%", width: "30%", height: "6%" },
-  { muscle: "Pecho medio", label: "Pecho medio", top: "30%", left: "35%", width: "30%", height: "7%" },
-  { muscle: "Pecho bajo", label: "Pecho bajo", top: "37%", left: "37%", width: "26%", height: "6%" },
-  { muscle: "Bíceps", label: "Bíceps", top: "28%", left: "18%", width: "10%", height: "20%" },
-  { muscle: "Bíceps", label: "Bíceps", top: "28%", left: "72%", width: "10%", height: "20%" },
-  { muscle: "Abdomen", label: "Abdomen", top: "44%", left: "40%", width: "20%", height: "18%" },
-  { muscle: "Cuádriceps", label: "Cuádriceps", top: "65%", left: "35%", width: "13%", height: "20%" },
-  { muscle: "Cuádriceps", label: "Cuádriceps", top: "65%", left: "52%", width: "13%", height: "20%" },
-  { muscle: "Pantorrillas", label: "Pantorrillas", top: "85%", left: "37%", width: "11%", height: "11%" },
-  { muscle: "Pantorrillas", label: "Pantorrillas", top: "85%", left: "52%", width: "11%", height: "11%" },
+  { muscle: "Hombros", label: "Hombros", top: "17%", left: "27%", width: "46%", height: "7%" },
+
+  { muscle: "Pecho alto", label: "Pecho alto", top: "24%", left: "36%", width: "28%", height: "5%" },
+  { muscle: "Pecho medio", label: "Pecho medio", top: "30%", left: "35%", width: "30%", height: "6%" },
+  { muscle: "Pecho bajo", label: "Pecho bajo", top: "37%", left: "38%", width: "24%", height: "5%" },
+
+  { muscle: "Bíceps", label: "Bíceps", top: "30%", left: "20%", width: "8%", height: "17%" },
+  { muscle: "Bíceps", label: "Bíceps", top: "30%", left: "72%", width: "8%", height: "17%" },
+
+  { muscle: "Abdomen", label: "Abdomen", top: "45%", left: "41%", width: "18%", height: "17%" },
+
+  { muscle: "Cuádriceps", label: "Cuádriceps", top: "66%", left: "36%", width: "13%", height: "19%" },
+  { muscle: "Cuádriceps", label: "Cuádriceps", top: "66%", left: "51%", width: "13%", height: "19%" },
+
+  { muscle: "Pantorrillas", label: "Pantorrillas", top: "85%", left: "38%", width: "10%", height: "11%" },
+  { muscle: "Pantorrillas", label: "Pantorrillas", top: "85%", left: "52%", width: "10%", height: "11%" },
 ];
 
 const BACK_HOTSPOTS = [
@@ -416,15 +421,31 @@ const handleChange = (e) => {
   };
 
   const abrirRutinas = async (socio) => {
-    setSocioSeleccionado(socio);
-    setVista("rutinas");
-    setMusculoSeleccionado(null);
-    setEjerciciosMusculo([]);
-    setRutinaActiva(null);
-    setDetalleRutina([]);
-    setVistaCuerpo("front");
-    await cargarRutinasSocio(socio.id);
-  };
+  setSocioSeleccionado(socio);
+  setVista("rutinas");
+  setMusculoSeleccionado(null);
+  setEjerciciosMusculo([]);
+  setRutinaActiva(null);
+  setDetalleRutina([]);
+  setVistaCuerpo("front");
+
+  try {
+    const res = await fetch(`${API_URL}/api/rutinas/socio/${socio.id}`);
+    const data = await res.json();
+
+    if (data.ok) {
+      const rutinas = data.rutinas || [];
+      setRutinasSocio(rutinas);
+
+      if (rutinas.length > 0) {
+        setRutinaActiva(rutinas[0]);
+        await cargarDetalleRutina(rutinas[0].id);
+      }
+    }
+  } catch (error) {
+    console.error("Error abriendo rutinas:", error);
+  }
+};
 
 const seleccionarMusculoPorNombre = async (nombreMusculo) => {
   setMusculoSeleccionado({ nombre: nombreMusculo });
@@ -1142,21 +1163,21 @@ const cardStyle = {
 
 const realBodyPanelStyle = {
   marginTop: "12px",
-  background: "radial-gradient(circle at top, rgba(245,158,11,0.10), rgba(15,23,42,0.95) 38%)",
-  border: "1px solid rgba(148,163,184,0.12)",
-  borderRadius: "22px",
-  padding: "12px",
+  background: "#050505",
+  border: "1px solid rgba(148,163,184,0.18)",
+  borderRadius: "28px",
+  padding: "14px",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  minHeight: "760px",
+  minHeight: "720px",
   overflow: "hidden",
 };
 
 const bodyMapWrapperStyle = {
   position: "relative",
-  width: "460px",
-  height: "820px",
+  width: "390px",
+  height: "760px",
   margin: "0 auto",
 };
 
@@ -1212,6 +1233,7 @@ const hotspotStyle = {
   cursor: "pointer",
   transition: "0.2s",
   zIndex: 3,
+  background: "rgba(255,255,255,0.01)",
 };
 
 const hotspotLabelStyle = {
