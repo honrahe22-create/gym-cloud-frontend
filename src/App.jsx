@@ -852,6 +852,11 @@ const RealBodyMap = React.forwardRef(function RealBodyMap(
   return (
     <div style={bodyMapWrapperStyle} ref={ref}>
       <div style={bodyViewportStyle}>
+      {selectedMuscle && (
+  <div style={selectedMuscleBadgeStyle}>
+    {selectedMuscle}
+  </div>
+)}
         <div
           style={{
             ...bodyZoomLayerStyle,
@@ -1439,6 +1444,21 @@ const exerciseMiniThumbImgStyle = {
   height: "100%",
   objectFit: "cover",
   display: "block",
+};
+
+const selectedMuscleBadgeStyle = {
+  position: "absolute",
+  top: "18px",
+  left: "50%",
+  transform: "translateX(-50%)",
+  zIndex: 10,
+  background: "#00e0ff",
+  color: "#000",
+  fontWeight: "bold",
+  fontSize: "18px",
+  padding: "10px 18px",
+  borderRadius: "999px",
+  boxShadow: "0 0 24px rgba(0,224,255,0.55)",
 };
 
 export default App;
