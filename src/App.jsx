@@ -880,14 +880,12 @@ const RealBodyMap = React.forwardRef(function RealBodyMap(
                   width: spot.width,
                   height: spot.height,
                   borderRadius: "14px",
-                  borderColor: active ? "#00e0ff" : "rgba(255,255,255,0.12)",
-                  background: active ? "rgba(0,224,255,0.22)" : "rgba(255,255,255,0.02)",
-                  boxShadow: active
-                    ? "0 0 0 2px rgba(0,224,255,0.50), 0 0 24px rgba(0,224,255,0.32)"
-                    : "none",
+                  borderColor: "transparent",
+background: "transparent",
+boxShadow: "none",
                 }}
               >
-                {active && <span style={hotspotLabelStyle}>{spot.label || spot.muscle}</span>}
+                {false && <span style={hotspotLabelStyle}>{spot.label || spot.muscle}</span>}
               </button>
             );
           })}
