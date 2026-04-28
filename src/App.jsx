@@ -46,9 +46,11 @@ const BACK_GROUPS = [
 const FRONT_HOTSPOTS = [
   { muscle: "Hombros", label: "Hombros", top: "21%", left: "26%", width: "48%", height: "8%" },
 
-  { muscle: "Pecho alto", label: "Pecho alto", top: "29%", left: "36%", width: "28%", height: "5%" },
-  { muscle: "Pecho medio", label: "Pecho medio", top: "34%", left: "36%", width: "28%", height: "5%" },
-  { muscle: "Pecho bajo", label: "Pecho bajo", top: "39%", left: "39%", width: "22%", height: "5%" },
+  { muscle: "Pecho alto", label: "Pecho alto", top: "26%", left: "34%", width: "32%", height: "7%" },
+
+{ muscle: "Pecho medio", label: "Pecho medio", top: "34%", left: "34%", width: "32%", height: "7%" },
+
+{ muscle: "Pecho bajo", label: "Pecho bajo", top: "42%", left: "37%", width: "26%", height: "6%" },
 
   { muscle: "Bíceps", label: "Bíceps", top: "34%", left: "23%", width: "8%", height: "15%" },
   { muscle: "Bíceps", label: "Bíceps", top: "34%", left: "69%", width: "8%", height: "15%" },
