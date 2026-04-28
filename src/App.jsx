@@ -903,96 +903,88 @@ boxShadow: "none",
 function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
   const principal = group.principal;
   const secundarios = group.secundarios || [];
+  const todos = [principal, ...secundarios].filter(Boolean);
 
   return (
-    <div style={exerciseGroupStyle}>
-      <div style={{ color: "#94a3b8", fontSize: "13px", marginBottom: "10px" }}>
-        Grupo muscular: <strong style={{ color: "#fff" }}>{group.nombre}</strong>
+    <div
+      style={{
+        background: "#0f172a",
+        border: "1px solid rgba(0,224,255,0.18)",
+        borderRadius: "24px",
+        padding: "20px",
+        boxShadow: "0 0 30px rgba(0,224,255,0.08)",
+      }}
+    >
+      <div style={{ color: "#94a3b8", fontSize: "14px", marginBottom: "10px" }}>
+        Músculo seleccionado: <strong style={{ color: "#fff" }}>{group.nombre}</strong>
       </div>
 
-      <div style={exerciseHeroStyle}>
-  <div
-    style={{
-      ...exerciseHeroImageWrapStyle,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      background: "#111827",
-      color: "#cbd5e1",
-      fontWeight: "bold",
-      fontSize: "18px",
-      textAlign: "center",
-      padding: "20px",
-    }}
-  >
-    {principal?.nombre || "Ejercicio"}
-  </div>
-
-  <div>
-          <h3 style={{ marginTop: 0, marginBottom: "10px" }}>{principal?.nombre}</h3>
-          <p style={{ color: "#cbd5e1", marginTop: 0 }}>
-            {principal?.descripcion || "Ejercicio recomendado para este grupo muscular."}
-          </p>
-
-          <div style={exerciseInfoBoxStyle}>
-            Este ejercicio trabaja principalmente: <strong>{selectedMuscle}</strong>
-          </div>
-
-          <button style={buttonPrimary} onClick={() => onAdd(principal)}>
-            Agregar a rutina
-          </button>
-        </div>
+      <div
+        style={{
+          height: "320px",
+          borderRadius: "22px",
+          overflow: "hidden",
+          background: "#020617",
+          marginBottom: "20px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "26px",
+          fontWeight: "bold",
+          color: "#00e0ff",
+          textAlign: "center",
+          padding: "20px",
+        }}
+      >
+        {principal?.imagen_url ? (
+          <img
+            src={principal.imagen_url}
+            alt={principal.nombre}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          />
+        ) : (
+          principal?.nombre || "Ejercicio"
+        )}
       </div>
 
-      {secundarios.length > 0 && (
-        <div style={{ marginTop: "16px", display: "grid", gap: "12px" }}>
-          {secundarios.map((ejercicio) => (
-            <div key={ejercicio.id} style={exerciseMiniCardStyle}>
-              <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-                <div style={exerciseMiniThumbStyle}>
-                  {ejercicio.imagen_url ? (
-  <img
-    src={ejercicio.imagen_url}
-    alt={ejercicio.nombre}
-    style={exerciseMiniThumbImgStyle}
-    onError={(e) => {
-      e.currentTarget.style.display = "none";
-      const fallback = e.currentTarget.parentElement.querySelector(".fallback-mini");
-      if (fallback) fallback.style.display = "flex";
-    }}
-  />
-) : null}
+      <h3 style={{ marginTop: 0, marginBottom: "16px" }}>
+        Rutinas disponibles
+      </h3>
 
-<div
-  className="fallback-mini"
-  style={{
-    ...imageFallbackStyle,
-    display: ejercicio.imagen_url ? "none" : "flex",
-    background: "#111827",
-    color: "#cbd5e1",
-    fontSize: "13px",
-    textAlign: "center",
-  }}
->
-  {ejercicio.nombre}
-</div>
-                </div>
-
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontWeight: "bold", marginBottom: "4px" }}>{ejercicio.nombre}</div>
-                  <div style={{ color: "#94a3b8", fontSize: "14px" }}>
-                    {ejercicio.descripcion || "Ejercicio complementario."}
-                  </div>
-                </div>
+      <div style={{ display: "grid", gap: "14px" }}>
+        {todos.map((ejercicio) => (
+          <div
+            key={ejercicio.id}
+            style={{
+              background: "#111827",
+              border: "1px solid rgba(255,255,255,0.08)",
+              borderRadius: "18px",
+              padding: "16px",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: "12px",
+            }}
+          >
+            <div>
+              <div style={{ fontWeight: "bold", fontSize: "18px" }}>
+                {ejercicio.nombre}
               </div>
-
-              <button style={buttonSecondaryMini} onClick={() => onAdd(ejercicio)}>
-                Agregar
-              </button>
+              <div style={{ color: "#94a3b8", fontSize: "14px", marginTop: "4px" }}>
+                {ejercicio.descripcion || "Ejercicio recomendado."}
+              </div>
             </div>
-          ))}
-        </div>
-      )}
+
+            <button style={buttonPrimary} onClick={() => onAdd(ejercicio)}>
+              Agregar
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
