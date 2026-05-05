@@ -44,24 +44,18 @@ const BACK_GROUPS = [
 ];
 
 const FRONT_HOTSPOTS = [
-  { muscle: "Hombros", label: "Hombros", top: "21%", left: "26%", width: "48%", height: "8%" },
+{ muscle:"Hombros", top:"21%", left:"26%", width:"48%", height:"8%"},
 
-  { muscle: "Pecho alto", label: "Pecho alto", top: "26%", left: "34%", width: "32%", height: "7%" },
+{ muscle:"Pecho alto", top:"26%", left:"34%", width:"32%", height:"7%"},
+{ muscle:"Pecho medio", top:"34%", left:"34%", width:"32%", height:"7%"},
+{ muscle:"Pecho bajo", top:"42%", left:"37%", width:"26%", height:"6%"},
 
-{ muscle: "Pecho medio", label: "Pecho medio", top: "34%", left: "34%", width: "32%", height: "7%" },
+{ muscle:"Bíceps", top:"34%", left:"23%", width:"8%", height:"15%"},
+{ muscle:"Bíceps", top:"34%", left:"69%", width:"8%", height:"15%"},
 
-{ muscle: "Pecho bajo", label: "Pecho bajo", top: "42%", left: "37%", width: "26%", height: "6%" },
-
-  { muscle: "Bíceps", label: "Bíceps", top: "34%", left: "23%", width: "8%", height: "15%" },
-  { muscle: "Bíceps", label: "Bíceps", top: "34%", left: "69%", width: "8%", height: "15%" },
-
-  { muscle: "Abdomen", label: "Abdomen", top: "43%", left: "41%", width: "18%", height: "16%" },
-
-  { muscle: "Cuádriceps", label: "Cuádriceps", top: "60%", left: "35%", width: "14%", height: "20%" },
-  { muscle: "Cuádriceps", label: "Cuádriceps", top: "60%", left: "51%", width: "14%", height: "20%" },
-
-  { muscle: "Pantorrillas", label: "Pantorrillas", top: "80%", left: "37%", width: "11%", height: "14%" },
-  { muscle: "Pantorrillas", label: "Pantorrillas", top: "80%", left: "52%", width: "11%", height: "14%" },
+{ muscle:"Abdomen", top:"43%", left:"41%", width:"18%", height:"16%"},
+{ muscle:"Cuádriceps", top:"60%", left:"35%", width:"14%", height:"20%"},
+{ muscle:"Cuádriceps", top:"60%", left:"51%", width:"14%", height:"20%"},
 ];
 
 const BACK_HOTSPOTS = [
@@ -777,15 +771,20 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
             </div>
 
             <div style={realBodyPanelStyle}>
-              <RealBodyMap
-  ref={mapRef}
-  view={vistaCuerpo}
-  selectedMuscle={musculoSeleccionado?.nombre}
-  onSelect={seleccionarMusculoPorNombre}
-  hotspots={vistaCuerpo === "front" ? frontHotspotsEditables : backHotspotsEditables}
-  zoomMusculo={zoomMusculo}
-/>
-            </div>
+  <div style={appBodyPreviewStyle}>
+    <img
+      src={vistaCuerpo === "front" ? FRONT_BODY_IMAGE : BACK_BODY_IMAGE}
+      alt="Mapa muscular"
+      style={appBodyImageStyle}
+    />
+
+    {musculoSeleccionado && (
+      <div style={appBodyBadgeStyle}>
+        {musculoSeleccionado.nombre}
+      </div>
+    )}
+  </div>
+</div>
           </div>
 
           <div style={cardStyle}>
@@ -880,17 +879,23 @@ const RealBodyMap = React.forwardRef(function RealBodyMap(
                 key={`${spot.muscle}-${index}`}
                 type="button"
                 onClick={() => onSelect(spot.muscle)}
-                style={{
-                  ...hotspotStyle,
-                  top: spot.top,
-                  left: spot.left,
-                  width: spot.width,
-                  height: spot.height,
-                  borderRadius: "14px",
-                  borderColor: "transparent",
-background: "transparent",
-boxShadow: "none",
-                }}
+               style={{
+  ...hotspotStyle,
+  top: spot.top,
+  left: spot.left,
+  width: spot.width,
+  height: spot.height,
+  borderRadius:"14px",
+
+  borderColor: active ? "#00e0ff" : "transparent",
+  background: active
+    ? "rgba(0,224,255,0.20)"
+    : "transparent",
+
+  boxShadow: active
+    ? "0 0 18px rgba(0,224,255,0.65)"
+    : "none",
+}}
               >
                 {false && <span style={hotspotLabelStyle}>{spot.label || spot.muscle}</span>}
               </button>
@@ -1453,6 +1458,41 @@ const selectedMuscleBadgeStyle = {
   padding: "10px 18px",
   borderRadius: "999px",
   boxShadow: "0 0 24px rgba(0,224,255,0.55)",
+};
+
+const appBodyPreviewStyle = {
+  marginTop:"10px",
+  position:"relative",
+  background:"radial-gradient(circle at center,#071b33 0%, #020617 70%)",
+  borderRadius:"32px",
+  minHeight:"760px",
+  display:"flex",
+  alignItems:"center",
+  justifyContent:"center",
+  overflow:"hidden",
+  border:"1px solid rgba(0,224,255,.18)"
+};
+
+const appBodyImageStyle = {
+  width:"100%",
+  maxWidth:"430px",
+  objectFit:"contain",
+  display:"block",
+  filter:"drop-shadow(0 0 25px rgba(0,224,255,.18))"
+};
+
+const appBodyBadgeStyle = {
+  position:"absolute",
+  top:"24px",
+  left:"50%",
+  transform:"translateX(-50%)",
+  background:"#00e0ff",
+  color:"#001018",
+  fontWeight:"bold",
+  fontSize:"22px",
+  padding:"12px 26px",
+  borderRadius:"999px",
+  boxShadow:"0 0 25px rgba(0,224,255,.65)"
 };
 
 export default App;
