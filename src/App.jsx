@@ -915,80 +915,208 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
   return (
     <div
       style={{
-        background: "#0f172a",
+        background: "#07111f",
         border: "1px solid rgba(0,224,255,0.18)",
-        borderRadius: "24px",
-        padding: "20px",
+        borderRadius: "26px",
+        padding: "18px",
         boxShadow: "0 0 30px rgba(0,224,255,0.08)",
       }}
     >
-      <div style={{ color: "#94a3b8", fontSize: "14px", marginBottom: "10px" }}>
-        Músculo seleccionado: <strong style={{ color: "#fff" }}>{group.nombre}</strong>
+      <div
+        style={{
+          color: "#94a3b8",
+          fontSize: "14px",
+          marginBottom: "12px",
+        }}
+      >
+        Músculo seleccionado:{" "}
+        <strong style={{ color: "#fff" }}>{group.nombre}</strong>
       </div>
 
       <div
         style={{
-          height: "320px",
-          borderRadius: "22px",
+          width: "100%",
+          height: "360px",
+          borderRadius: "24px",
           overflow: "hidden",
           background: "#020617",
-          marginBottom: "20px",
+          border: "1px solid rgba(255,255,255,0.08)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontSize: "26px",
-          fontWeight: "bold",
-          color: "#00e0ff",
-          textAlign: "center",
-          padding: "20px",
         }}
       >
-        {principal?.imagen_url ? (
+        {principal?.video_url ? (
+          <video
+            key={principal.video_url}
+            src={principal.video_url}
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+              background: "#000",
+            }}
+          />
+        ) : principal?.imagen_url ? (
           <img
             src={principal.imagen_url}
             alt={principal.nombre}
             style={{
               width: "100%",
               height: "100%",
-              objectFit: "cover",
+              objectFit: "contain",
+              background: "#000",
             }}
           />
         ) : (
-          principal?.nombre || "Ejercicio"
+          <div
+            style={{
+              textAlign: "center",
+              color: "#00e0ff",
+              fontSize: "25px",
+              fontWeight: "bold",
+            }}
+          >
+            {principal?.nombre || "Ejercicio"}
+            <div
+              style={{
+                color: "#64748b",
+                fontSize: "14px",
+                fontWeight: "normal",
+                marginTop: "10px",
+              }}
+            >
+              Animación pendiente
+            </div>
+          </div>
         )}
       </div>
 
-      <h3 style={{ marginTop: 0, marginBottom: "16px" }}>
-        Rutinas disponibles
-      </h3>
+      <div style={{ marginTop: "16px" }}>
+        <div
+          style={{
+            fontSize: "24px",
+            fontWeight: "bold",
+          }}
+        >
+          {principal?.nombre}
+        </div>
 
-      <div style={{ display: "grid", gap: "14px" }}>
+        <div
+          style={{
+            color: "#94a3b8",
+            marginTop: "5px",
+          }}
+        >
+          {principal?.descripcion}
+        </div>
+      </div>
+
+      <h3 style={{ marginTop: "22px" }}>Ejercicios disponibles</h3>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+          gap: "12px",
+        }}
+      >
         {todos.map((ejercicio) => (
           <div
             key={ejercicio.id}
             style={{
-              background: "#111827",
+              background: "#0f172a",
               border: "1px solid rgba(255,255,255,0.08)",
               borderRadius: "18px",
-              padding: "16px",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: "12px",
+              overflow: "hidden",
             }}
           >
-            <div>
-              <div style={{ fontWeight: "bold", fontSize: "18px" }}>
-                {ejercicio.nombre}
-              </div>
-              <div style={{ color: "#94a3b8", fontSize: "14px", marginTop: "4px" }}>
-                {ejercicio.descripcion || "Ejercicio recomendado."}
-              </div>
+            <div
+              style={{
+                height: "130px",
+                background: "#020617",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              {ejercicio.video_url ? (
+                <video
+                  src={ejercicio.video_url}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                  }}
+                />
+              ) : ejercicio.imagen_url ? (
+                <img
+                  src={ejercicio.imagen_url}
+                  alt={ejercicio.nombre}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                  }}
+                />
+              ) : (
+                <div
+                  style={{
+                    color: "#475569",
+                    fontSize: "36px",
+                  }}
+                >
+                  ▶
+                </div>
+              )}
             </div>
 
-            <button style={buttonPrimary} onClick={() => onAdd(ejercicio)}>
-              Agregar
-            </button>
+            <div style={{ padding: "13px" }}>
+              <div
+                style={{
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                }}
+              >
+                {ejercicio.nombre}
+              </div>
+
+              <div
+                style={{
+                  color: "#94a3b8",
+                  fontSize: "13px",
+                  marginTop: "4px",
+                }}
+              >
+                {ejercicio.nivel || selectedMuscle}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => onAdd(ejercicio)}
+                style={{
+                  width: "100%",
+                  marginTop: "11px",
+                  padding: "10px",
+                  border: "none",
+                  borderRadius: "10px",
+                  background: "#10b981",
+                  color: "#fff",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                }}
+              >
+                Agregar a rutina
+              </button>
+            </div>
           </div>
         ))}
       </div>
