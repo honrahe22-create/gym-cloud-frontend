@@ -43,6 +43,70 @@ const BACK_GROUPS = [
   { key: "Pantorrillas posterior", label: "Pantorrillas posterior", color: "#06b6d4" },
 ];
 
+const MUSCLE_GLOW = {
+  front: {
+    "Pecho alto": [
+      { top: "26%", left: "32%", width: "17%", height: "8%" },
+      { top: "26%", left: "51%", width: "17%", height: "8%" },
+    ],
+    "Pecho medio": [
+      { top: "31%", left: "32%", width: "17%", height: "8%" },
+      { top: "31%", left: "51%", width: "17%", height: "8%" },
+    ],
+    "Pecho bajo": [
+      { top: "36%", left: "35%", width: "14%", height: "7%" },
+      { top: "36%", left: "51%", width: "14%", height: "7%" },
+    ],
+    Hombros: [
+      { top: "22%", left: "23%", width: "13%", height: "11%" },
+      { top: "22%", left: "64%", width: "13%", height: "11%" },
+    ],
+    "Bíceps": [
+      { top: "31%", left: "22%", width: "10%", height: "16%" },
+      { top: "31%", left: "68%", width: "10%", height: "16%" },
+    ],
+    Abdomen: [
+      { top: "38%", left: "39%", width: "22%", height: "21%" },
+    ],
+    "Cuádriceps": [
+      { top: "55%", left: "30%", width: "18%", height: "24%" },
+      { top: "55%", left: "52%", width: "18%", height: "24%" },
+    ],
+    Pantorrillas: [
+      { top: "77%", left: "32%", width: "14%", height: "17%" },
+      { top: "77%", left: "54%", width: "14%", height: "17%" },
+    ],
+  },
+
+  back: {
+    "Espalda alta": [
+      { top: "19%", left: "35%", width: "30%", height: "15%" },
+    ],
+    "Espalda media": [
+      { top: "29%", left: "33%", width: "34%", height: "19%" },
+    ],
+    "Espalda baja": [
+      { top: "42%", left: "38%", width: "24%", height: "13%" },
+    ],
+    "Tríceps": [
+      { top: "29%", left: "22%", width: "11%", height: "18%" },
+      { top: "29%", left: "67%", width: "11%", height: "18%" },
+    ],
+    "Glúteos": [
+      { top: "48%", left: "33%", width: "17%", height: "17%" },
+      { top: "48%", left: "50%", width: "17%", height: "17%" },
+    ],
+    "Isquiotibiales": [
+      { top: "61%", left: "33%", width: "16%", height: "21%" },
+      { top: "61%", left: "51%", width: "16%", height: "21%" },
+    ],
+    "Pantorrillas posterior": [
+      { top: "79%", left: "34%", width: "13%", height: "17%" },
+      { top: "79%", left: "53%", width: "13%", height: "17%" },
+    ],
+  },
+};
+
 const FRONT_HOTSPOTS = [
 { muscle:"Hombros", top:"21%", left:"26%", width:"48%", height:"8%"},
 
@@ -750,7 +814,7 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
             </div>
 
             <p style={{ color: "#94a3b8", marginTop: "12px" }}>
-              Haz clic en una zona muscular del cuerpo o usa los botones por músculo para cargar las rutinas y ejercicios.
+              Selecciona un músculo para resaltarlo en el cuerpo y cargar sus rutinas y ejercicios.
             </p>
 
             <div style={muscleChipWrap}>
@@ -771,20 +835,44 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
             </div>
 
             <div style={realBodyPanelStyle}>
-  <div style={appBodyPreviewStyle}>
-    <img
-      src={vistaCuerpo === "front" ? FRONT_BODY_IMAGE : BACK_BODY_IMAGE}
-      alt="Mapa muscular"
-      style={appBodyImageStyle}
-    />
+              <div style={appBodyPreviewStyle}>
+                <img
+                  src={vistaCuerpo === "front" ? FRONT_BODY_IMAGE : BACK_BODY_IMAGE}
+                  alt="Mapa muscular"
+                  style={appBodyImageStyle}
+                />
 
-    {musculoSeleccionado && (
-      <div style={appBodyBadgeStyle}>
-        {musculoSeleccionado.nombre}
-      </div>
-    )}
-  </div>
-</div>
+                {musculoSeleccionado &&
+                  (MUSCLE_GLOW[vistaCuerpo]?.[musculoSeleccionado.nombre] || []).map(
+                    (zona, index) => (
+                      <div
+                        key={`${musculoSeleccionado.nombre}-${index}`}
+                        style={{
+                          position: "absolute",
+                          top: zona.top,
+                          left: zona.left,
+                          width: zona.width,
+                          height: zona.height,
+                          borderRadius: "50%",
+                          background:
+                            "radial-gradient(circle, rgba(0,224,255,0.68) 0%, rgba(0,224,255,0.30) 42%, rgba(0,224,255,0) 76%)",
+                          boxShadow: "0 0 32px rgba(0,224,255,0.82)",
+                          filter: "blur(1.5px)",
+                          pointerEvents: "none",
+                          zIndex: 4,
+                          mixBlendMode: "screen",
+                        }}
+                      />
+                    )
+                  )}
+
+                {musculoSeleccionado && (
+                  <div style={appBodyBadgeStyle}>
+                    {musculoSeleccionado.nombre}
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
 
           <div style={cardStyle}>
@@ -1606,6 +1694,8 @@ const appBodyImageStyle = {
   maxWidth:"430px",
   objectFit:"contain",
   display:"block",
+  position:"relative",
+  zIndex:2,
   filter:"drop-shadow(0 0 25px rgba(0,224,255,.18))"
 };
 
