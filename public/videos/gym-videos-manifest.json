@@ -1,0 +1,782 @@
+{
+  "Pecho alto": [
+    {
+      "id": "0047",
+      "sourceName": "Barbell Incline Bench Press",
+      "localFile": "/videos/pecho-alto-1.mp4",
+      "target": "pectorals",
+      "muscleGroup": "shoulders",
+      "bodyPart": "chest",
+      "equipment": "barbell",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "0319",
+      "sourceName": "Dumbbell Incline Fly",
+      "localFile": "/videos/pecho-alto-2.mp4",
+      "target": "pectorals",
+      "muscleGroup": "shoulders",
+      "bodyPart": "chest",
+      "equipment": "dumbbell",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "1278",
+      "sourceName": "Dumbbell Incline Fly On Exercise Ball",
+      "localFile": "/videos/pecho-alto-3.mp4",
+      "target": "pectorals",
+      "muscleGroup": "shoulders",
+      "bodyPart": "chest",
+      "equipment": "dumbbell",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "0314",
+      "sourceName": "Dumbbell Incline Bench Press",
+      "localFile": "/videos/pecho-alto-4.mp4",
+      "target": "pectorals",
+      "muscleGroup": "shoulders",
+      "bodyPart": "chest",
+      "equipment": "dumbbell",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "0321",
+      "sourceName": "Dumbbell Incline Hammer Press",
+      "localFile": "/videos/pecho-alto-5.mp4",
+      "target": "pectorals",
+      "muscleGroup": "shoulders",
+      "bodyPart": "chest",
+      "equipment": "dumbbell",
+      "difficulty": "beginner"
+    }
+  ],
+  "Pecho bajo": [
+    {
+      "id": "0033",
+      "sourceName": "Barbell Decline Bench Press",
+      "localFile": "/videos/pecho-bajo-1.mp4",
+      "target": "pectorals",
+      "muscleGroup": "triceps",
+      "bodyPart": "chest",
+      "equipment": "barbell",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "drv-chest-dips",
+      "sourceName": "Chest Dips",
+      "localFile": "/videos/pecho-bajo-2.mp4",
+      "target": "pectorals",
+      "muscleGroup": "pectoralis major",
+      "bodyPart": "chest",
+      "equipment": "body weight",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "0301",
+      "sourceName": "Decline Dumbbell Bench Press",
+      "localFile": "/videos/pecho-bajo-3.mp4",
+      "target": "pectorals",
+      "muscleGroup": "pectoralis major",
+      "bodyPart": "chest",
+      "equipment": "dumbbell",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "0302",
+      "sourceName": "Decline Dumbbell Fly",
+      "localFile": "/videos/pecho-bajo-4.mp4",
+      "target": "pectorals",
+      "muscleGroup": "pectoralis major",
+      "bodyPart": "chest",
+      "equipment": "dumbbell",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "1269",
+      "sourceName": "Cable Standing Fly",
+      "localFile": "/videos/pecho-bajo-5.mp4",
+      "target": "pectorals",
+      "muscleGroup": "pectoralis major",
+      "bodyPart": "chest",
+      "equipment": "cable",
+      "difficulty": "beginner"
+    }
+  ],
+  "Cuádriceps": [
+    {
+      "id": "1435",
+      "sourceName": "Barbell Back Squat",
+      "localFile": "/videos/cuadriceps-1.mp4",
+      "target": "quads",
+      "muscleGroup": "quadriceps femoris",
+      "bodyPart": "upper legs",
+      "equipment": "barbell",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "0042",
+      "sourceName": "Barbell Front Squat",
+      "localFile": "/videos/cuadriceps-2.mp4",
+      "target": "quads",
+      "muscleGroup": "quadriceps femoris",
+      "bodyPart": "upper legs",
+      "equipment": "barbell",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "2611",
+      "sourceName": "Lever Horizontal Leg Press",
+      "localFile": "/videos/cuadriceps-3.mp4",
+      "target": "quadriceps",
+      "muscleGroup": "quadriceps femoris",
+      "bodyPart": "upper legs",
+      "equipment": "leverage machine",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0743",
+      "sourceName": "Sled Hack Squat",
+      "localFile": "/videos/cuadriceps-4.mp4",
+      "target": "glutes",
+      "muscleGroup": "quadriceps",
+      "bodyPart": "upper legs",
+      "equipment": "sled machine",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0748",
+      "sourceName": "Smith Machine Leg Press",
+      "localFile": "/videos/cuadriceps-5.mp4",
+      "target": "quadriceps",
+      "muscleGroup": "quadriceps femoris",
+      "bodyPart": "upper legs",
+      "equipment": "smith machine",
+      "difficulty": "intermediate"
+    }
+  ],
+  "Pecho medio": [
+    {
+      "id": "0025",
+      "sourceName": "Barbell Bench Press",
+      "localFile": "/videos/pecho-medio-1.mp4",
+      "target": "pectorals",
+      "muscleGroup": "triceps",
+      "bodyPart": "chest",
+      "equipment": "barbell",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "1269",
+      "sourceName": "Cable Standing Fly",
+      "localFile": "/videos/pecho-medio-2.mp4",
+      "target": "pectorals",
+      "muscleGroup": "pectoralis major",
+      "bodyPart": "chest",
+      "equipment": "cable",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "1274",
+      "sourceName": "Deep Push-Up",
+      "localFile": "/videos/pecho-medio-3.mp4",
+      "target": "pectorals",
+      "muscleGroup": "pectoralis major",
+      "bodyPart": "chest",
+      "equipment": "body weight",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "0308",
+      "sourceName": "Dumbbell Fly",
+      "localFile": "/videos/pecho-medio-4.mp4",
+      "target": "pectorals",
+      "muscleGroup": "shoulders",
+      "bodyPart": "chest",
+      "equipment": "dumbbell",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "1277",
+      "sourceName": "Dumbbell Fly On Exercise Ball",
+      "localFile": "/videos/pecho-medio-5.mp4",
+      "target": "pectorals",
+      "muscleGroup": "shoulders",
+      "bodyPart": "chest",
+      "equipment": "dumbbell",
+      "difficulty": "intermediate"
+    }
+  ],
+  "Hombros": [
+    {
+      "id": "drv-band-bent-over-rear-lateral-raise",
+      "sourceName": "Band Bent-Over Rear Lateral Raise",
+      "localFile": "/videos/hombros-1.mp4",
+      "target": "rear deltoids",
+      "muscleGroup": "posterior deltoid",
+      "bodyPart": "shoulders",
+      "equipment": "band",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "1017",
+      "sourceName": "Band One Arm Front Raise",
+      "localFile": "/videos/hombros-2.mp4",
+      "target": "anterior deltoid",
+      "muscleGroup": "deltoid anterior",
+      "bodyPart": "shoulders",
+      "equipment": "band",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0041",
+      "sourceName": "Barbell Front Raise",
+      "localFile": "/videos/hombros-3.mp4",
+      "target": "delts",
+      "muscleGroup": "biceps",
+      "bodyPart": "shoulders",
+      "equipment": "barbell",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0123",
+      "sourceName": "Barbell Wide-Grip Upright Row",
+      "localFile": "/videos/hombros-4.mp4",
+      "target": "deltoids",
+      "muscleGroup": "deltoids",
+      "bodyPart": "shoulders",
+      "equipment": "barbell",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "0178",
+      "sourceName": "Cable Lateral Raise",
+      "localFile": "/videos/hombros-5.mp4",
+      "target": "delts",
+      "muscleGroup": "traps",
+      "bodyPart": "shoulders",
+      "equipment": "cable",
+      "difficulty": "beginner"
+    }
+  ],
+  "Bíceps": [
+    {
+      "id": "0031",
+      "sourceName": "Barbell Curl",
+      "localFile": "/videos/biceps-1.mp4",
+      "target": "biceps",
+      "muscleGroup": "forearms",
+      "bodyPart": "upper arms",
+      "equipment": "barbell",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0038",
+      "sourceName": "Barbell Drag Curl",
+      "localFile": "/videos/biceps-2.mp4",
+      "target": "biceps",
+      "muscleGroup": "forearms",
+      "bodyPart": "upper arms",
+      "equipment": "barbell",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "0072",
+      "sourceName": "Barbell Prone Incline Curl",
+      "localFile": "/videos/biceps-3.mp4",
+      "target": "biceps",
+      "muscleGroup": "forearms",
+      "bodyPart": "upper arms",
+      "equipment": "barbell",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0190",
+      "sourceName": "Cable One Arm Curl",
+      "localFile": "/videos/biceps-4.mp4",
+      "target": "biceps",
+      "muscleGroup": "forearms",
+      "bodyPart": "upper arms",
+      "equipment": "cable",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0229",
+      "sourceName": "Cable Standing Inner Curl",
+      "localFile": "/videos/biceps-5.mp4",
+      "target": "biceps",
+      "muscleGroup": "forearms",
+      "bodyPart": "upper arms",
+      "equipment": "cable",
+      "difficulty": "beginner"
+    }
+  ],
+  "Abdomen": [
+    {
+      "id": "drv-45-degree-bycicle-twisting-crunch",
+      "sourceName": "45-Degree Bicycle Twisting Crunch",
+      "localFile": "/videos/abdomen-1.mp4",
+      "target": "obliques",
+      "muscleGroup": "external obliques",
+      "bodyPart": "waist",
+      "equipment": "body weight",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "drv-band-decline-sit-ups",
+      "sourceName": "Band Resisted Decline Sit-Up",
+      "localFile": "/videos/abdomen-2.mp4",
+      "target": "rectus abdominis",
+      "muscleGroup": "rectus abdominis",
+      "bodyPart": "waist",
+      "equipment": "band",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "0002",
+      "sourceName": "Band Side Bend",
+      "localFile": "/videos/abdomen-3.mp4",
+      "target": "obliques",
+      "muscleGroup": "external obliques",
+      "bodyPart": "waist",
+      "equipment": "band",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "1005",
+      "sourceName": "Band Standing Crunch",
+      "localFile": "/videos/abdomen-4.mp4",
+      "target": "abs",
+      "muscleGroup": "obliques",
+      "bodyPart": "waist",
+      "equipment": "band",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "drv-crunch-on-bench",
+      "sourceName": "Bench Crunch",
+      "localFile": "/videos/abdomen-5.mp4",
+      "target": "rectus abdominis",
+      "muscleGroup": "rectus abdominis",
+      "bodyPart": "waist",
+      "equipment": "body weight",
+      "difficulty": "beginner"
+    }
+  ],
+  "Pantorrillas": [
+    {
+      "id": "0999",
+      "sourceName": "Band Standing Calf Raise",
+      "localFile": "/videos/pantorrillas-1.mp4",
+      "target": "calves",
+      "muscleGroup": "gastrocnemius",
+      "bodyPart": "lower legs",
+      "equipment": "band",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0284",
+      "sourceName": "Donkey Calf Raise",
+      "localFile": "/videos/pantorrillas-2.mp4",
+      "target": "calves",
+      "muscleGroup": "hamstrings",
+      "bodyPart": "lower legs",
+      "equipment": "body weight",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "1379",
+      "sourceName": "Dumbbell Seated Calf Raise",
+      "localFile": "/videos/pantorrillas-3.mp4",
+      "target": "calves",
+      "muscleGroup": "hamstrings",
+      "bodyPart": "lower legs",
+      "equipment": "dumbbell",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0409",
+      "sourceName": "Dumbbell Single Leg Calf Raise",
+      "localFile": "/videos/pantorrillas-4.mp4",
+      "target": "calves",
+      "muscleGroup": "ankles",
+      "bodyPart": "lower legs",
+      "equipment": "dumbbell",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0417",
+      "sourceName": "Dumbbell Standing Calf Raise",
+      "localFile": "/videos/pantorrillas-5.mp4",
+      "target": "calves",
+      "muscleGroup": "ankles",
+      "bodyPart": "lower legs",
+      "equipment": "dumbbell",
+      "difficulty": "beginner"
+    }
+  ],
+  "Espalda alta": [
+    {
+      "id": "0970",
+      "sourceName": "Band Assisted Pull-up",
+      "localFile": "/videos/espalda-alta-1.mp4",
+      "target": "lats",
+      "muscleGroup": "biceps",
+      "bodyPart": "back",
+      "equipment": "band",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "0983",
+      "sourceName": "Band Kneeling One Arm Pulldown",
+      "localFile": "/videos/espalda-alta-2.mp4",
+      "target": "lats",
+      "muscleGroup": "biceps",
+      "bodyPart": "back",
+      "equipment": "band",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0570",
+      "sourceName": "Bench Pull-Up",
+      "localFile": "/videos/espalda-alta-3.mp4",
+      "target": "lats",
+      "muscleGroup": "latissimus dorsi",
+      "bodyPart": "back",
+      "equipment": "body weight",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0974",
+      "sourceName": "Cable Close Grip Lat Pulldown",
+      "localFile": "/videos/espalda-alta-4.mp4",
+      "target": "lats",
+      "muscleGroup": "latissimus dorsi",
+      "bodyPart": "back",
+      "equipment": "cable",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "2616",
+      "sourceName": "Cable One Arm Lateral Pulldown",
+      "localFile": "/videos/espalda-alta-5.mp4",
+      "target": "lats",
+      "muscleGroup": "latissimus dorsi",
+      "bodyPart": "back",
+      "equipment": "cable",
+      "difficulty": "intermediate"
+    }
+  ],
+  "Espalda media": [
+    {
+      "id": "0990",
+      "sourceName": "Band Seated Row",
+      "localFile": "/videos/espalda-media-1.mp4",
+      "target": "lats",
+      "muscleGroup": "latissimus dorsi",
+      "bodyPart": "back",
+      "equipment": "band",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "3144",
+      "sourceName": "Band Straight-Back Seated Row",
+      "localFile": "/videos/espalda-media-2.mp4",
+      "target": "lats",
+      "muscleGroup": "latissimus dorsi",
+      "bodyPart": "back",
+      "equipment": "band",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0027",
+      "sourceName": "Barbell Underhand Bent-Over Row",
+      "localFile": "/videos/espalda-media-3.mp4",
+      "target": "lats",
+      "muscleGroup": "latissimus dorsi",
+      "bodyPart": "back",
+      "equipment": "barbell",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "0861",
+      "sourceName": "Cable One-Arm Twisting Seated Row",
+      "localFile": "/videos/espalda-media-4.mp4",
+      "target": "lats",
+      "muscleGroup": "latissimus dorsi",
+      "bodyPart": "back",
+      "equipment": "cable",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "0213",
+      "sourceName": "Cable Seated High Row (V-bar)",
+      "localFile": "/videos/espalda-media-5.mp4",
+      "target": "lats",
+      "muscleGroup": "biceps",
+      "bodyPart": "back",
+      "equipment": "cable",
+      "difficulty": "beginner"
+    }
+  ],
+  "Espalda baja": [
+    {
+      "id": "0489",
+      "sourceName": "45 Degree Hyperextension",
+      "localFile": "/videos/espalda-baja-1.mp4",
+      "target": "erector spinae",
+      "muscleGroup": "erector spinae",
+      "bodyPart": "back",
+      "equipment": "leverage machine",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "drv-kettlebell-deadlift",
+      "sourceName": "Kettlebell Deadlift",
+      "localFile": "/videos/espalda-baja-2.mp4",
+      "target": "glutes",
+      "muscleGroup": "gluteus maximus",
+      "bodyPart": "back",
+      "equipment": "kettlebell",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0573",
+      "sourceName": "Lever Back Extension",
+      "localFile": "/videos/espalda-baja-3.mp4",
+      "target": "spine",
+      "muscleGroup": "glutes",
+      "bodyPart": "back",
+      "equipment": "leverage machine",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "1757",
+      "sourceName": "Single Dumbbell Stiff-Leg Deadlift",
+      "localFile": "/videos/espalda-baja-4.mp4",
+      "target": "hamstrings",
+      "muscleGroup": "hamstrings",
+      "bodyPart": "back",
+      "equipment": "dumbbell",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0752",
+      "sourceName": "Smith Machine Deadlift",
+      "localFile": "/videos/espalda-baja-5.mp4",
+      "target": "erectors",
+      "muscleGroup": "erector spinae",
+      "bodyPart": "back",
+      "equipment": "smith machine",
+      "difficulty": "beginner"
+    }
+  ],
+  "Tríceps": [
+    {
+      "id": "new-band-overhead-triceps-extension",
+      "sourceName": "Band Overhead Triceps Extension",
+      "localFile": "/videos/triceps-1.mp4",
+      "target": "triceps",
+      "muscleGroup": "upper arms",
+      "bodyPart": "upper arms",
+      "equipment": "band",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "new-band-triceps-pushdown",
+      "sourceName": "Band Triceps Pushdown",
+      "localFile": "/videos/triceps-2.mp4",
+      "target": "triceps",
+      "muscleGroup": "upper arms",
+      "bodyPart": "upper arms",
+      "equipment": "band",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0030",
+      "sourceName": "Barbell Close Grip Bench Press",
+      "localFile": "/videos/triceps-3.mp4",
+      "target": "triceps",
+      "muscleGroup": "triceps brachii",
+      "bodyPart": "upper arms",
+      "equipment": "barbell",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "drv-bench-dips",
+      "sourceName": "Bench Dips",
+      "localFile": "/videos/triceps-4.mp4",
+      "target": "triceps",
+      "muscleGroup": "triceps brachii",
+      "bodyPart": "upper arms",
+      "equipment": "body weight",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0186",
+      "sourceName": "Cable Lying Triceps Extension",
+      "localFile": "/videos/triceps-5.mp4",
+      "target": "triceps",
+      "muscleGroup": "shoulders",
+      "bodyPart": "upper arms",
+      "equipment": "cable",
+      "difficulty": "beginner"
+    }
+  ],
+  "Glúteos": [
+    {
+      "id": "3006",
+      "sourceName": "Band Hip Abduction",
+      "localFile": "/videos/gluteos-1.mp4",
+      "target": "gluteus medius",
+      "muscleGroup": "gluteus medius",
+      "bodyPart": "upper legs",
+      "equipment": "band",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "new-dumbbell-sumo-squat",
+      "sourceName": "Dumbbell Sumo Squat",
+      "localFile": "/videos/gluteos-2.mp4",
+      "target": "glutes",
+      "muscleGroup": "gluteus maximus",
+      "bodyPart": "upper legs",
+      "equipment": "dumbbell",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "drv-hip-raise-bridge",
+      "sourceName": "Glute Bridge",
+      "localFile": "/videos/gluteos-3.mp4",
+      "target": "glutes",
+      "muscleGroup": "gluteus maximus",
+      "bodyPart": "upper legs",
+      "equipment": "body weight",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0597",
+      "sourceName": "Lever Seated Hip Abduction",
+      "localFile": "/videos/gluteos-4.mp4",
+      "target": "abductors",
+      "muscleGroup": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "leverage machine",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "2286",
+      "sourceName": "Lever Standing Hip Extension",
+      "localFile": "/videos/gluteos-5.mp4",
+      "target": "glutes",
+      "muscleGroup": "gluteus maximus",
+      "bodyPart": "upper legs",
+      "equipment": "leverage machine",
+      "difficulty": "beginner"
+    }
+  ],
+  "Isquiotibiales": [
+    {
+      "id": "0976",
+      "sourceName": "Band Prone Leg Curl",
+      "localFile": "/videos/isquiotibiales-1.mp4",
+      "target": "hamstrings",
+      "muscleGroup": "hamstrings",
+      "bodyPart": "upper legs",
+      "equipment": "band",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0988",
+      "sourceName": "Band Standing Leg Curl",
+      "localFile": "/videos/isquiotibiales-2.mp4",
+      "target": "hamstrings",
+      "muscleGroup": "hamstrings",
+      "bodyPart": "upper legs",
+      "equipment": "band",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0343",
+      "sourceName": "Dumbbell Lying Leg Curl",
+      "localFile": "/videos/isquiotibiales-3.mp4",
+      "target": "hamstrings",
+      "muscleGroup": "hamstrings",
+      "bodyPart": "upper legs",
+      "equipment": "dumbbell",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "0432",
+      "sourceName": "Dumbbell Stiff Leg Deadlift",
+      "localFile": "/videos/isquiotibiales-4.mp4",
+      "target": "glutes",
+      "muscleGroup": "hamstrings",
+      "bodyPart": "upper legs",
+      "equipment": "dumbbell",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "0582",
+      "sourceName": "Lever Kneeling Leg Curl",
+      "localFile": "/videos/isquiotibiales-5.mp4",
+      "target": "hamstrings",
+      "muscleGroup": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "leverage machine",
+      "difficulty": "beginner"
+    }
+  ],
+  "Pantorrillas posterior": [
+    {
+      "id": "0999",
+      "sourceName": "Band Standing Calf Raise",
+      "localFile": "/videos/pantorrillas-posterior-1.mp4",
+      "target": "calves",
+      "muscleGroup": "gastrocnemius",
+      "bodyPart": "lower legs",
+      "equipment": "band",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0284",
+      "sourceName": "Donkey Calf Raise",
+      "localFile": "/videos/pantorrillas-posterior-2.mp4",
+      "target": "calves",
+      "muscleGroup": "hamstrings",
+      "bodyPart": "lower legs",
+      "equipment": "body weight",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "1379",
+      "sourceName": "Dumbbell Seated Calf Raise",
+      "localFile": "/videos/pantorrillas-posterior-3.mp4",
+      "target": "calves",
+      "muscleGroup": "hamstrings",
+      "bodyPart": "lower legs",
+      "equipment": "dumbbell",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0409",
+      "sourceName": "Dumbbell Single Leg Calf Raise",
+      "localFile": "/videos/pantorrillas-posterior-4.mp4",
+      "target": "calves",
+      "muscleGroup": "ankles",
+      "bodyPart": "lower legs",
+      "equipment": "dumbbell",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "0417",
+      "sourceName": "Dumbbell Standing Calf Raise",
+      "localFile": "/videos/pantorrillas-posterior-5.mp4",
+      "target": "calves",
+      "muscleGroup": "ankles",
+      "bodyPart": "lower legs",
+      "equipment": "dumbbell",
+      "difficulty": "beginner"
+    }
+  ]
+}

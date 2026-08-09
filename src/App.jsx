@@ -46,63 +46,63 @@ const BACK_GROUPS = [
 const MUSCLE_GLOW = {
   front: {
     "Pecho alto": [
-      { top: "26%", left: "32%", width: "17%", height: "8%" },
-      { top: "26%", left: "51%", width: "17%", height: "8%" },
+      { top: "18.5%", left: "31.0%", width: "18.0%", height: "6.5%" },
+      { top: "18.5%", left: "51.0%", width: "18.0%", height: "6.5%" },
     ],
     "Pecho medio": [
-      { top: "31%", left: "32%", width: "17%", height: "8%" },
-      { top: "31%", left: "51%", width: "17%", height: "8%" },
+      { top: "22.0%", left: "30.5%", width: "18.5%", height: "7.0%" },
+      { top: "22.0%", left: "51.0%", width: "18.5%", height: "7.0%" },
     ],
     "Pecho bajo": [
-      { top: "36%", left: "35%", width: "14%", height: "7%" },
-      { top: "36%", left: "51%", width: "14%", height: "7%" },
+      { top: "25.5%", left: "37.5%", width: "12.5%", height: "6.5%" },
+      { top: "25.5%", left: "50.0%", width: "12.5%", height: "6.5%" },
     ],
     Hombros: [
-      { top: "22%", left: "23%", width: "13%", height: "11%" },
-      { top: "22%", left: "64%", width: "13%", height: "11%" },
+      { top: "17.5%", left: "22.0%", width: "13.0%", height: "9.0%" },
+      { top: "17.5%", left: "65.0%", width: "13.0%", height: "9.0%" },
     ],
     "Bíceps": [
-      { top: "31%", left: "22%", width: "10%", height: "16%" },
-      { top: "31%", left: "68%", width: "10%", height: "16%" },
+      { top: "24.0%", left: "21.5%", width: "10.0%", height: "12.0%" },
+      { top: "24.0%", left: "68.5%", width: "10.0%", height: "12.0%" },
     ],
     Abdomen: [
-      { top: "38%", left: "39%", width: "22%", height: "21%" },
+      { top: "30.0%", left: "40.0%", width: "20.0%", height: "17.0%" },
     ],
     "Cuádriceps": [
-      { top: "55%", left: "30%", width: "18%", height: "24%" },
-      { top: "55%", left: "52%", width: "18%", height: "24%" },
+      { top: "46.0%", left: "31.0%", width: "17.0%", height: "21.0%" },
+      { top: "46.0%", left: "52.0%", width: "17.0%", height: "21.0%" },
     ],
     Pantorrillas: [
-      { top: "77%", left: "32%", width: "14%", height: "17%" },
-      { top: "77%", left: "54%", width: "14%", height: "17%" },
+      { top: "69.0%", left: "32.0%", width: "14.0%", height: "20.0%" },
+      { top: "69.0%", left: "54.0%", width: "14.0%", height: "20.0%" },
     ],
   },
 
   back: {
     "Espalda alta": [
-      { top: "19%", left: "35%", width: "30%", height: "15%" },
+      { top: "15.0%", left: "34.0%", width: "32.0%", height: "14.0%" },
     ],
     "Espalda media": [
-      { top: "29%", left: "33%", width: "34%", height: "19%" },
+      { top: "24.0%", left: "32.0%", width: "36.0%", height: "17.0%" },
     ],
     "Espalda baja": [
-      { top: "42%", left: "38%", width: "24%", height: "13%" },
+      { top: "38.0%", left: "38.0%", width: "24.0%", height: "11.0%" },
     ],
     "Tríceps": [
-      { top: "29%", left: "22%", width: "11%", height: "18%" },
-      { top: "29%", left: "67%", width: "11%", height: "18%" },
+      { top: "24.5%", left: "21.5%", width: "11.0%", height: "14.5%" },
+      { top: "24.5%", left: "67.5%", width: "11.0%", height: "14.5%" },
     ],
     "Glúteos": [
-      { top: "48%", left: "33%", width: "17%", height: "17%" },
-      { top: "48%", left: "50%", width: "17%", height: "17%" },
+      { top: "45.0%", left: "32.0%", width: "18.0%", height: "13.5%" },
+      { top: "45.0%", left: "50.0%", width: "18.0%", height: "13.5%" },
     ],
     "Isquiotibiales": [
-      { top: "61%", left: "33%", width: "16%", height: "21%" },
-      { top: "61%", left: "51%", width: "16%", height: "21%" },
+      { top: "57.0%", left: "32.0%", width: "16.5%", height: "20.0%" },
+      { top: "57.0%", left: "51.5%", width: "16.5%", height: "20.0%" },
     ],
     "Pantorrillas posterior": [
-      { top: "79%", left: "34%", width: "13%", height: "17%" },
-      { top: "79%", left: "53%", width: "13%", height: "17%" },
+      { top: "73.0%", left: "33.0%", width: "14.0%", height: "18.0%" },
+      { top: "73.0%", left: "53.0%", width: "14.0%", height: "18.0%" },
     ],
   },
 };
@@ -156,6 +156,36 @@ const EJERCICIOS_POR_MUSCULO = {
   "Pantorrillas": ["Elevaciones de talón"],
   "Pantorrillas posterior": ["Elevaciones sentado"],
 };
+
+
+const VIDEO_PREFIX_POR_MUSCULO = {
+  "Pecho alto": "pecho-alto",
+  "Pecho medio": "pecho-medio",
+  "Pecho bajo": "pecho-bajo",
+  "Hombros": "hombros",
+  "Bíceps": "biceps",
+  "Abdomen": "abdomen",
+  "Cuádriceps": "cuadriceps",
+  "Pantorrillas": "pantorrillas",
+  "Espalda alta": "espalda-alta",
+  "Espalda media": "espalda-media",
+  "Espalda baja": "espalda-baja",
+  "Tríceps": "triceps",
+  "Glúteos": "gluteos",
+  "Isquiotibiales": "isquiotibiales",
+  "Pantorrillas posterior": "pantorrillas-posterior",
+};
+
+const ponerVideosLocales = (nombreMusculo, ejercicios = []) => {
+  const prefijo = VIDEO_PREFIX_POR_MUSCULO[nombreMusculo];
+  if (!prefijo) return ejercicios;
+
+  return ejercicios.slice(0, 5).map((ejercicio, index) => ({
+    ...ejercicio,
+    video_url: `/videos/${prefijo}-${index + 1}.mp4`,
+  }));
+};
+
 
 const getZoomStyleByMuscle = () => {
   return {
@@ -478,7 +508,8 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
     const data = await res.json();
 
     if (data.ok) {
-      setEjerciciosMusculo(data.ejercicios || []);
+      const ejerciciosBackend = Array.isArray(data.ejercicios) ? data.ejercicios : [];
+      setEjerciciosMusculo(ponerVideosLocales(nombreMusculo, ejerciciosBackend));
     } else {
       setEjerciciosMusculo([]);
     }
@@ -836,35 +867,38 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
 
             <div style={realBodyPanelStyle}>
               <div style={appBodyPreviewStyle}>
-                <img
-                  src={vistaCuerpo === "front" ? FRONT_BODY_IMAGE : BACK_BODY_IMAGE}
-                  alt="Mapa muscular"
-                  style={appBodyImageStyle}
-                />
+                <div style={appBodyImageWrapStyle}>
+                  <img
+                    src={vistaCuerpo === "front" ? FRONT_BODY_IMAGE : BACK_BODY_IMAGE}
+                    alt="Mapa muscular"
+                    style={appBodyImageStyle}
+                  />
 
-                {musculoSeleccionado &&
-                  (MUSCLE_GLOW[vistaCuerpo]?.[musculoSeleccionado.nombre] || []).map(
-                    (zona, index) => (
-                      <div
-                        key={`${musculoSeleccionado.nombre}-${index}`}
-                        style={{
-                          position: "absolute",
-                          top: zona.top,
-                          left: zona.left,
-                          width: zona.width,
-                          height: zona.height,
-                          borderRadius: "50%",
-                          background:
-                            "radial-gradient(circle, rgba(0,224,255,0.68) 0%, rgba(0,224,255,0.30) 42%, rgba(0,224,255,0) 76%)",
-                          boxShadow: "0 0 32px rgba(0,224,255,0.82)",
-                          filter: "blur(1.5px)",
-                          pointerEvents: "none",
-                          zIndex: 4,
-                          mixBlendMode: "screen",
-                        }}
-                      />
-                    )
-                  )}
+                  {musculoSeleccionado &&
+                    (MUSCLE_GLOW[vistaCuerpo]?.[musculoSeleccionado.nombre] || []).map(
+                      (zona, index) => (
+                        <div
+                          key={`${musculoSeleccionado.nombre}-${index}`}
+                          style={{
+                            position: "absolute",
+                            top: zona.top,
+                            left: zona.left,
+                            width: zona.width,
+                            height: zona.height,
+                            borderRadius: "45%",
+                            background:
+                              "radial-gradient(ellipse, rgba(0,224,255,0.78) 0%, rgba(0,224,255,0.42) 48%, rgba(0,224,255,0.10) 72%, rgba(0,224,255,0) 84%)",
+                            border: "2px solid rgba(103,232,249,0.70)",
+                            boxShadow:
+                              "0 0 14px rgba(0,224,255,0.95), 0 0 30px rgba(0,224,255,0.62)",
+                            pointerEvents: "none",
+                            zIndex: 5,
+                            mixBlendMode: "screen",
+                          }}
+                        />
+                      )
+                    )}
+                </div>
 
                 {musculoSeleccionado && (
                   <div style={appBodyBadgeStyle}>
@@ -996,9 +1030,20 @@ const RealBodyMap = React.forwardRef(function RealBodyMap(
 });
 
 function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
-  const principal = group.principal;
+  const principalInicial = group.principal;
   const secundarios = group.secundarios || [];
-  const todos = [principal, ...secundarios].filter(Boolean);
+  const todos = [principalInicial, ...secundarios].filter(Boolean);
+
+  const [principalActivo, setPrincipalActivo] = useState(principalInicial);
+
+  useEffect(() => {
+    setPrincipalActivo(principalInicial);
+  }, [principalInicial?.id, principalInicial?.video_url, selectedMuscle]);
+
+  const seleccionarComoPrincipal = (ejercicio) => {
+    if (!ejercicio) return;
+    setPrincipalActivo(ejercicio);
+  };
 
   return (
     <div
@@ -1024,20 +1069,21 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
       <div
         style={{
           width: "100%",
-          height: "360px",
+          height: "420px",
           borderRadius: "24px",
           overflow: "hidden",
           background: "#020617",
-          border: "1px solid rgba(255,255,255,0.08)",
+          border: "2px solid rgba(0,224,255,0.35)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          boxShadow: "0 0 34px rgba(0,224,255,0.12)",
         }}
       >
-        {principal?.video_url ? (
+        {principalActivo?.video_url ? (
           <video
-            key={principal.video_url}
-            src={principal.video_url}
+            key={principalActivo.video_url}
+            src={principalActivo.video_url}
             autoPlay
             muted
             loop
@@ -1049,10 +1095,10 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
               background: "#000",
             }}
           />
-        ) : principal?.imagen_url ? (
+        ) : principalActivo?.imagen_url ? (
           <img
-            src={principal.imagen_url}
-            alt={principal.nombre}
+            src={principalActivo.imagen_url}
+            alt={principalActivo.nombre}
             style={{
               width: "100%",
               height: "100%",
@@ -1069,7 +1115,7 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
               fontWeight: "bold",
             }}
           >
-            {principal?.nombre || "Ejercicio"}
+            {principalActivo?.nombre || "Ejercicio"}
             <div
               style={{
                 color: "#64748b",
@@ -1091,7 +1137,7 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
             fontWeight: "bold",
           }}
         >
-          {principal?.nombre}
+          {principalActivo?.nombre}
         </div>
 
         <div
@@ -1100,11 +1146,24 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
             marginTop: "5px",
           }}
         >
-          {principal?.descripcion}
+          {principalActivo?.descripcion || selectedMuscle}
         </div>
       </div>
 
-      <h3 style={{ marginTop: "22px" }}>Ejercicios disponibles</h3>
+      <h3 style={{ marginTop: "22px" }}>
+        Ejercicios disponibles
+        <span
+          style={{
+            display: "block",
+            marginTop: "5px",
+            color: "#64748b",
+            fontSize: "13px",
+            fontWeight: "normal",
+          }}
+        >
+          Haz clic en cualquier ejercicio para verlo en grande.
+        </span>
+      </h3>
 
       <div
         style={{
@@ -1113,100 +1172,131 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
           gap: "12px",
         }}
       >
-        {todos.map((ejercicio) => (
-          <div
-            key={ejercicio.id}
-            style={{
-              background: "#0f172a",
-              border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: "18px",
-              overflow: "hidden",
-            }}
-          >
+        {todos.map((ejercicio) => {
+          const activo =
+            principalActivo?.id === ejercicio.id &&
+            principalActivo?.video_url === ejercicio.video_url;
+
+          return (
             <div
+              key={`${ejercicio.id}-${ejercicio.video_url || ejercicio.nombre}`}
+              role="button"
+              tabIndex={0}
+              onClick={() => seleccionarComoPrincipal(ejercicio)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  seleccionarComoPrincipal(ejercicio);
+                }
+              }}
               style={{
-                height: "130px",
-                background: "#020617",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                background: activo ? "#10233a" : "#0f172a",
+                border: activo
+                  ? "2px solid #00e0ff"
+                  : "1px solid rgba(255,255,255,0.08)",
+                borderRadius: "18px",
+                overflow: "hidden",
+                cursor: "pointer",
+                transform: activo ? "translateY(-2px)" : "none",
+                boxShadow: activo
+                  ? "0 0 24px rgba(0,224,255,0.24)"
+                  : "none",
+                transition:
+                  "transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease",
               }}
             >
-              {ejercicio.video_url ? (
-                <video
-                  src={ejercicio.video_url}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                  }}
-                />
-              ) : ejercicio.imagen_url ? (
-                <img
-                  src={ejercicio.imagen_url}
-                  alt={ejercicio.nombre}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                  }}
-                />
-              ) : (
+              <div
+                style={{
+                  height: "150px",
+                  background: "#020617",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                {ejercicio.video_url ? (
+                  <video
+                    key={ejercicio.video_url}
+                    src={ejercicio.video_url}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      pointerEvents: "none",
+                    }}
+                  />
+                ) : ejercicio.imagen_url ? (
+                  <img
+                    src={ejercicio.imagen_url}
+                    alt={ejercicio.nombre}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      pointerEvents: "none",
+                    }}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      color: "#475569",
+                      fontSize: "36px",
+                    }}
+                  >
+                    ▶
+                  </div>
+                )}
+              </div>
+
+              <div style={{ padding: "13px" }}>
                 <div
                   style={{
-                    color: "#475569",
-                    fontSize: "36px",
+                    fontWeight: "bold",
+                    fontSize: "16px",
+                    color: activo ? "#67e8f9" : "#fff",
                   }}
                 >
-                  ▶
+                  {ejercicio.nombre}
                 </div>
-              )}
-            </div>
 
-            <div style={{ padding: "13px" }}>
-              <div
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                }}
-              >
-                {ejercicio.nombre}
+                <div
+                  style={{
+                    color: "#94a3b8",
+                    fontSize: "13px",
+                    marginTop: "4px",
+                  }}
+                >
+                  {ejercicio.nivel || selectedMuscle}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    onAdd(ejercicio);
+                  }}
+                  style={{
+                    width: "100%",
+                    marginTop: "11px",
+                    padding: "10px",
+                    border: "none",
+                    borderRadius: "10px",
+                    background: "#10b981",
+                    color: "#fff",
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                  }}
+                >
+                  Agregar a rutina
+                </button>
               </div>
-
-              <div
-                style={{
-                  color: "#94a3b8",
-                  fontSize: "13px",
-                  marginTop: "4px",
-                }}
-              >
-                {ejercicio.nivel || selectedMuscle}
-              </div>
-
-              <button
-                type="button"
-                onClick={() => onAdd(ejercicio)}
-                style={{
-                  width: "100%",
-                  marginTop: "11px",
-                  padding: "10px",
-                  border: "none",
-                  borderRadius: "10px",
-                  background: "#10b981",
-                  color: "#fff",
-                  fontWeight: "bold",
-                  cursor: "pointer",
-                }}
-              >
-                Agregar a rutina
-              </button>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
@@ -1689,9 +1779,17 @@ const appBodyPreviewStyle = {
   border:"1px solid rgba(0,224,255,.18)"
 };
 
+const appBodyImageWrapStyle = {
+  position: "relative",
+  width: "100%",
+  maxWidth: "430px",
+  margin: "0 auto",
+};
+
 const appBodyImageStyle = {
   width:"100%",
   maxWidth:"430px",
+  height:"auto",
   objectFit:"contain",
   display:"block",
   position:"relative",
