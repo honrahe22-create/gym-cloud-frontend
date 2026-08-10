@@ -20,6 +20,13 @@ const initialForm = {
   altura: "",
   nivel_actividad: "",
   meta_nutricional: "",
+  somatotipo: "",
+  nivel_entrenamiento: "",
+  condicion_especial: "NO",
+  condiciones_especiales: "",
+  restricciones_entrenamiento: "",
+  disciplina_preferida: "Gimnasio",
+  dias_entrenamiento: "",
 };
 
 const FRONT_GROUPS = [
@@ -204,6 +211,40 @@ const formatHotspotsForCopy = (hotspots, constName) => {
   return `const ${constName} = [\n${lines.join("\n")}\n];`;
 };
 
+
+const parseNumeroFlexible = (value) => {
+  if (value === null || value === undefined || value === "") return null;
+  const numero = Number(String(value).trim().replace(",", "."));
+  return Number.isFinite(numero) ? numero : null;
+};
+
+const normalizarAlturaCm = (altura) => {
+  const numero = parseNumeroFlexible(altura);
+  if (!numero || numero <= 0) return null;
+  // Acepta 1.65 m o 165 cm.
+  return numero <= 3 ? numero * 100 : numero;
+};
+
+const clasificarIMC = (imc) => {
+  const valor = Number(imc);
+  if (!Number.isFinite(valor)) return "-";
+  if (valor < 18.5) return "Bajo peso";
+  if (valor < 25) return "Peso saludable";
+  if (valor < 30) return "Sobrepeso";
+  return "Obesidad";
+};
+
+const camposNutricionalesFaltantes = (socio) => {
+  const faltantes = [];
+  if (!socio?.fecha_nacimiento) faltantes.push("fecha de nacimiento");
+  if (!socio?.genero) faltantes.push("género");
+  if (!parseNumeroFlexible(socio?.peso)) faltantes.push("peso");
+  if (!normalizarAlturaCm(socio?.altura)) faltantes.push("altura");
+  if (!socio?.nivel_actividad) faltantes.push("nivel de actividad");
+  if (!socio?.meta_nutricional) faltantes.push("meta nutricional");
+  return faltantes;
+};
+
 function App() {
   const [socios, setSocios] = useState([]);
   const [form, setForm] = useState(initialForm);
@@ -227,6 +268,14 @@ function App() {
   const [frontHotspotsEditables, setFrontHotspotsEditables] = useState(FRONT_HOTSPOTS);
   const [backHotspotsEditables, setBackHotspotsEditables] = useState(BACK_HOTSPOTS);
   const [dragInfo, setDragInfo] = useState(null);
+  const [disciplinaEjercicios, setDisciplinaEjercicios] = useState([]);
+  const [disciplinaNivel, setDisciplinaNivel] = useState("Todos");
+  const [disciplinaSeleccionada, setDisciplinaSeleccionada] = useState(null);
+  const [planesDisciplina, setPlanesDisciplina] = useState([]);
+  const [planDisciplinaActivo, setPlanDisciplinaActivo] = useState(null);
+  const [detallePlanDisciplina, setDetallePlanDisciplina] = useState([]);
+  const [mensajeDisciplina, setMensajeDisciplina] = useState("");
+
 
   const mapRef = useRef(null);
 
@@ -270,7 +319,13 @@ useEffect(() => {
 
   const cargarSocios = async () => {
     try {
-      const res = await fetch(`${API_URL}/api/socios`);
+      const res = await fetch(`${API_URL}/api/socios?t=${Date.now()}`, {
+  cache: "no-store",
+  headers: {
+    // Cache-Control eliminado para evitar bloqueo CORS
+    // Pragma eliminado para evitar bloqueo CORS
+  },
+});
       const data = await res.json();
 
       if (data.ok) {
@@ -326,10 +381,15 @@ useEffect(() => {
   }, []);
 
   const sociosFiltrados = useMemo(() => {
-    const txt = busqueda.trim().toLowerCase();
-    if (!txt) return socios;
+  const txt = busqueda.trim().toLowerCase();
 
-    return socios.filter((socio) => {
+  const sociosOrdenados = [...socios].sort(
+    (a, b) => Number(a.id) - Number(b.id)
+  );
+
+  if (!txt) return sociosOrdenados;
+
+  return sociosOrdenados.filter((socio) => {
       return (
         (socio.nombres || "").toLowerCase().includes(txt) ||
         (socio.apellidos || "").toLowerCase().includes(txt) ||
@@ -376,10 +436,22 @@ const handleChange = (e) => {
       const url = editandoId ? `${API_URL}/api/socios/${editandoId}` : `${API_URL}/api/socios`;
       const method = editandoId ? "PUT" : "POST";
 
+      const alturaNormalizada = normalizarAlturaCm(form.altura);
+      const pesoNormalizado = parseNumeroFlexible(form.peso);
+
+      const payload = {
+        ...form,
+        peso: pesoNormalizado,
+        altura: alturaNormalizada,
+        dias_entrenamiento: form.dias_entrenamiento
+          ? Number(form.dias_entrenamiento)
+          : null,
+      };
+
       const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
 
       const data = await res.json();
@@ -390,7 +462,16 @@ const handleChange = (e) => {
         return;
       }
 
-      await cargarSocios();
+      if (editandoId) {
+        setSocios((prev) =>
+          prev.map((socio) => (socio.id === data.socio.id ? data.socio : socio))
+        );
+      } else {
+        setSocios((prev) => [
+  ...prev.filter((socio) => socio.id !== data.socio.id),
+  data.socio,
+]);
+      }
 
       if (editandoId && socioSeleccionado?.id === editandoId) {
         setSocioSeleccionado(data.socio);
@@ -398,6 +479,9 @@ const handleChange = (e) => {
 
       setMensaje(editandoId ? "Socio actualizado correctamente" : "Socio creado correctamente");
       limpiarFormulario();
+
+      // Segunda verificación contra la nube para que PC y celular queden sincronizados.
+      await cargarSocios();
     } catch (error) {
       console.error("Error guardando socio:", error);
       setMensaje("Error de conexión con el servidor");
@@ -423,6 +507,13 @@ const handleChange = (e) => {
       altura: socio.altura || "",
       nivel_actividad: socio.nivel_actividad || "",
       meta_nutricional: socio.meta_nutricional || "",
+      somatotipo: socio.somatotipo || "",
+      nivel_entrenamiento: socio.nivel_entrenamiento || "",
+      condicion_especial: socio.condicion_especial || "NO",
+      condiciones_especiales: socio.condiciones_especiales || "",
+      restricciones_entrenamiento: socio.restricciones_entrenamiento || "",
+      disciplina_preferida: socio.disciplina_preferida || "Gimnasio",
+      dias_entrenamiento: socio.dias_entrenamiento || "",
     });
 
     setVista("socios");
@@ -581,10 +672,193 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
     }
   };
 
+
+  const cargarEjerciciosDisciplina = async (nombreDisciplina, nivel = disciplinaNivel) => {
+    try {
+      const params = new URLSearchParams();
+      if (nivel && nivel !== "Todos") params.set("nivel", nivel);
+
+      const res = await fetch(
+        `${API_URL}/api/disciplinas/${encodeURIComponent(nombreDisciplina)}/ejercicios?${params.toString()}`
+      );
+      const data = await res.json();
+
+      if (data.ok) {
+        const ejercicios = data.ejercicios || [];
+        setDisciplinaEjercicios(ejercicios);
+        setDisciplinaSeleccionada(ejercicios[0] || null);
+      } else {
+        setDisciplinaEjercicios([]);
+        setDisciplinaSeleccionada(null);
+        setMensajeDisciplina(data.error || "No se pudieron cargar los ejercicios");
+      }
+    } catch (error) {
+      console.error("Error cargando disciplina:", error);
+      setMensajeDisciplina("Error cargando ejercicios de la disciplina");
+    }
+  };
+
+  const cargarPlanesDisciplina = async (socioId) => {
+    if (!socioId) {
+      setPlanesDisciplina([]);
+      setPlanDisciplinaActivo(null);
+      setDetallePlanDisciplina([]);
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_URL}/api/planes-disciplina/socio/${socioId}`);
+      const data = await res.json();
+
+      if (data.ok) {
+        const planes = data.planes || [];
+        setPlanesDisciplina(planes);
+        const vistaActual = vista === "calistenia" ? "Calistenia" : vista === "boxeo" ? "Boxeo" : null;
+        const compatible = planes.find((plan) => !vistaActual || plan.disciplina === vistaActual);
+        if (compatible) {
+          setPlanDisciplinaActivo(compatible);
+          await cargarDetallePlanDisciplina(compatible.id);
+        } else {
+          setPlanDisciplinaActivo(null);
+          setDetallePlanDisciplina([]);
+        }
+      }
+    } catch (error) {
+      console.error("Error cargando planes de disciplina:", error);
+    }
+  };
+
+  const cargarDetallePlanDisciplina = async (planId) => {
+    try {
+      const res = await fetch(`${API_URL}/api/planes-disciplina/${planId}/detalle`);
+      const data = await res.json();
+      if (data.ok) setDetallePlanDisciplina(data.detalles || []);
+    } catch (error) {
+      console.error("Error cargando detalle del plan:", error);
+    }
+  };
+
+  const abrirModuloDisciplina = async (nombreDisciplina) => {
+    const nuevaVista = nombreDisciplina === "Calistenia" ? "calistenia" : "boxeo";
+    setVista(nuevaVista);
+    setDisciplinaNivel("Todos");
+    setMensajeDisciplina("");
+    await cargarEjerciciosDisciplina(nombreDisciplina, "Todos");
+
+    if (socioSeleccionado?.id) {
+      try {
+        const res = await fetch(`${API_URL}/api/planes-disciplina/socio/${socioSeleccionado.id}`);
+        const data = await res.json();
+        if (data.ok) {
+          const planes = (data.planes || []).filter((p) => p.disciplina === nombreDisciplina);
+          setPlanesDisciplina(data.planes || []);
+          if (planes.length) {
+            setPlanDisciplinaActivo(planes[0]);
+            await cargarDetallePlanDisciplina(planes[0].id);
+          } else {
+            setPlanDisciplinaActivo(null);
+            setDetallePlanDisciplina([]);
+          }
+        }
+      } catch (error) {
+        console.error("Error abriendo módulo disciplina:", error);
+      }
+    }
+  };
+
+  const cambiarNivelDisciplina = async (nivel) => {
+    setDisciplinaNivel(nivel);
+    const nombreDisciplina = vista === "calistenia" ? "Calistenia" : "Boxeo";
+    await cargarEjerciciosDisciplina(nombreDisciplina, nivel);
+  };
+
+  const crearPlanDisciplina = async () => {
+    if (!socioSeleccionado) {
+      setMensajeDisciplina("Selecciona primero un socio desde el módulo Socios.");
+      return;
+    }
+
+    const disciplina = vista === "calistenia" ? "Calistenia" : "Boxeo";
+    const nivelBase =
+      disciplinaNivel === "Todos"
+        ? socioSeleccionado.nivel_entrenamiento || "Principiante"
+        : disciplinaNivel;
+
+    try {
+      const res = await fetch(`${API_URL}/api/planes-disciplina`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          socio_id: socioSeleccionado.id,
+          disciplina,
+          nombre: `${disciplina} - ${socioSeleccionado.nombres}`,
+          nivel: nivelBase,
+          objetivo: socioSeleccionado.objetivo || "",
+        }),
+      });
+
+      const data = await res.json();
+      if (!data.ok) {
+        setMensajeDisciplina(data.error || "No se pudo crear el plan");
+        return;
+      }
+
+      setPlanDisciplinaActivo(data.plan);
+      setDetallePlanDisciplina([]);
+      setMensajeDisciplina(`Plan de ${disciplina} creado correctamente.`);
+      await cargarPlanesDisciplina(socioSeleccionado.id);
+    } catch (error) {
+      console.error("Error creando plan de disciplina:", error);
+      setMensajeDisciplina("Error de conexión creando el plan");
+    }
+  };
+
+  const seleccionarPlanDisciplina = async (plan) => {
+    setPlanDisciplinaActivo(plan);
+    await cargarDetallePlanDisciplina(plan.id);
+  };
+
+  const agregarEjercicioDisciplina = async (ejercicio) => {
+    if (!planDisciplinaActivo) {
+      setMensajeDisciplina("Primero crea o selecciona un plan para este socio.");
+      return;
+    }
+
+    try {
+      const esBoxeo = vista === "boxeo";
+      const res = await fetch(
+        `${API_URL}/api/planes-disciplina/${planDisciplinaActivo.id}/ejercicios`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ejercicio_id: ejercicio.id,
+            series: esBoxeo ? 3 : 3,
+            repeticiones: esBoxeo ? "Ronda" : "8-12",
+            duracion: esBoxeo ? "2-3 min" : "",
+            descanso: esBoxeo ? "60 seg" : "60-90 seg",
+          }),
+        }
+      );
+
+      const data = await res.json();
+      if (!data.ok) {
+        setMensajeDisciplina(data.error || "No se pudo agregar el ejercicio");
+        return;
+      }
+
+      setMensajeDisciplina(`${ejercicio.nombre} agregado al plan.`);
+      await cargarDetallePlanDisciplina(planDisciplinaActivo.id);
+    } catch (error) {
+      console.error("Error agregando ejercicio de disciplina:", error);
+      setMensajeDisciplina("Error agregando ejercicio al plan");
+    }
+  };
+
   return (
     <div style={pageStyle}>
       <h1 style={{ marginTop: 0 }}>🏋️‍♂️ SISTEMA GYM NUBE</h1>
-      <p style={{ color: "#94a3b8" }}>Socios y rutinas</p>
+      <p style={{ color: "#94a3b8" }}>Gestión integral · musculación · calistenia · boxeo</p>
 
       <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
         <button style={{ ...buttonTab, ...(vista === "socios" ? buttonTabActive : {}) }} onClick={() => setVista("socios")}>
@@ -595,7 +869,21 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
           onClick={() => setVista("rutinas")}
           disabled={!socioSeleccionado}
         >
-          Rutinas
+          🏋️ Rutinas
+        </button>
+
+        <button
+          style={{ ...buttonTab, ...(vista === "calistenia" ? buttonTabActive : {}) }}
+          onClick={() => abrirModuloDisciplina("Calistenia")}
+        >
+          🤸 Calistenia
+        </button>
+
+        <button
+          style={{ ...buttonTab, ...(vista === "boxeo" ? buttonTabActive : {}) }}
+          onClick={() => abrirModuloDisciplina("Boxeo")}
+        >
+          🥊 Boxeo
         </button>
       </div>
 
@@ -612,20 +900,150 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
               <input name="cedula" placeholder="Identificación / Cédula" value={form.cedula} onChange={handleChange} style={inputStyle} />
               <input name="telefono" placeholder="Teléfono" value={form.telefono} onChange={handleChange} style={inputStyle} />
               <input name="email" placeholder="Correo electrónico" value={form.email} onChange={handleChange} style={inputStyle} />
-              <input type="date" name="fecha_nacimiento" value={form.fecha_nacimiento} onChange={handleChange} style={dateInputStyle} />
+              <input
+                type="date"
+                name="fecha_nacimiento"
+                value={form.fecha_nacimiento}
+                onChange={handleChange}
+                style={dateInputStyle}
+                required
+                title="La fecha de nacimiento es necesaria para calcular la ficha nutricional"
+              />
 
-              <select name="genero" value={form.genero} onChange={handleChange} style={inputStyle}>
+              <select
+                name="genero"
+                value={form.genero}
+                onChange={handleChange}
+                style={inputStyle}
+                required
+                title="El género es necesario para calcular la TMB"
+              >
                 <option value="">Seleccione género</option>
                 <option value="Masculino">Masculino</option>
                 <option value="Femenino">Femenino</option>
                 <option value="Otro">Otro</option>
               </select>
 
-              <input name="objetivo" placeholder="Objetivo" value={form.objetivo} onChange={handleChange} style={inputStyle} />
-              <input name="peso" placeholder="Peso (kg)" value={form.peso} onChange={handleChange} style={inputStyle} />
-              <input name="altura" placeholder="Altura (cm)" value={form.altura} onChange={handleChange} style={inputStyle} />
+              <select name="somatotipo" value={form.somatotipo} onChange={handleChange} style={inputStyle}>
+                <option value="">Somatotipo / tipo corporal</option>
+                <option value="Ectomorfo">Ectomorfo</option>
+                <option value="Mesomorfo">Mesomorfo</option>
+                <option value="Endomorfo">Endomorfo</option>
+                <option value="Mixto">Mixto</option>
+                <option value="No evaluado">No evaluado</option>
+              </select>
 
-              <select name="nivel_actividad" value={form.nivel_actividad} onChange={handleChange} style={inputStyle}>
+              <select name="objetivo" value={form.objetivo} onChange={handleChange} style={inputStyle}>
+                <option value="">Objetivo principal</option>
+                <option value="Tonificación">Tonificación</option>
+                <option value="Hipertrofia / Musculación">Hipertrofia / Musculación</option>
+                <option value="Pérdida de grasa">Pérdida de grasa</option>
+                <option value="Recomposición corporal">Recomposición corporal</option>
+                <option value="Fuerza">Fuerza</option>
+                <option value="Resistencia">Resistencia</option>
+                <option value="Movilidad">Movilidad</option>
+                <option value="Mantenimiento">Mantenimiento</option>
+              </select>
+
+              <select name="nivel_entrenamiento" value={form.nivel_entrenamiento} onChange={handleChange} style={inputStyle}>
+                <option value="">Nivel de entrenamiento</option>
+                <option value="Principiante">Principiante</option>
+                <option value="Intermedio">Intermedio</option>
+                <option value="Avanzado">Avanzado</option>
+              </select>
+
+              <select name="disciplina_preferida" value={form.disciplina_preferida} onChange={handleChange} style={inputStyle}>
+                <option value="Gimnasio">Gimnasio</option>
+                <option value="Calistenia">Calistenia</option>
+                <option value="Boxeo">Boxeo</option>
+                <option value="Mixto">Mixto</option>
+              </select>
+
+              <input
+                type="number"
+                min="1"
+                max="7"
+                name="dias_entrenamiento"
+                placeholder="Días de entrenamiento por semana"
+                value={form.dias_entrenamiento}
+                onChange={handleChange}
+                style={inputStyle}
+              />
+
+              <select name="condicion_especial" value={form.condicion_especial} onChange={handleChange} style={inputStyle}>
+                <option value="NO">Sin condición especial declarada</option>
+                <option value="SI">Tiene condición especial / lesión</option>
+              </select>
+
+              {form.condicion_especial === "SI" && (
+                <>
+                  <textarea
+                    name="condiciones_especiales"
+                    placeholder="Condiciones especiales: artrosis, lesión muscular, rodilla, hombro, columna, etc."
+                    value={form.condiciones_especiales}
+                    onChange={handleChange}
+                    style={{ ...inputStyle, minHeight: "78px", resize: "vertical" }}
+                  />
+                  <textarea
+                    name="restricciones_entrenamiento"
+                    placeholder="Restricciones o indicaciones del profesional"
+                    value={form.restricciones_entrenamiento}
+                    onChange={handleChange}
+                    style={{ ...inputStyle, minHeight: "78px", resize: "vertical" }}
+                  />
+                </>
+              )}
+              <div
+                style={{
+                  marginTop: "18px",
+                  marginBottom: "12px",
+                  padding: "14px",
+                  borderRadius: "14px",
+                  background: "rgba(14,165,233,0.08)",
+                  border: "1px solid rgba(56,189,248,0.28)",
+                }}
+              >
+                <div style={{ fontWeight: "bold", fontSize: "17px", color: "#7dd3fc" }}>
+                  🥗 Evaluación nutricional
+                </div>
+                <div style={{ color: "#94a3b8", fontSize: "13px", marginTop: "5px" }}>
+                  Estos datos permiten calcular edad, IMC, TMB, calorías de mantenimiento y objetivo calórico.
+                </div>
+              </div>
+
+              <input
+                type="number"
+                min="20"
+                max="400"
+                step="0.1"
+                name="peso"
+                placeholder="Peso en kg (ej. 72)"
+                value={form.peso}
+                onChange={handleChange}
+                style={inputStyle}
+                required
+              />
+
+              <input
+                type="number"
+                min="0.5"
+                max="250"
+                step="0.01"
+                name="altura"
+                placeholder="Altura: 165 cm o 1.65 m"
+                value={form.altura}
+                onChange={handleChange}
+                style={inputStyle}
+                required
+              />
+
+              <select
+                name="nivel_actividad"
+                value={form.nivel_actividad}
+                onChange={handleChange}
+                style={inputStyle}
+                required
+              >
                 <option value="">Seleccione nivel de actividad</option>
                 <option value="Sedentario">Sedentario</option>
                 <option value="Ligero">Ligero</option>
@@ -634,7 +1052,13 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                 <option value="Muy intenso">Muy intenso</option>
               </select>
 
-              <select name="meta_nutricional" value={form.meta_nutricional} onChange={handleChange} style={inputStyle}>
+              <select
+                name="meta_nutricional"
+                value={form.meta_nutricional}
+                onChange={handleChange}
+                style={inputStyle}
+                required
+              >
                 <option value="">Seleccione meta nutricional</option>
                 <option value="Déficit calórico">Déficit calórico</option>
                 <option value="Mantenimiento">Mantenimiento</option>
@@ -668,7 +1092,12 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
           <div style={{ display: "grid", gap: "20px" }}>
             <div style={cardStyle}>
               <div style={{ display: "flex", justifyContent: "space-between", gap: "12px", alignItems: "center", marginBottom: "15px", flexWrap: "wrap" }}>
-                <h2 style={{ margin: 0 }}>Lista de socios</h2>
+                <div>
+                  <h2 style={{ margin: 0 }}>Historial de socios</h2>
+                  <div style={{ color: "#94a3b8", fontSize: "13px", marginTop: "4px" }}>
+                    {sociosFiltrados.length} socio(s) visible(s) · sincronizado con la nube
+                  </div>
+                </div>
 
                 <input
                   type="text"
@@ -742,35 +1171,98 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                     <Field label="Género" value={socioSeleccionado.genero} />
                     <Field label="Fecha nacimiento" value={formatDate(socioSeleccionado.fecha_nacimiento)} />
                     <Field label="Objetivo" value={socioSeleccionado.objetivo} />
+                    <Field label="Somatotipo" value={socioSeleccionado.somatotipo} />
+                    <Field label="Nivel de entrenamiento" value={socioSeleccionado.nivel_entrenamiento} />
+                    <Field label="Disciplina preferida" value={socioSeleccionado.disciplina_preferida} />
+                    <Field label="Días por semana" value={socioSeleccionado.dias_entrenamiento} />
+                    <Field label="Condición especial" value={socioSeleccionado.condicion_especial} />
+                    <Field label="Condiciones / lesiones" value={socioSeleccionado.condiciones_especiales} full />
+                    <Field label="Restricciones de entrenamiento" value={socioSeleccionado.restricciones_entrenamiento} full />
                     <Field label="Peso (kg)" value={socioSeleccionado.peso} />
-                    <Field label="Altura (cm)" value={socioSeleccionado.altura} />
+                    <Field
+                      label="Altura (cm)"
+                      value={
+                        normalizarAlturaCm(socioSeleccionado.altura)
+                          ? normalizarAlturaCm(socioSeleccionado.altura).toFixed(1)
+                          : null
+                      }
+                    />
                     <Field label="Nivel actividad" value={socioSeleccionado.nivel_actividad} />
                     <Field label="Meta nutricional" value={socioSeleccionado.meta_nutricional} />
                     <Field label="Observaciones" value={socioSeleccionado.observaciones} full />
                   </div>
 
-                  <div style={{ marginTop: "20px" }}>
-                    <h3>Ficha nutricional</h3>
+                  <div
+                    style={{
+                      marginTop: "22px",
+                      padding: "18px",
+                      borderRadius: "16px",
+                      background: "rgba(14,165,233,0.06)",
+                      border: "1px solid rgba(56,189,248,0.22)",
+                    }}
+                  >
+                    <h3 style={{ marginTop: 0 }}>🥗 Ficha nutricional</h3>
 
                     {(() => {
                       const nutricion = calcularCalorias(socioSeleccionado);
-                      const imc = calcularIMC(socioSeleccionado.peso, socioSeleccionado.altura);
+                      const imc = calcularIMC(
+                        socioSeleccionado.peso,
+                        socioSeleccionado.altura
+                      );
+                      const faltantes = camposNutricionalesFaltantes(socioSeleccionado);
 
                       if (!nutricion) {
-                        return <div style={{ color: "#94a3b8" }}>Faltan datos del socio para calcular nutrición.</div>;
+                        return (
+                          <div>
+                            <div style={{ color: "#fbbf24", fontWeight: "bold" }}>
+                              Ficha nutricional pendiente de completar.
+                            </div>
+                            <div style={{ color: "#94a3b8", marginTop: "8px" }}>
+                              Faltan: {faltantes.length ? faltantes.join(", ") : "datos requeridos"}.
+                            </div>
+                            <div style={{ color: "#64748b", fontSize: "13px", marginTop: "6px" }}>
+                              Usa el botón Editar del socio para completar estos datos.
+                            </div>
+                          </div>
+                        );
                       }
 
                       return (
                         <div style={{ ...fichaGridStyle, marginTop: "10px" }}>
-                          <Field label="Edad" value={nutricion.edad} />
+                          <Field label="Edad" value={`${nutricion.edad} años`} />
                           <Field label="IMC" value={imc} />
-                          <Field label="TMB" value={`${nutricion.tmb} kcal`} />
-                          <Field label="Mantenimiento" value={`${nutricion.mantenimiento} kcal`} />
-                          <Field label="Objetivo calórico" value={`${nutricion.objetivo} kcal`} />
-                          <Field label="Meta nutricional" value={socioSeleccionado.meta_nutricional} />
+                          <Field label="Clasificación IMC" value={clasificarIMC(imc)} />
+                          <Field label="TMB" value={`${nutricion.tmb} kcal/día`} />
+                          <Field
+                            label="Calorías de mantenimiento"
+                            value={`${nutricion.mantenimiento} kcal/día`}
+                          />
+                          <Field
+                            label="Objetivo calórico"
+                            value={`${nutricion.objetivo} kcal/día`}
+                          />
+                          <Field
+                            label="Nivel de actividad"
+                            value={socioSeleccionado.nivel_actividad}
+                          />
+                          <Field
+                            label="Meta nutricional"
+                            value={socioSeleccionado.meta_nutricional}
+                          />
                         </div>
                       );
                     })()}
+
+                    <div
+                      style={{
+                        color: "#64748b",
+                        fontSize: "12px",
+                        marginTop: "12px",
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      El IMC es un indicador orientativo y no sustituye una valoración clínica o nutricional individual.
+                    </div>
                   </div>
                 </>
               )}
@@ -962,6 +1454,405 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
           </div>
         </div>
       )}
+
+      {(vista === "calistenia" || vista === "boxeo") && (
+        <DisciplineModule
+          discipline={vista === "calistenia" ? "Calistenia" : "Boxeo"}
+          icon={vista === "calistenia" ? "🤸" : "🥊"}
+          accent={vista === "calistenia" ? "#22c55e" : "#ef4444"}
+          socio={socioSeleccionado}
+          ejercicios={disciplinaEjercicios}
+          ejercicioSeleccionado={disciplinaSeleccionada}
+          onSelectEjercicio={setDisciplinaSeleccionada}
+          nivel={disciplinaNivel}
+          onNivelChange={cambiarNivelDisciplina}
+          planes={planesDisciplina.filter(
+            (plan) =>
+              plan.disciplina ===
+              (vista === "calistenia" ? "Calistenia" : "Boxeo")
+          )}
+          planActivo={planDisciplinaActivo}
+          detallePlan={detallePlanDisciplina}
+          onCrearPlan={crearPlanDisciplina}
+          onSelectPlan={seleccionarPlanDisciplina}
+          onAdd={agregarEjercicioDisciplina}
+          mensaje={mensajeDisciplina}
+        />
+      )}
+    </div>
+  );
+}
+
+
+
+const CALISTHENICS_LOCAL_VIDEOS = {
+  "Flexiones inclinadas": "/videos/calistenia/flexiones-inclinadas.mp4",
+  "Sentadilla al aire": "/videos/calistenia/sentadilla-aire.mp4",
+  "Plancha frontal": "/videos/calistenia/plancha-frontal.mp4",
+  "Remo australiano": "/videos/calistenia/remo-australiano.mp4",
+  "Puente de glúteos": "/videos/calistenia/puente-gluteos.mp4",
+  "Flexiones clásicas": "/videos/calistenia/flexiones-clasicas.mp4",
+  "Dominada asistida": "/videos/calistenia/dominada-asistida.mp4",
+  "Fondos asistidos": "/videos/calistenia/fondos-asistidos.mp4",
+  "Zancadas alternas": "/videos/calistenia/zancadas-alternas.mp4",
+  "V-Up": "/videos/calistenia/v-up.mp4",
+  "Dominadas estrictas": "/videos/calistenia/dominadas-estrictas.mp4",
+  "Fondos en paralelas": "/videos/calistenia/fondos-paralelas.mp4",
+  "Flexiones cerradas": "/videos/calistenia/flexiones-cerradas.mp4",
+  "Elevación vertical de piernas": "/videos/calistenia/elevacion-vertical-piernas.mp4",
+  "Plancha lateral": "/videos/calistenia/plancha-lateral.mp4",
+  "Dominada commando": "/videos/calistenia/dominada-commando.mp4",
+  "Dominada supina": "/videos/calistenia/dominada-supina.mp4",
+  "Fondos escapulares": "/videos/calistenia/fondos-escapulares.mp4",
+  "Dominada ancho de hombros": "/videos/calistenia/dominada-ancho-hombros.mp4",
+};
+
+const BOXING_LOCAL_VIDEOS = {
+  "Guardia básica": "/videos/boxeo/guardia-basica.mp4",
+  "Desplazamiento adelante y atrás": "/videos/boxeo/desplazamiento.mp4",
+  "Jab": "/videos/boxeo/jab.mp4",
+  "Cross": "/videos/boxeo/cross.mp4",
+  "Jab-Cross 1-2": "/videos/boxeo/jab-cross.mp4",
+  "Hook delantero": "/videos/boxeo/hook-delantero.mp4",
+  "Uppercut trasero": "/videos/boxeo/uppercut-trasero.mp4",
+};
+
+const getDisciplineLocalVideo = (discipline, ejercicio) => {
+  if (!ejercicio?.nombre) return "";
+
+  if (discipline === "Calistenia") {
+    return CALISTHENICS_LOCAL_VIDEOS[ejercicio.nombre] || "";
+  }
+
+  if (discipline === "Boxeo") {
+    return BOXING_LOCAL_VIDEOS[ejercicio.nombre] || "";
+  }
+
+  return "";
+};
+
+function DisciplineModule({
+  discipline,
+  icon,
+  accent,
+  socio,
+  ejercicios,
+  ejercicioSeleccionado,
+  onSelectEjercicio,
+  nivel,
+  onNivelChange,
+  planes,
+  planActivo,
+  detallePlan,
+  onCrearPlan,
+  onSelectPlan,
+  onAdd,
+  mensaje,
+}) {
+  const categorias = [...new Set((ejercicios || []).map((e) => e.categoria).filter(Boolean))];
+
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "300px minmax(520px, 1fr) 410px", gap: "20px", alignItems: "start" }}>
+      <div style={cardStyle}>
+        <div style={{ fontSize: "44px" }}>{icon}</div>
+        <h2 style={{ margin: "8px 0 4px" }}>{discipline}</h2>
+        <div style={{ color: "#94a3b8", lineHeight: 1.5 }}>
+          {discipline === "Calistenia"
+            ? "Fuerza, control corporal, progresiones y habilidades."
+            : "Técnica, combinaciones, defensa, saco y acondicionamiento."}
+        </div>
+
+        <div style={{ height: "16px" }} />
+
+        {socio ? (
+          <>
+            <Field label="Socio" value={`${socio.nombres || ""} ${socio.apellidos || ""}`} />
+            <div style={{ height: "10px" }} />
+            <Field label="Objetivo" value={socio.objetivo} />
+            <div style={{ height: "10px" }} />
+            <Field label="Nivel" value={socio.nivel_entrenamiento} />
+          </>
+        ) : (
+          <div style={{ color: "#fbbf24", lineHeight: 1.5 }}>
+            Puedes explorar los ejercicios. Para crear un plan debes seleccionar un socio.
+          </div>
+        )}
+
+        <button
+          type="button"
+          onClick={onCrearPlan}
+          style={{
+            ...buttonPrimary,
+            width: "100%",
+            marginTop: "16px",
+            background: accent,
+          }}
+        >
+          + Crear plan de {discipline}
+        </button>
+
+        {mensaje && (
+          <div
+            style={{
+              marginTop: "12px",
+              padding: "10px",
+              borderRadius: "10px",
+              background: "rgba(15,23,42,0.8)",
+              border: `1px solid ${accent}55`,
+              color: "#dbeafe",
+              fontSize: "13px",
+            }}
+          >
+            {mensaje}
+          </div>
+        )}
+
+        <div style={{ marginTop: "20px" }}>
+          <h3 style={{ marginBottom: "10px" }}>Planes del socio</h3>
+          {!planes.length ? (
+            <div style={{ color: "#64748b" }}>No hay planes de {discipline.toLowerCase()} todavía.</div>
+          ) : (
+            planes.map((plan) => (
+              <button
+                key={plan.id}
+                type="button"
+                onClick={() => onSelectPlan(plan)}
+                style={{
+                  width: "100%",
+                  textAlign: "left",
+                  padding: "11px",
+                  marginBottom: "8px",
+                  borderRadius: "10px",
+                  border: planActivo?.id === plan.id ? `2px solid ${accent}` : "1px solid #334155",
+                  background: "#0f172a",
+                  color: "#fff",
+                  cursor: "pointer",
+                }}
+              >
+                <strong>{plan.nombre}</strong>
+                <div style={{ color: "#94a3b8", fontSize: "12px", marginTop: "3px" }}>
+                  {plan.nivel || "Sin nivel"}
+                </div>
+              </button>
+            ))
+          )}
+        </div>
+      </div>
+
+      <div style={cardStyle}>
+        <div
+          style={{
+            padding: "22px",
+            borderRadius: "18px",
+            background: `linear-gradient(135deg, ${accent}22, rgba(15,23,42,0.96))`,
+            border: `1px solid ${accent}55`,
+          }}
+        >
+          <div style={{ fontSize: "13px", color: accent, fontWeight: "bold", textTransform: "uppercase", letterSpacing: "1px" }}>
+            Módulo especializado
+          </div>
+          <h2 style={{ fontSize: "30px", margin: "8px 0" }}>
+            {icon} Entrenamiento de {discipline}
+          </h2>
+          <div style={{ color: "#cbd5e1", lineHeight: 1.6 }}>
+            Selecciona el nivel, revisa la técnica y agrega ejercicios al plan personalizado del socio.
+          </div>
+        </div>
+
+        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "16px" }}>
+          {["Todos", "Principiante", "Intermedio", "Avanzado"].map((item) => (
+            <button
+              key={item}
+              type="button"
+              onClick={() => onNivelChange(item)}
+              style={{
+                ...buttonTab,
+                ...(nivel === item ? buttonTabActive : {}),
+                borderColor: nivel === item ? accent : "transparent",
+              }}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+
+        {!!categorias.length && (
+          <div style={{ display: "flex", gap: "7px", flexWrap: "wrap", marginTop: "12px" }}>
+            {categorias.map((cat) => (
+              <span
+                key={cat}
+                style={{
+                  padding: "6px 9px",
+                  borderRadius: "999px",
+                  background: "#111827",
+                  border: "1px solid #334155",
+                  color: "#94a3b8",
+                  fontSize: "12px",
+                }}
+              >
+                {cat}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <div style={{ marginTop: "18px", display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "12px" }}>
+          {(ejercicios || []).map((ejercicio) => {
+            const activo = ejercicioSeleccionado?.id === ejercicio.id;
+            return (
+              <button
+                key={ejercicio.id}
+                type="button"
+                onClick={() => onSelectEjercicio(ejercicio)}
+                style={{
+                  textAlign: "left",
+                  padding: 0,
+                  overflow: "hidden",
+                  borderRadius: "15px",
+                  border: activo ? `2px solid ${accent}` : "1px solid #263449",
+                  background: activo ? "#132238" : "#0f172a",
+                  color: "#fff",
+                  cursor: "pointer",
+                  boxShadow: activo ? `0 0 22px ${accent}33` : "none",
+                }}
+              >
+                <div
+                  style={{
+                    height: "135px",
+                    display: "grid",
+                    placeItems: "center",
+                    background: `radial-gradient(circle, ${accent}22, #020617 72%)`,
+                    fontSize: "38px",
+                    overflow: "hidden",
+                  }}
+                >
+                  {getDisciplineLocalVideo(discipline, ejercicio) ? (
+                    <video
+                      key={getDisciplineLocalVideo(discipline, ejercicio)}
+                      src={getDisciplineLocalVideo(discipline, ejercicio)}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        background: "#000",
+                        pointerEvents: "none",
+                      }}
+                    />
+                  ) : (
+                    <span>{discipline === "Calistenia" ? "🤸" : "🥊"}</span>
+                  )}
+                </div>
+                <div style={{ padding: "11px" }}>
+                  <div style={{ fontWeight: "bold", fontSize: "14px" }}>{ejercicio.nombre}</div>
+                  <div style={{ color: accent, fontSize: "11px", marginTop: "5px" }}>{ejercicio.categoria}</div>
+                  <div style={{ color: "#94a3b8", fontSize: "11px", marginTop: "3px" }}>{ejercicio.nivel}</div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div style={cardStyle}>
+        <h2 style={{ marginTop: 0 }}>Ejercicio seleccionado</h2>
+
+        {!ejercicioSeleccionado ? (
+          <div style={{ color: "#94a3b8" }}>Selecciona un ejercicio para ver su detalle.</div>
+        ) : (
+          <>
+            <div
+              style={{
+                height: "360px",
+                borderRadius: "18px",
+                background: `radial-gradient(circle, ${accent}33, #020617 72%)`,
+                display: "grid",
+                placeItems: "center",
+                fontSize: "82px",
+                border: `1px solid ${accent}55`,
+                overflow: "hidden",
+              }}
+            >
+              {getDisciplineLocalVideo(discipline, ejercicioSeleccionado) ? (
+                <video
+                  key={getDisciplineLocalVideo(discipline, ejercicioSeleccionado)}
+                  src={getDisciplineLocalVideo(discipline, ejercicioSeleccionado)}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  preload="metadata"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                    background: "#000",
+                  }}
+                />
+              ) : (
+                <span>{discipline === "Calistenia" ? "🤸" : "🥊"}</span>
+              )}
+            </div>
+
+            <h2 style={{ marginBottom: "5px" }}>{ejercicioSeleccionado.nombre}</h2>
+            <div style={{ color: accent, fontWeight: "bold" }}>{ejercicioSeleccionado.categoria}</div>
+            <div style={{ color: "#94a3b8", marginTop: "5px" }}>{ejercicioSeleccionado.nivel}</div>
+            <p style={{ color: "#cbd5e1", lineHeight: 1.6 }}>
+              {ejercicioSeleccionado.descripcion}
+            </p>
+
+            <button
+              type="button"
+              onClick={() => onAdd(ejercicioSeleccionado)}
+              style={{ ...buttonPrimary, width: "100%", background: accent }}
+            >
+              Agregar al plan
+            </button>
+          </>
+        )}
+
+        <div style={{ marginTop: "22px" }}>
+          <h3>Plan activo</h3>
+
+          {!planActivo ? (
+            <div style={{ color: "#64748b" }}>Crea o selecciona un plan.</div>
+          ) : (
+            <>
+              <div style={{ color: "#fff", fontWeight: "bold" }}>{planActivo.nombre}</div>
+              <div style={{ color: "#94a3b8", fontSize: "13px", marginTop: "3px" }}>
+                {planActivo.nivel || "-"} · {detallePlan.length} ejercicio(s)
+              </div>
+
+              <div style={{ display: "grid", gap: "8px", marginTop: "12px" }}>
+                {detallePlan.map((item, index) => (
+                  <div
+                    key={item.id}
+                    style={{
+                      padding: "10px",
+                      borderRadius: "10px",
+                      background: "#111827",
+                      border: "1px solid #263449",
+                    }}
+                  >
+                    <div style={{ fontWeight: "bold" }}>
+                      {index + 1}. {item.ejercicio_nombre}
+                    </div>
+                    <div style={{ color: "#94a3b8", fontSize: "12px", marginTop: "4px" }}>
+                      {item.series} series · {item.repeticiones}
+                      {item.duracion ? ` · ${item.duracion}` : ""} · descanso {item.descanso}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
@@ -1330,26 +2221,41 @@ const calcularEdad = (fechaNacimiento) => {
 };
 
 const calcularIMC = (peso, altura) => {
-  if (!peso || !altura) return null;
-  const alturaMetros = Number(altura) / 100;
-  if (!alturaMetros) return null;
-  return (Number(peso) / (alturaMetros * alturaMetros)).toFixed(2);
+  const pesoKg = parseNumeroFlexible(peso);
+  const alturaCm = normalizarAlturaCm(altura);
+
+  if (!pesoKg || !alturaCm) return null;
+
+  const alturaMetros = alturaCm / 100;
+  return (pesoKg / (alturaMetros * alturaMetros)).toFixed(2);
 };
 
 const calcularCalorias = (socio) => {
   if (!socio) return null;
 
-  const peso = Number(socio.peso);
-  const altura = Number(socio.altura);
+  const peso = parseNumeroFlexible(socio.peso);
+  const altura = normalizarAlturaCm(socio.altura);
   const edad = calcularEdad(socio.fecha_nacimiento);
 
-  if (!peso || !altura || !edad || !socio.genero) return null;
+  if (
+    !peso ||
+    !altura ||
+    !edad ||
+    !socio.genero ||
+    !socio.nivel_actividad ||
+    !socio.meta_nutricional
+  ) {
+    return null;
+  }
 
   let tmb = 0;
   if (socio.genero === "Masculino") {
     tmb = 10 * peso + 6.25 * altura - 5 * edad + 5;
-  } else {
+  } else if (socio.genero === "Femenino") {
     tmb = 10 * peso + 6.25 * altura - 5 * edad - 161;
+  } else {
+    // Para "Otro" se usa un valor medio únicamente como estimación orientativa.
+    tmb = 10 * peso + 6.25 * altura - 5 * edad - 78;
   }
 
   const factores = {
@@ -1360,12 +2266,17 @@ const calcularCalorias = (socio) => {
     "Muy intenso": 1.9,
   };
 
-  const factor = factores[socio.nivel_actividad] || 1.2;
+  const factor = factores[socio.nivel_actividad];
+  if (!factor) return null;
+
   const mantenimiento = Math.round(tmb * factor);
 
   let objetivo = mantenimiento;
-  if (socio.meta_nutricional === "Déficit calórico") objetivo = mantenimiento - 300;
-  else if (socio.meta_nutricional === "Superávit calórico") objetivo = mantenimiento + 300;
+  if (socio.meta_nutricional === "Déficit calórico") {
+    objetivo = mantenimiento - 300;
+  } else if (socio.meta_nutricional === "Superávit calórico") {
+    objetivo = mantenimiento + 300;
+  }
 
   return {
     edad,
