@@ -1508,13 +1508,26 @@ const CALISTHENICS_LOCAL_VIDEOS = {
 };
 
 const BOXING_LOCAL_VIDEOS = {
-  "Guardia básica": "/videos/boxeo/guardia-basica.mp4",
-  "Desplazamiento adelante y atrás": "/videos/boxeo/desplazamiento.mp4",
-  "Jab": "/videos/boxeo/jab.mp4",
-  "Cross": "/videos/boxeo/cross.mp4",
-  "Jab-Cross 1-2": "/videos/boxeo/jab-cross.mp4",
-  "Hook delantero": "/videos/boxeo/hook-delantero.mp4",
-  "Uppercut trasero": "/videos/boxeo/uppercut-trasero.mp4",
+  // PRINCIPIANTE
+  "Guardia y movilidad": "/videos/boxeo/guardia-y-movilidad.mp4",
+  "Jab directo": "/videos/boxeo/jab-directo.mp4",
+  "Defensa en guardia": "/videos/boxeo/defensa-guardia.mp4",
+  "Sombra básica": "/videos/boxeo/sombra-basica.mp4",
+  "Trabajo en saco básico": "/videos/boxeo/trabajo-en-saco.mp4",
+
+  // INTERMEDIO
+  "Golpes de potencia": "/videos/boxeo/golpes-potencia.mp4",
+  "Saco con combinaciones": "/videos/boxeo/saco-combinaciones.mp4",
+  "Combinaciones con pareja": "/videos/boxeo/combinaciones-con-pareja.mp4",
+  "Manoplas - combinación": "/videos/boxeo/manoplas-combinacion.mp4",
+  "Manoplas - velocidad": "/videos/boxeo/manoplas-velocidad.mp4",
+
+  // AVANZADO
+  "Sparring defensa y contraataque": "/videos/boxeo/sparring-defensa-contraataque.mp4",
+  "Sparring técnico": "/videos/boxeo/sparring-tecnico.mp4",
+  "Boxeo de potencia avanzado": "/videos/boxeo/boxeo-potencia-avanzado.mp4",
+  "Manoplas de alta intensidad": "/videos/boxeo/manoplas-intensidad.mp4",
+  "Combinación avanzada": "/videos/boxeo/combinacion-avanzada.mp4",
 };
 
 const getDisciplineLocalVideo = (discipline, ejercicio) => {
