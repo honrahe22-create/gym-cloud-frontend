@@ -4,6 +4,8 @@ const API_URL = "https://gym-cloud-backend.onrender.com";
 
 const FRONT_BODY_IMAGE = "/body-front.png";
 const BACK_BODY_IMAGE = "/body-back.png";
+const FEMALE_FRONT_BODY_IMAGE = "/body-female-front.png";
+const FEMALE_BACK_BODY_IMAGE = "/body-female-back.png";
 
 const initialForm = {
   nombres: "",
@@ -263,6 +265,7 @@ function App() {
   const [rutinaActiva, setRutinaActiva] = useState(null);
   const [detalleRutina, setDetalleRutina] = useState([]);
   const [vistaCuerpo, setVistaCuerpo] = useState("front");
+  const [generoMapa, setGeneroMapa] = useState("Masculino");
   const [modoAjuste, setModoAjuste] = useState(false);
   const [zoomMusculo, setZoomMusculo] = useState(null);
   const [frontHotspotsEditables, setFrontHotspotsEditables] = useState(FRONT_HOTSPOTS);
@@ -280,6 +283,25 @@ function App() {
   const mapRef = useRef(null);
 
   const setEditableHotspots = vistaCuerpo === "front" ? setFrontHotspotsEditables : setBackHotspotsEditables;
+
+  const generoSocioNormalizado =
+    String(socioSeleccionado?.genero || "").trim().toLowerCase() === "femenino"
+      ? "Femenino"
+      : "Masculino";
+
+  const imagenCuerpoActual =
+    generoMapa === "Femenino"
+      ? vistaCuerpo === "front"
+        ? FEMALE_FRONT_BODY_IMAGE
+        : FEMALE_BACK_BODY_IMAGE
+      : vistaCuerpo === "front"
+        ? FRONT_BODY_IMAGE
+        : BACK_BODY_IMAGE;
+
+  useEffect(() => {
+    setGeneroMapa(generoSocioNormalizado);
+  }, [socioSeleccionado?.id, socioSeleccionado?.genero]);
+
 
 useEffect(() => {
   if (!dragInfo) return;
@@ -571,6 +593,11 @@ const handleChange = (e) => {
   setRutinaActiva(null);
   setDetalleRutina([]);
   setVistaCuerpo("front");
+  setGeneroMapa(
+    String(socio?.genero || "").trim().toLowerCase() === "femenino"
+      ? "Femenino"
+      : "Masculino"
+  );
 
   try {
     const res = await fetch(`${API_URL}/api/rutinas/socio/${socio.id}`);
@@ -1326,19 +1353,70 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
               <h2 style={{ margin: 0 }}>Mapa muscular</h2>
 
-              <div style={{ display: "flex", gap: "8px" }}>
-                <button style={{ ...buttonTab, ...(vistaCuerpo === "front" ? buttonTabActive : {}) }} onClick={() => setVistaCuerpo("front")}>
+              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", justifyContent: "flex-end" }}>
+                <button
+                  type="button"
+                  style={{
+                    ...buttonTab,
+                    ...(generoMapa === "Masculino" ? buttonTabActive : {}),
+                    borderColor: generoMapa === "Masculino" ? "#38bdf8" : undefined,
+                  }}
+                  onClick={() => setGeneroMapa("Masculino")}
+                  title="Mostrar mapa corporal masculino"
+                >
+                  ♂ Masculino
+                </button>
+                <button
+                  type="button"
+                  style={{
+                    ...buttonTab,
+                    ...(generoMapa === "Femenino" ? buttonTabActive : {}),
+                    background: generoMapa === "Femenino" ? "#db2777" : buttonTab.background,
+                    borderColor: generoMapa === "Femenino" ? "#f472b6" : undefined,
+                  }}
+                  onClick={() => setGeneroMapa("Femenino")}
+                  title="Mostrar mapa corporal femenino"
+                >
+                  ♀ Femenino
+                </button>
+                <button
+                  type="button"
+                  style={{ ...buttonTab, ...(vistaCuerpo === "front" ? buttonTabActive : {}) }}
+                  onClick={() => setVistaCuerpo("front")}
+                >
                   Frontal
                 </button>
-                <button style={{ ...buttonTab, ...(vistaCuerpo === "back" ? buttonTabActive : {}) }} onClick={() => setVistaCuerpo("back")}>
+                <button
+                  type="button"
+                  style={{ ...buttonTab, ...(vistaCuerpo === "back" ? buttonTabActive : {}) }}
+                  onClick={() => setVistaCuerpo("back")}
+                >
                   Posterior
                 </button>
               </div>
             </div>
 
-            <p style={{ color: "#94a3b8", marginTop: "12px" }}>
+            <p style={{ color: "#94a3b8", marginTop: "12px", marginBottom: "6px" }}>
               Selecciona un músculo para resaltarlo en el cuerpo y cargar sus rutinas y ejercicios.
             </p>
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "7px 10px",
+                borderRadius: "999px",
+                marginBottom: "12px",
+                background: generoMapa === "Femenino" ? "rgba(219,39,119,0.12)" : "rgba(56,189,248,0.10)",
+                border: generoMapa === "Femenino" ? "1px solid rgba(244,114,182,0.35)" : "1px solid rgba(56,189,248,0.28)",
+                color: generoMapa === "Femenino" ? "#f9a8d4" : "#7dd3fc",
+                fontSize: "13px",
+                fontWeight: 700,
+              }}
+            >
+              {generoMapa === "Femenino" ? "♀" : "♂"} Cuerpo {generoMapa.toLowerCase()}
+              {socioSeleccionado?.genero ? " · seleccionado automáticamente según la ficha" : ""}
+            </div>
 
             <div style={muscleChipWrap}>
               {(vistaCuerpo === "front" ? FRONT_GROUPS : BACK_GROUPS).map((grupo) => (
@@ -1361,8 +1439,8 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
               <div style={appBodyPreviewStyle}>
                 <div style={appBodyImageWrapStyle}>
                   <img
-                    src={vistaCuerpo === "front" ? FRONT_BODY_IMAGE : BACK_BODY_IMAGE}
-                    alt="Mapa muscular"
+                    src={imagenCuerpoActual}
+                    alt={`Mapa muscular ${generoMapa.toLowerCase()} ${vistaCuerpo === "front" ? "frontal" : "posterior"}`}
                     style={appBodyImageStyle}
                   />
 
@@ -1871,7 +1949,7 @@ function DisciplineModule({
 }
 
 const RealBodyMap = React.forwardRef(function RealBodyMap(
-  { view, selectedMuscle, onSelect, hotspots, zoomMusculo },
+  { view, selectedMuscle, onSelect, hotspots, zoomMusculo, genero = "Masculino" },
   ref
 ) {
   const zoomStyle = getZoomStyleByMuscle(view, zoomMusculo);
@@ -1892,7 +1970,15 @@ const RealBodyMap = React.forwardRef(function RealBodyMap(
           }}
         >
           <img
-            src={view === "front" ? FRONT_BODY_IMAGE : BACK_BODY_IMAGE}
+            src={
+              genero === "Femenino"
+                ? view === "front"
+                  ? FEMALE_FRONT_BODY_IMAGE
+                  : FEMALE_BACK_BODY_IMAGE
+                : view === "front"
+                  ? FRONT_BODY_IMAGE
+                  : BACK_BODY_IMAGE
+            }
             alt="cuerpo"
             style={view === "front" ? bodyImageFrontStyle : bodyImageBackStyle}
           />
