@@ -1441,7 +1441,10 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                   <img
                     src={imagenCuerpoActual}
                     alt={`Mapa muscular ${generoMapa.toLowerCase()} ${vistaCuerpo === "front" ? "frontal" : "posterior"}`}
-                    style={appBodyImageStyle}
+                    style={{
+                      ...appBodyImageStyle,
+                      maxWidth: generoMapa === "Femenino" ? "520px" : appBodyImageStyle.maxWidth,
+                    }}
                   />
 
                   {musculoSeleccionado &&
