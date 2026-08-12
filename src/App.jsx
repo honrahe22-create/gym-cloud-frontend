@@ -116,6 +116,69 @@ const MUSCLE_GLOW = {
   },
 };
 
+const FEMALE_MUSCLE_GLOW = {
+  front: {
+    "Pecho alto": [
+      { top: "23.0%", left: "38.0%", width: "12.5%", height: "6.5%" },
+      { top: "23.0%", left: "50.0%", width: "12.5%", height: "6.5%" },
+    ],
+    "Pecho medio": [
+      { top: "27.0%", left: "37.5%", width: "13.5%", height: "7.5%" },
+      { top: "27.0%", left: "49.5%", width: "13.5%", height: "7.5%" },
+    ],
+    "Pecho bajo": [
+      { top: "31.0%", left: "40.0%", width: "10.5%", height: "5.0%" },
+      { top: "31.0%", left: "49.5%", width: "10.5%", height: "5.0%" },
+    ],
+    Hombros: [
+      { top: "20.0%", left: "32.0%", width: "9.5%", height: "9.5%" },
+      { top: "20.0%", left: "58.5%", width: "9.5%", height: "9.5%" },
+    ],
+    "Bíceps": [
+      { top: "28.0%", left: "27.0%", width: "8.0%", height: "16.5%" },
+      { top: "28.0%", left: "65.0%", width: "8.0%", height: "16.5%" },
+    ],
+    Abdomen: [
+      { top: "32.0%", left: "44.0%", width: "12.0%", height: "13.0%" },
+    ],
+    "Cuádriceps": [
+      { top: "51.5%", left: "32.0%", width: "17.0%", height: "20.0%" },
+      { top: "51.5%", left: "51.0%", width: "17.0%", height: "20.0%" },
+    ],
+    Pantorrillas: [
+      { top: "72.0%", left: "34.0%", width: "11.0%", height: "17.0%" },
+      { top: "72.0%", left: "55.0%", width: "11.0%", height: "17.0%" },
+    ],
+  },
+  back: {
+    "Espalda alta": [
+      { top: "24.0%", left: "39.0%", width: "22.0%", height: "10.0%" },
+    ],
+    "Espalda media": [
+      { top: "31.0%", left: "38.0%", width: "24.0%", height: "10.5%" },
+    ],
+    "Espalda baja": [
+      { top: "38.0%", left: "42.0%", width: "16.0%", height: "9.0%" },
+    ],
+    "Tríceps": [
+      { top: "28.0%", left: "33.0%", width: "7.0%", height: "14.5%" },
+      { top: "28.0%", left: "61.0%", width: "7.0%", height: "14.5%" },
+    ],
+    "Glúteos": [
+      { top: "45.0%", left: "37.0%", width: "13.0%", height: "12.5%" },
+      { top: "45.0%", left: "50.0%", width: "13.0%", height: "12.5%" },
+    ],
+    "Isquiotibiales": [
+      { top: "57.0%", left: "37.5%", width: "11.0%", height: "15.5%" },
+      { top: "57.0%", left: "51.5%", width: "11.0%", height: "15.5%" },
+    ],
+    "Pantorrillas posterior": [
+      { top: "72.0%", left: "39.0%", width: "10.0%", height: "17.0%" },
+      { top: "72.0%", left: "51.0%", width: "10.0%", height: "17.0%" },
+    ],
+  },
+};
+
 const FRONT_HOTSPOTS = [
 { muscle:"Hombros", top:"21%", left:"26%", width:"48%", height:"8%"},
 
@@ -189,9 +252,14 @@ const ponerVideosLocales = (nombreMusculo, ejercicios = []) => {
   const prefijo = VIDEO_PREFIX_POR_MUSCULO[nombreMusculo];
   if (!prefijo) return ejercicios;
 
-  return ejercicios.slice(0, 5).map((ejercicio, index) => ({
+  return ejercicios.slice(0, 20).map((ejercicio, index) => ({
     ...ejercicio,
-    video_url: `/videos/${prefijo}-${index + 1}.mp4`,
+    // A partir de la Fase 2 el backend entrega la ruta real generada.
+    // Si por compatibilidad una fila antigua no tiene video_url,
+    // usamos el nombre local correlativo como respaldo.
+    video_url:
+      ejercicio.video_url ||
+      `/videos/${prefijo}-${index + 1}.mp4`,
   }));
 };
 
@@ -297,6 +365,9 @@ function App() {
       : vistaCuerpo === "front"
         ? FRONT_BODY_IMAGE
         : BACK_BODY_IMAGE;
+
+  const muscleGlowActual =
+    generoMapa === "Femenino" ? FEMALE_MUSCLE_GLOW : MUSCLE_GLOW;
 
   useEffect(() => {
     setGeneroMapa(generoSocioNormalizado);
@@ -1361,7 +1432,12 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                     ...(generoMapa === "Masculino" ? buttonTabActive : {}),
                     borderColor: generoMapa === "Masculino" ? "#38bdf8" : undefined,
                   }}
-                  onClick={() => setGeneroMapa("Masculino")}
+                  onClick={() => {
+                    setGeneroMapa("Masculino");
+                    setMusculoSeleccionado(null);
+                    setEjerciciosMusculo([]);
+                    setZoomMusculo(null);
+                  }}
                   title="Mostrar mapa corporal masculino"
                 >
                   ♂ Masculino
@@ -1374,7 +1450,12 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                     background: generoMapa === "Femenino" ? "#db2777" : buttonTab.background,
                     borderColor: generoMapa === "Femenino" ? "#f472b6" : undefined,
                   }}
-                  onClick={() => setGeneroMapa("Femenino")}
+                  onClick={() => {
+                    setGeneroMapa("Femenino");
+                    setMusculoSeleccionado(null);
+                    setEjerciciosMusculo([]);
+                    setZoomMusculo(null);
+                  }}
                   title="Mostrar mapa corporal femenino"
                 >
                   ♀ Femenino
@@ -1382,14 +1463,24 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                 <button
                   type="button"
                   style={{ ...buttonTab, ...(vistaCuerpo === "front" ? buttonTabActive : {}) }}
-                  onClick={() => setVistaCuerpo("front")}
+                  onClick={() => {
+                    setVistaCuerpo("front");
+                    setMusculoSeleccionado(null);
+                    setEjerciciosMusculo([]);
+                    setZoomMusculo(null);
+                  }}
                 >
                   Frontal
                 </button>
                 <button
                   type="button"
                   style={{ ...buttonTab, ...(vistaCuerpo === "back" ? buttonTabActive : {}) }}
-                  onClick={() => setVistaCuerpo("back")}
+                  onClick={() => {
+                    setVistaCuerpo("back");
+                    setMusculoSeleccionado(null);
+                    setEjerciciosMusculo([]);
+                    setZoomMusculo(null);
+                  }}
                 >
                   Posterior
                 </button>
@@ -1444,11 +1535,21 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                     style={{
                       ...appBodyImageStyle,
                       maxWidth: generoMapa === "Femenino" ? "520px" : appBodyImageStyle.maxWidth,
+                      objectPosition:
+                        generoMapa === "Femenino"
+                          ? vistaCuerpo === "back"
+                            ? "48% 50%"
+                            : "50% 50%"
+                          : appBodyImageStyle.objectPosition,
+                      filter:
+                        generoMapa === "Femenino"
+                          ? "brightness(0.72) saturate(0.78) contrast(1.04)"
+                          : appBodyImageStyle.filter,
                     }}
                   />
 
                   {musculoSeleccionado &&
-                    (MUSCLE_GLOW[vistaCuerpo]?.[musculoSeleccionado.nombre] || []).map(
+                    (muscleGlowActual[vistaCuerpo]?.[musculoSeleccionado.nombre] || []).map(
                       (zona, index) => (
                         <div
                           key={`${musculoSeleccionado.nombre}-${index}`}
@@ -1643,7 +1744,34 @@ function DisciplineModule({
   onAdd,
   mensaje,
 }) {
-  const categorias = [...new Set((ejercicios || []).map((e) => e.categoria).filter(Boolean))];
+  const ejerciciosUnicos = Array.from(
+    new Map(
+      (ejercicios || []).map((ejercicio) => [
+        `${String(ejercicio?.nombre || "").trim().toLowerCase()}|${getDisciplineLocalVideo(
+          discipline,
+          ejercicio
+        )}`,
+        ejercicio,
+      ])
+    ).values()
+  );
+
+  const categorias = [...new Set(ejerciciosUnicos.map((e) => e.categoria).filter(Boolean))];
+
+  useEffect(() => {
+    if (!ejerciciosUnicos.length) {
+      if (ejercicioSeleccionado) onSelectEjercicio(null);
+      return;
+    }
+
+    const seleccionadoExiste = ejerciciosUnicos.some(
+      (ejercicio) => ejercicio.id === ejercicioSeleccionado?.id
+    );
+
+    if (!seleccionadoExiste) {
+      onSelectEjercicio(ejerciciosUnicos[0]);
+    }
+  }, [discipline, nivel, ejerciciosUnicos.length]);
 
   return (
     <div style={{ display: "grid", gridTemplateColumns: "300px minmax(520px, 1fr) 410px", gap: "20px", alignItems: "start" }}>
@@ -1791,7 +1919,7 @@ function DisciplineModule({
         )}
 
         <div style={{ marginTop: "18px", display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "12px" }}>
-          {(ejercicios || []).map((ejercicio) => {
+          {ejerciciosUnicos.map((ejercicio) => {
             const activo = ejercicioSeleccionado?.id === ejercicio.id;
             return (
               <button
@@ -1828,7 +1956,15 @@ function DisciplineModule({
                       muted
                       loop
                       playsInline
-                      preload="metadata"
+                      preload="auto"
+                      onLoadedData={(event) => {
+                        const video = event.currentTarget;
+                        video.muted = true;
+                        video.play().catch(() => {});
+                      }}
+                      onCanPlay={(event) => {
+                        event.currentTarget.play().catch(() => {});
+                      }}
                       style={{
                         width: "100%",
                         height: "100%",
@@ -1880,7 +2016,16 @@ function DisciplineModule({
                   loop
                   playsInline
                   controls
-                  preload="metadata"
+                  preload="auto"
+                  onLoadedData={(event) => {
+                    const video = event.currentTarget;
+                    video.muted = true;
+                    video.currentTime = 0;
+                    video.play().catch(() => {});
+                  }}
+                  onCanPlay={(event) => {
+                    event.currentTarget.play().catch(() => {});
+                  }}
                   style={{
                     width: "100%",
                     height: "100%",
@@ -2144,7 +2289,7 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
       </div>
 
       <h3 style={{ marginTop: "22px" }}>
-        Ejercicios disponibles
+        Ejercicios disponibles ({todos.length})
         <span
           style={{
             display: "block",
@@ -2163,6 +2308,9 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
           display: "grid",
           gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
           gap: "12px",
+          maxHeight: "780px",
+          overflowY: "auto",
+          paddingRight: "4px",
         }}
       >
         {todos.map((ejercicio) => {
