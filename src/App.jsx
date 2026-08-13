@@ -43,6 +43,7 @@ const FRONT_GROUPS = [
 ];
 
 const BACK_GROUPS = [
+  { key: "Trapecio", label: "Trapecio", color: "#c084fc" },
   { key: "Espalda alta", label: "Espalda alta", color: "#a855f7" },
   { key: "Espalda media", label: "Espalda media", color: "#7c3aed" },
   { key: "Espalda baja", label: "Espalda baja", color: "#6366f1" },
@@ -88,6 +89,9 @@ const MUSCLE_GLOW = {
   },
 
   back: {
+    "Trapecio": [
+      { top: "16.0%", left: "37.0%", width: "26.0%", height: "11.0%" },
+    ],
     "Espalda alta": [
       { top: "15.0%", left: "34.0%", width: "32.0%", height: "14.0%" },
     ],
@@ -151,8 +155,11 @@ const FEMALE_MUSCLE_GLOW = {
     ],
   },
   back: {
+    "Trapecio": [
+      { top: "17.5%", left: "38.0%", width: "24.0%", height: "10.0%" },
+    ],
     "Espalda alta": [
-      { top: "24.0%", left: "39.0%", width: "22.0%", height: "10.0%" },
+      { top: "25.0%", left: "38.0%", width: "24.0%", height: "9.0%" },
     ],
     "Espalda media": [
       { top: "31.0%", left: "38.0%", width: "24.0%", height: "10.5%" },
@@ -195,6 +202,7 @@ const FRONT_HOTSPOTS = [
 ];
 
 const BACK_HOTSPOTS = [
+  { muscle: "Trapecio", label: "Trapecio", top: "14%", left: "38%", width: "24%", height: "11%" },
   { muscle: "Espalda alta", label: "Espalda alta", top: "15%", left: "38%", width: "24%", height: "8%" },
   { muscle: "Espalda media", label: "Espalda media", top: "24%", left: "36%", width: "28%", height: "12%" },
   { muscle: "Espalda baja", label: "Espalda baja", top: "38%", left: "39%", width: "22%", height: "8%" },
@@ -217,6 +225,7 @@ const EJERCICIOS_POR_MUSCULO = {
   "Tríceps": ["Extensión polea", "Fondos"],
   
   "Abdomen": ["Crunch", "Elevaciones de piernas"],
+  "Trapecio": ["Encogimiento con barra", "Encogimiento con mancuernas"],
   "Espalda alta": ["Remo alto", "Face pull"],
   "Espalda media": ["Remo con barra", "Remo máquina"],
   "Espalda baja": ["Peso muerto", "Hiperextensiones"],
@@ -239,6 +248,7 @@ const VIDEO_PREFIX_POR_MUSCULO = {
   "Abdomen": "abdomen",
   "Cuádriceps": "cuadriceps",
   "Pantorrillas": "pantorrillas",
+  "Trapecio": "trapecio",
   "Espalda alta": "espalda-alta",
   "Espalda media": "espalda-media",
   "Espalda baja": "espalda-baja",
@@ -1534,16 +1544,14 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                     alt={`Mapa muscular ${generoMapa.toLowerCase()} ${vistaCuerpo === "front" ? "frontal" : "posterior"}`}
                     style={{
                       ...appBodyImageStyle,
-                      maxWidth: generoMapa === "Femenino" ? "520px" : appBodyImageStyle.maxWidth,
-                      objectPosition:
-                        generoMapa === "Femenino"
-                          ? vistaCuerpo === "back"
-                            ? "48% 50%"
-                            : "50% 50%"
-                          : appBodyImageStyle.objectPosition,
+                      maxWidth: generoMapa === "Femenino" ? "610px" : appBodyImageStyle.maxWidth,
+                      width: generoMapa === "Femenino" ? "96%" : appBodyImageStyle.width,
+                      height: generoMapa === "Femenino" ? "96%" : appBodyImageStyle.height,
+                      objectFit: "contain",
+                      objectPosition: "50% 50%",
                       filter:
                         generoMapa === "Femenino"
-                          ? "brightness(0.72) saturate(0.78) contrast(1.04)"
+                          ? "brightness(0.9) saturate(0.95) contrast(1.05)"
                           : appBodyImageStyle.filter,
                     }}
                   />
@@ -2220,12 +2228,26 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
       >
         {principalActivo?.video_url ? (
           <video
-            key={principalActivo.video_url}
+            key={`${principalActivo.id || principalActivo.nombre}-${principalActivo.video_url}`}
             src={principalActivo.video_url}
             autoPlay
             muted
             loop
             playsInline
+            controls
+            preload="auto"
+            onLoadedMetadata={(event) => {
+              const video = event.currentTarget;
+              video.muted = true;
+              video.currentTime = 0;
+              video.play().catch(() => {});
+            }}
+            onCanPlay={(event) => event.currentTarget.play().catch(() => {})}
+            onClick={(event) => {
+              if (event.currentTarget.paused) {
+                event.currentTarget.play().catch(() => {});
+              }
+            }}
             style={{
               width: "100%",
               height: "100%",
@@ -2357,12 +2379,19 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
               >
                 {ejercicio.video_url ? (
                   <video
-                    key={ejercicio.video_url}
+                    key={`${ejercicio.id || ejercicio.nombre}-${ejercicio.video_url}`}
                     src={ejercicio.video_url}
                     autoPlay
                     muted
                     loop
                     playsInline
+                    preload="auto"
+                    onLoadedMetadata={(event) => {
+                      const video = event.currentTarget;
+                      video.muted = true;
+                      video.play().catch(() => {});
+                    }}
+                    onCanPlay={(event) => event.currentTarget.play().catch(() => {})}
                     style={{
                       width: "100%",
                       height: "100%",
