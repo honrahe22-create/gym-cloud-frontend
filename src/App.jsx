@@ -32,6 +32,7 @@ const initialForm = {
 };
 
 const FRONT_GROUPS = [
+  { key: "Trapecio", label: "Trapecio", color: "#c084fc" },
   { key: "Pecho alto", label: "Pecho alto", color: "#f59e0b" },
   { key: "Pecho medio", label: "Pecho medio", color: "#ef4444" },
   { key: "Pecho bajo", label: "Pecho bajo", color: "#f97316" },
@@ -55,6 +56,9 @@ const BACK_GROUPS = [
 
 const MUSCLE_GLOW = {
   front: {
+    "Trapecio": [
+      { top: "12.5%", left: "40.0%", width: "20.0%", height: "8.5%" },
+    ],
     "Pecho alto": [
       { top: "18.5%", left: "31.0%", width: "18.0%", height: "6.5%" },
       { top: "18.5%", left: "51.0%", width: "18.0%", height: "6.5%" },
@@ -122,66 +126,69 @@ const MUSCLE_GLOW = {
 
 const FEMALE_MUSCLE_GLOW = {
   front: {
+    "Trapecio": [
+      { top: "10.5%", left: "38.5%", width: "23.0%", height: "8.0%" },
+    ],
     "Pecho alto": [
-      { top: "23.0%", left: "38.0%", width: "12.5%", height: "6.5%" },
-      { top: "23.0%", left: "50.0%", width: "12.5%", height: "6.5%" },
+      { top: "20.0%", left: "34.0%", width: "16.0%", height: "6.5%" },
+      { top: "20.0%", left: "50.0%", width: "16.0%", height: "6.5%" },
     ],
     "Pecho medio": [
-      { top: "27.0%", left: "37.5%", width: "13.5%", height: "7.5%" },
-      { top: "27.0%", left: "49.5%", width: "13.5%", height: "7.5%" },
+      { top: "24.5%", left: "33.5%", width: "17.0%", height: "7.0%" },
+      { top: "24.5%", left: "49.5%", width: "17.0%", height: "7.0%" },
     ],
     "Pecho bajo": [
-      { top: "31.0%", left: "40.0%", width: "10.5%", height: "5.0%" },
-      { top: "31.0%", left: "49.5%", width: "10.5%", height: "5.0%" },
+      { top: "29.0%", left: "37.0%", width: "13.5%", height: "5.5%" },
+      { top: "29.0%", left: "49.5%", width: "13.5%", height: "5.5%" },
     ],
     Hombros: [
-      { top: "20.0%", left: "32.0%", width: "9.5%", height: "9.5%" },
-      { top: "20.0%", left: "58.5%", width: "9.5%", height: "9.5%" },
+      { top: "18.0%", left: "25.0%", width: "12.0%", height: "10.0%" },
+      { top: "18.0%", left: "63.0%", width: "12.0%", height: "10.0%" },
     ],
     "Bíceps": [
-      { top: "28.0%", left: "27.0%", width: "8.0%", height: "16.5%" },
-      { top: "28.0%", left: "65.0%", width: "8.0%", height: "16.5%" },
+      { top: "27.0%", left: "20.5%", width: "10.0%", height: "17.0%" },
+      { top: "27.0%", left: "69.5%", width: "10.0%", height: "17.0%" },
     ],
     Abdomen: [
-      { top: "32.0%", left: "44.0%", width: "12.0%", height: "13.0%" },
+      { top: "31.0%", left: "39.5%", width: "21.0%", height: "17.5%" },
     ],
     "Cuádriceps": [
-      { top: "51.5%", left: "32.0%", width: "17.0%", height: "20.0%" },
-      { top: "51.5%", left: "51.0%", width: "17.0%", height: "20.0%" },
+      { top: "52.0%", left: "31.0%", width: "18.0%", height: "21.0%" },
+      { top: "52.0%", left: "51.0%", width: "18.0%", height: "21.0%" },
     ],
     Pantorrillas: [
-      { top: "72.0%", left: "34.0%", width: "11.0%", height: "17.0%" },
-      { top: "72.0%", left: "55.0%", width: "11.0%", height: "17.0%" },
+      { top: "75.0%", left: "33.0%", width: "15.0%", height: "18.0%" },
+      { top: "75.0%", left: "52.0%", width: "15.0%", height: "18.0%" },
     ],
   },
   back: {
     "Trapecio": [
-      { top: "17.5%", left: "38.0%", width: "24.0%", height: "10.0%" },
+      { top: "14.0%", left: "36.0%", width: "28.0%", height: "12.0%" },
     ],
     "Espalda alta": [
-      { top: "25.0%", left: "38.0%", width: "24.0%", height: "9.0%" },
+      { top: "20.5%", left: "32.0%", width: "36.0%", height: "12.0%" },
     ],
     "Espalda media": [
-      { top: "31.0%", left: "38.0%", width: "24.0%", height: "10.5%" },
+      { top: "29.0%", left: "34.0%", width: "32.0%", height: "13.0%" },
     ],
     "Espalda baja": [
-      { top: "38.0%", left: "42.0%", width: "16.0%", height: "9.0%" },
+      { top: "39.0%", left: "39.0%", width: "22.0%", height: "10.0%" },
     ],
     "Tríceps": [
-      { top: "28.0%", left: "33.0%", width: "7.0%", height: "14.5%" },
-      { top: "28.0%", left: "61.0%", width: "7.0%", height: "14.5%" },
+      { top: "27.0%", left: "21.0%", width: "10.0%", height: "17.0%" },
+      { top: "27.0%", left: "69.0%", width: "10.0%", height: "17.0%" },
     ],
     "Glúteos": [
-      { top: "45.0%", left: "37.0%", width: "13.0%", height: "12.5%" },
-      { top: "45.0%", left: "50.0%", width: "13.0%", height: "12.5%" },
+      { top: "48.0%", left: "31.0%", width: "19.0%", height: "14.0%" },
+      { top: "48.0%", left: "50.0%", width: "19.0%", height: "14.0%" },
     ],
     "Isquiotibiales": [
-      { top: "57.0%", left: "37.5%", width: "11.0%", height: "15.5%" },
-      { top: "57.0%", left: "51.5%", width: "11.0%", height: "15.5%" },
+      { top: "61.0%", left: "32.0%", width: "17.0%", height: "18.0%" },
+      { top: "61.0%", left: "51.0%", width: "17.0%", height: "18.0%" },
     ],
     "Pantorrillas posterior": [
-      { top: "72.0%", left: "39.0%", width: "10.0%", height: "17.0%" },
-      { top: "72.0%", left: "51.0%", width: "10.0%", height: "17.0%" },
+      { top: "79.0%", left: "34.0%", width: "14.0%", height: "16.0%" },
+      { top: "79.0%", left: "52.0%", width: "14.0%", height: "16.0%" },
     ],
   },
 };
@@ -1544,14 +1551,11 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                     alt={`Mapa muscular ${generoMapa.toLowerCase()} ${vistaCuerpo === "front" ? "frontal" : "posterior"}`}
                     style={{
                       ...appBodyImageStyle,
-                      maxWidth: generoMapa === "Femenino" ? "610px" : appBodyImageStyle.maxWidth,
-                      width: generoMapa === "Femenino" ? "96%" : appBodyImageStyle.width,
-                      height: generoMapa === "Femenino" ? "96%" : appBodyImageStyle.height,
                       objectFit: "contain",
                       objectPosition: "50% 50%",
                       filter:
                         generoMapa === "Femenino"
-                          ? "brightness(0.9) saturate(0.95) contrast(1.05)"
+                          ? "brightness(0.95) saturate(1.02) contrast(1.04) drop-shadow(0 0 25px rgba(0,224,255,.18))"
                           : appBodyImageStyle.filter,
                     }}
                   />
