@@ -160,32 +160,32 @@ const FEMALE_MUSCLE_GLOW = {
   },
   back: {
     "Trapecio": [
-      { top: "12.5%", left: "41.0%", width: "18.0%", height: "9.0%" },
+      { top: "13.5%", left: "42.0%", width: "16.0%", height: "8.0%" },
     ],
     "Espalda alta": [
-      { top: "20.0%", left: "35.5%", width: "29.0%", height: "10.5%" },
+      { top: "20.5%", left: "36.5%", width: "27.0%", height: "10.0%" },
     ],
     "Espalda media": [
-      { top: "29.0%", left: "38.5%", width: "23.0%", height: "11.0%" },
+      { top: "29.5%", left: "39.0%", width: "22.0%", height: "10.5%" },
     ],
     "Espalda baja": [
-      { top: "39.0%", left: "42.5%", width: "15.0%", height: "9.0%" },
+      { top: "39.5%", left: "43.0%", width: "14.0%", height: "9.0%" },
     ],
     "Tríceps": [
-      { top: "27.0%", left: "30.0%", width: "5.5%", height: "13.0%" },
-      { top: "27.0%", left: "64.5%", width: "5.5%", height: "13.0%" },
+      { top: "27.0%", left: "30.5%", width: "5.0%", height: "13.0%" },
+      { top: "27.0%", left: "64.5%", width: "5.0%", height: "13.0%" },
     ],
     "Glúteos": [
-      { top: "48.5%", left: "36.0%", width: "14.0%", height: "12.5%" },
-      { top: "48.5%", left: "50.0%", width: "14.0%", height: "12.5%" },
+      { top: "50.0%", left: "36.5%", width: "13.5%", height: "11.5%" },
+      { top: "50.0%", left: "50.0%", width: "13.5%", height: "11.5%" },
     ],
     "Isquiotibiales": [
-      { top: "61.5%", left: "36.5%", width: "11.5%", height: "17.5%" },
-      { top: "61.5%", left: "52.0%", width: "11.5%", height: "17.5%" },
+      { top: "62.0%", left: "37.0%", width: "11.0%", height: "17.0%" },
+      { top: "62.0%", left: "52.0%", width: "11.0%", height: "17.0%" },
     ],
     "Pantorrillas posterior": [
-      { top: "79.5%", left: "38.0%", width: "9.0%", height: "14.5%" },
-      { top: "79.5%", left: "53.0%", width: "9.0%", height: "14.5%" },
+      { top: "79.0%", left: "38.5%", width: "8.0%", height: "15.0%" },
+      { top: "79.0%", left: "53.5%", width: "8.0%", height: "15.0%" },
     ],
   },
 };
