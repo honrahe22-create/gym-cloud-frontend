@@ -124,38 +124,38 @@ const MUSCLE_GLOW = {
 const FEMALE_MUSCLE_GLOW = {
   front: {
     "Trapecio": [
-      { top: "12.8%", left: "44.0%", width: "12.0%", height: "5.2%" },
+      { top: "13.0%", left: "44.5%", width: "11.0%", height: "4.8%" },
     ],
     "Pecho alto": [
-      { top: "20.0%", left: "38.7%", width: "10.3%", height: "4.6%" },
-      { top: "20.0%", left: "51.0%", width: "10.3%", height: "4.6%" },
+      { top: "20.2%", left: "39.2%", width: "9.6%", height: "4.4%" },
+      { top: "20.2%", left: "51.2%", width: "9.6%", height: "4.4%" },
     ],
     "Pecho medio": [
-      { top: "24.2%", left: "38.2%", width: "10.8%", height: "5.4%" },
-      { top: "24.2%", left: "51.0%", width: "10.8%", height: "5.4%" },
+      { top: "24.4%", left: "38.8%", width: "10.0%", height: "5.1%" },
+      { top: "24.4%", left: "51.2%", width: "10.0%", height: "5.1%" },
     ],
     "Pecho bajo": [
-      { top: "28.5%", left: "40.5%", width: "8.5%", height: "3.8%" },
-      { top: "28.5%", left: "51.0%", width: "8.5%", height: "3.8%" },
+      { top: "28.7%", left: "40.8%", width: "8.0%", height: "3.6%" },
+      { top: "28.7%", left: "51.2%", width: "8.0%", height: "3.6%" },
     ],
     Hombros: [
-      { top: "18.3%", left: "32.2%", width: "6.8%", height: "6.8%" },
-      { top: "18.3%", left: "61.0%", width: "6.8%", height: "6.8%" },
+      { top: "18.5%", left: "32.8%", width: "6.0%", height: "6.2%" },
+      { top: "18.5%", left: "61.2%", width: "6.0%", height: "6.2%" },
     ],
     "Bíceps": [
-      { top: "27.2%", left: "32.2%", width: "4.2%", height: "10.8%" },
-      { top: "27.2%", left: "63.6%", width: "4.2%", height: "10.8%" },
+      { top: "27.5%", left: "32.8%", width: "3.8%", height: "10.2%" },
+      { top: "27.5%", left: "63.4%", width: "3.8%", height: "10.2%" },
     ],
     Abdomen: [
-      { top: "31.3%", left: "43.8%", width: "12.4%", height: "15.8%" },
+      { top: "31.5%", left: "44.3%", width: "11.4%", height: "15.2%" },
     ],
     "Cuádriceps": [
-      { top: "52.8%", left: "36.3%", width: "10.2%", height: "19.0%" },
-      { top: "52.8%", left: "53.5%", width: "10.2%", height: "19.0%" },
+      { top: "53.0%", left: "36.9%", width: "9.3%", height: "18.4%" },
+      { top: "53.0%", left: "53.8%", width: "9.3%", height: "18.4%" },
     ],
     Pantorrillas: [
-      { top: "75.8%", left: "37.8%", width: "7.8%", height: "16.2%" },
-      { top: "75.8%", left: "54.4%", width: "7.8%", height: "16.2%" },
+      { top: "76.0%", left: "38.6%", width: "6.6%", height: "15.3%" },
+      { top: "76.0%", left: "54.8%", width: "6.6%", height: "15.3%" },
     ],
   },
   back: {
@@ -1578,10 +1578,10 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                             height: zona.height,
                             borderRadius: "45%",
                             background:
-                              "radial-gradient(ellipse, rgba(0,224,255,0.78) 0%, rgba(0,224,255,0.42) 48%, rgba(0,224,255,0.10) 72%, rgba(0,224,255,0) 86%)",
-                            border: "2px solid rgba(103,232,249,0.72)",
+                              "radial-gradient(ellipse, rgba(0,224,255,0.76) 0%, rgba(0,224,255,0.40) 50%, rgba(0,224,255,0.09) 72%, rgba(0,224,255,0) 86%)",
+                            border: "2px solid rgba(103,232,249,0.68)",
                             boxShadow:
-                              "0 0 14px rgba(0,224,255,0.95), 0 0 30px rgba(0,224,255,0.62)",
+                              "0 0 10px rgba(0,224,255,0.88), 0 0 22px rgba(0,224,255,0.50)",
                             pointerEvents: "none",
                             zIndex: 5,
                             mixBlendMode: "screen",
