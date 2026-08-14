@@ -1578,10 +1578,10 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                             height: zona.height,
                             borderRadius: "45%",
                             background:
-                              "radial-gradient(ellipse, rgba(0,224,255,0.40) 0%, rgba(0,224,255,0.18) 48%, rgba(0,224,255,0.025) 72%, rgba(0,224,255,0) 90%)",
-                            border: "1px solid rgba(103,232,249,0.30)",
+                              "radial-gradient(ellipse, rgba(0,224,255,0.78) 0%, rgba(0,224,255,0.42) 48%, rgba(0,224,255,0.10) 72%, rgba(0,224,255,0) 86%)",
+                            border: "2px solid rgba(103,232,249,0.72)",
                             boxShadow:
-                              "0 0 3px rgba(0,224,255,0.46), 0 0 7px rgba(0,224,255,0.16)",
+                              "0 0 14px rgba(0,224,255,0.95), 0 0 30px rgba(0,224,255,0.62)",
                             pointerEvents: "none",
                             zIndex: 5,
                             mixBlendMode: "screen",
