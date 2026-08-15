@@ -1526,6 +1526,152 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                   )}
                 </div>
 
+                {mostrarSelectorRutina && (
+                  <div
+                    style={{
+                      marginTop: "14px",
+                      padding: "14px",
+                      borderRadius: "16px",
+                      background: "#081322",
+                      border: "1px solid rgba(56,189,248,0.45)",
+                      boxShadow: "0 12px 28px rgba(0,0,0,0.28)",
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        gap: "10px",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      <div>
+                        <div
+                          style={{
+                            color: "#38bdf8",
+                            fontSize: "12px",
+                            fontWeight: 800,
+                            letterSpacing: ".4px",
+                          }}
+                        >
+                          ESCOGE UNA RUTINA
+                        </div>
+                        <div
+                          style={{
+                            color: "#cbd5e1",
+                            fontSize: "12px",
+                            marginTop: "3px",
+                            lineHeight: 1.4,
+                          }}
+                        >
+                          Selecciona el tipo que deseas crear para este socio.
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        disabled={creandoRutina}
+                        onClick={() => setMostrarSelectorRutina(false)}
+                        style={{
+                          border: "1px solid #334155",
+                          background: "#0f172a",
+                          color: "#fff",
+                          borderRadius: "9px",
+                          width: "34px",
+                          height: "34px",
+                          cursor: creandoRutina ? "not-allowed" : "pointer",
+                          fontSize: "18px",
+                        }}
+                      >
+                        ×
+                      </button>
+                    </div>
+
+                    {errorRutina && (
+                      <div
+                        style={{
+                          marginBottom: "10px",
+                          padding: "9px 10px",
+                          borderRadius: "9px",
+                          background: "rgba(239,68,68,0.12)",
+                          border: "1px solid rgba(239,68,68,0.42)",
+                          color: "#fecaca",
+                          fontSize: "12px",
+                        }}
+                      >
+                        {errorRutina}
+                      </div>
+                    )}
+
+                    <div style={{ display: "grid", gap: "8px" }}>
+                      {RUTINA_TEMPLATES.map((plantilla) => (
+                        <button
+                          key={plantilla.id}
+                          type="button"
+                          disabled={creandoRutina}
+                          onClick={() => crearRutinaDesdePlantilla(plantilla)}
+                          style={{
+                            width: "100%",
+                            textAlign: "left",
+                            padding: "11px 12px",
+                            borderRadius: "11px",
+                            border: "1px solid #263449",
+                            background: "#0f172a",
+                            color: "#fff",
+                            cursor: creandoRutina ? "wait" : "pointer",
+                          }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                              alignItems: "center",
+                              gap: "8px",
+                            }}
+                          >
+                            <strong style={{ fontSize: "13px" }}>
+                              {plantilla.nombre}
+                            </strong>
+
+                            <span
+                              style={{
+                                color: "#7dd3fc",
+                                fontSize: "11px",
+                                whiteSpace: "nowrap",
+                              }}
+                            >
+                              {plantilla.nivel}
+                            </span>
+                          </div>
+
+                          <div
+                            style={{
+                              color: "#94a3b8",
+                              fontSize: "11px",
+                              marginTop: "4px",
+                              lineHeight: 1.35,
+                            }}
+                          >
+                            {plantilla.dias} · {plantilla.descripcion}
+                          </div>
+
+                          <div
+                            style={{
+                              color: "#34d399",
+                              fontSize: "11px",
+                              fontWeight: 700,
+                              marginTop: "5px",
+                            }}
+                          >
+                            Crear esta rutina →
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {rutinaActiva && (
                   <div
                     style={{
@@ -2226,197 +2372,7 @@ function DisciplineModule({
           )}
         </div>
       </div>
-      {mostrarSelectorRutina && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          onClick={() => {
-            if (!creandoRutina) setMostrarSelectorRutina(false);
-          }}
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 9999,
-            background: "rgba(2,6,23,0.84)",
-            backdropFilter: "blur(6px)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "24px",
-          }}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              width: "min(1000px, 96vw)",
-              maxHeight: "88vh",
-              overflowY: "auto",
-              background: "#07111f",
-              border: "1px solid rgba(56,189,248,0.35)",
-              borderRadius: "24px",
-              padding: "24px",
-              boxShadow: "0 28px 80px rgba(0,0,0,0.55)",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-start",
-                gap: "16px",
-                marginBottom: "18px",
-              }}
-            >
-              <div>
-                <div style={{ color: "#38bdf8", fontSize: "13px", fontWeight: 800 }}>
-                  NUEVA RUTINA
-                </div>
-                <h2 style={{ margin: "5px 0 4px" }}>
-                  Escoge el tipo de rutina para {socioSeleccionado?.nombres || "el socio"}
-                </h2>
-                <div style={{ color: "#94a3b8" }}>
-                  La opción seleccionada se crea como rutina activa. Después podrás agregar
-                  ejercicios desde cualquier músculo.
-                </div>
-              </div>
 
-              <button
-                type="button"
-                disabled={creandoRutina}
-                onClick={() => setMostrarSelectorRutina(false)}
-                style={{
-                  border: "1px solid #334155",
-                  background: "#0f172a",
-                  color: "#fff",
-                  borderRadius: "12px",
-                  width: "42px",
-                  height: "42px",
-                  cursor: creandoRutina ? "not-allowed" : "pointer",
-                  fontSize: "20px",
-                }}
-              >
-                ×
-              </button>
-            </div>
-
-            {errorRutina && (
-              <div
-                style={{
-                  marginBottom: "15px",
-                  padding: "12px 14px",
-                  borderRadius: "12px",
-                  background: "rgba(239,68,68,0.12)",
-                  border: "1px solid rgba(239,68,68,0.45)",
-                  color: "#fecaca",
-                }}
-              >
-                {errorRutina}
-              </div>
-            )}
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-                gap: "14px",
-              }}
-            >
-              {RUTINA_TEMPLATES.map((plantilla) => (
-                <button
-                  key={plantilla.id}
-                  type="button"
-                  disabled={creandoRutina}
-                  onClick={() => crearRutinaDesdePlantilla(plantilla)}
-                  style={{
-                    textAlign: "left",
-                    padding: "17px",
-                    minHeight: "185px",
-                    borderRadius: "18px",
-                    border: "1px solid #263449",
-                    background: "#0f172a",
-                    color: "#fff",
-                    cursor: creandoRutina ? "wait" : "pointer",
-                    transition: "0.18s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!creandoRutina) {
-                      e.currentTarget.style.borderColor = "#38bdf8";
-                      e.currentTarget.style.transform = "translateY(-2px)";
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "#263449";
-                    e.currentTarget.style.transform = "translateY(0)";
-                  }}
-                >
-                  <div style={{ fontSize: "18px", fontWeight: 800 }}>{plantilla.nombre}</div>
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: "7px",
-                      flexWrap: "wrap",
-                      marginTop: "10px",
-                    }}
-                  >
-                    <span
-                      style={{
-                        background: "rgba(37,99,235,.18)",
-                        border: "1px solid rgba(59,130,246,.35)",
-                        padding: "4px 8px",
-                        borderRadius: "999px",
-                        color: "#bfdbfe",
-                        fontSize: "12px",
-                      }}
-                    >
-                      {plantilla.nivel}
-                    </span>
-                    <span
-                      style={{
-                        background: "rgba(16,185,129,.12)",
-                        border: "1px solid rgba(16,185,129,.35)",
-                        padding: "4px 8px",
-                        borderRadius: "999px",
-                        color: "#a7f3d0",
-                        fontSize: "12px",
-                      }}
-                    >
-                      {plantilla.dias}
-                    </span>
-                  </div>
-                  <div style={{ color: "#94a3b8", lineHeight: 1.5, marginTop: "12px" }}>
-                    {plantilla.descripcion}
-                  </div>
-                  <div
-                    style={{
-                      marginTop: "15px",
-                      color: "#38bdf8",
-                      fontWeight: "bold",
-                      fontSize: "13px",
-                    }}
-                  >
-                    Seleccionar y crear →
-                  </div>
-                </button>
-              ))}
-            </div>
-
-            <div
-              style={{
-                marginTop: "17px",
-                padding: "12px 14px",
-                borderRadius: "12px",
-                background: "#020617",
-                color: "#94a3b8",
-                fontSize: "13px",
-                lineHeight: 1.5,
-              }}
-            >
-              Después de crearla, la verás en <strong style={{ color: "#fff" }}>Rutinas creadas</strong>.
-              Haz clic en cualquier rutina de esa lista para convertirla en la rutina activa.
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
