@@ -329,6 +329,66 @@ const camposNutricionalesFaltantes = (socio) => {
   return faltantes;
 };
 
+
+const RUTINA_TEMPLATES = [
+  {
+    id: "full-body-principiante",
+    nombre: "Full Body Principiante",
+    objetivo: "Acondicionamiento general",
+    nivel: "Principiante",
+    dias: "3 días/semana",
+    descripcion: "Rutina general para trabajar todo el cuerpo y aprender técnica.",
+  },
+  {
+    id: "hipertrofia",
+    nombre: "Hipertrofia / Ganancia muscular",
+    objetivo: "Ganancia de masa muscular",
+    nivel: "Intermedio",
+    dias: "4-5 días/semana",
+    descripcion: "Rutina orientada a volumen, control de repeticiones y progresión.",
+  },
+  {
+    id: "fuerza",
+    nombre: "Fuerza",
+    objetivo: "Aumento de fuerza",
+    nivel: "Intermedio",
+    dias: "3-4 días/semana",
+    descripcion: "Prioriza movimientos compuestos, cargas progresivas y descansos amplios.",
+  },
+  {
+    id: "perdida-grasa",
+    nombre: "Pérdida de grasa / Definición",
+    objetivo: "Pérdida de grasa",
+    nivel: "Todos",
+    dias: "4-5 días/semana",
+    descripcion: "Combina fuerza, circuitos y trabajo metabólico para definición.",
+  },
+  {
+    id: "piernas-gluteos",
+    nombre: "Piernas y Glúteos",
+    objetivo: "Tren inferior",
+    nivel: "Intermedio",
+    dias: "2-3 días/semana",
+    descripcion: "Enfoque en cuádriceps, glúteos, isquiotibiales y pantorrillas.",
+  },
+  {
+    id: "torso",
+    nombre: "Torso Completo",
+    objetivo: "Tren superior",
+    nivel: "Intermedio",
+    dias: "2-3 días/semana",
+    descripcion: "Pecho, espalda, hombros, bíceps, tríceps y abdomen.",
+  },
+  {
+    id: "personalizada",
+    nombre: "Rutina Personalizada",
+    objetivo: "Personalizada",
+    nivel: "Todos",
+    dias: "Libre",
+    descripcion: "Crea una rutina vacía y agrega manualmente los ejercicios que necesites.",
+  },
+];
+
 function App() {
   const [socios, setSocios] = useState([]);
   const [form, setForm] = useState(initialForm);
@@ -346,6 +406,9 @@ function App() {
   const [rutinasSocio, setRutinasSocio] = useState([]);
   const [rutinaActiva, setRutinaActiva] = useState(null);
   const [detalleRutina, setDetalleRutina] = useState([]);
+  const [mostrarSelectorRutina, setMostrarSelectorRutina] = useState(false);
+  const [creandoRutina, setCreandoRutina] = useState(false);
+  const [errorRutina, setErrorRutina] = useState("");
   const [vistaCuerpo, setVistaCuerpo] = useState("front");
   const [generoMapa, setGeneroMapa] = useState("Masculino");
   const [modoAjuste, setModoAjuste] = useState(false);
@@ -722,30 +785,62 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
   }
 };
 
-  const crearRutina = async () => {
+  const crearRutina = () => {
     if (!socioSeleccionado) return;
+    setErrorRutina("");
+    setMostrarSelectorRutina(true);
+  };
+
+  const crearRutinaDesdePlantilla = async (plantilla) => {
+    if (!socioSeleccionado || !plantilla || creandoRutina) return;
+
+    setCreandoRutina(true);
+    setErrorRutina("");
 
     try {
+      const nombreSocio = String(socioSeleccionado.nombres || "").trim();
+      const nombreRutina =
+        plantilla.id === "personalizada"
+          ? `Rutina personalizada de ${nombreSocio}`
+          : `${plantilla.nombre} - ${nombreSocio}`;
+
       const res = await fetch(`${API_URL}/api/rutinas`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           socio_id: socioSeleccionado.id,
-          nombre: `Rutina de ${socioSeleccionado.nombres}`,
-          objetivo: socioSeleccionado.objetivo || "",
-          observaciones: "Rutina creada desde el módulo de rutinas",
+          nombre: nombreRutina,
+          objetivo:
+            plantilla.objetivo ||
+            socioSeleccionado.objetivo ||
+            "",
+          observaciones: [
+            `Plantilla: ${plantilla.nombre}`,
+            `Nivel: ${plantilla.nivel}`,
+            `Frecuencia sugerida: ${plantilla.dias}`,
+            plantilla.descripcion,
+          ].join(" | "),
         }),
       });
 
       const data = await res.json();
 
-      if (data.ok) {
-        setRutinaActiva(data.rutina);
-        await cargarRutinasSocio(socioSeleccionado.id);
-        await cargarDetalleRutina(data.rutina.id);
+      if (!res.ok || !data.ok) {
+        setErrorRutina(data.error || "No se pudo crear la rutina.");
+        return;
       }
+
+      setRutinaActiva(data.rutina);
+      setDetalleRutina([]);
+      setMostrarSelectorRutina(false);
+
+      await cargarRutinasSocio(socioSeleccionado.id);
+      await cargarDetalleRutina(data.rutina.id);
     } catch (error) {
       console.error("Error creando rutina:", error);
+      setErrorRutina("Error de conexión al crear la rutina.");
+    } finally {
+      setCreandoRutina(false);
     }
   };
 
@@ -1430,6 +1525,28 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                     ))
                   )}
                 </div>
+
+                {rutinaActiva && (
+                  <div
+                    style={{
+                      marginTop: "14px",
+                      padding: "12px",
+                      borderRadius: "12px",
+                      background: "rgba(16,185,129,0.10)",
+                      border: "1px solid rgba(16,185,129,0.55)",
+                    }}
+                  >
+                    <div style={{ color: "#6ee7b7", fontSize: "12px", fontWeight: "bold" }}>
+                      RUTINA ACTIVA
+                    </div>
+                    <div style={{ color: "#fff", fontWeight: "bold", marginTop: "3px" }}>
+                      {rutinaActiva.nombre}
+                    </div>
+                    <div style={{ color: "#94a3b8", fontSize: "12px", marginTop: "4px" }}>
+                      Los ejercicios que pulses en “Agregar a rutina” se guardarán aquí.
+                    </div>
+                  </div>
+                )}
               </>
             )}
           </div>
@@ -2109,6 +2226,197 @@ function DisciplineModule({
           )}
         </div>
       </div>
+      {mostrarSelectorRutina && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => {
+            if (!creandoRutina) setMostrarSelectorRutina(false);
+          }}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 9999,
+            background: "rgba(2,6,23,0.84)",
+            backdropFilter: "blur(6px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "24px",
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: "min(1000px, 96vw)",
+              maxHeight: "88vh",
+              overflowY: "auto",
+              background: "#07111f",
+              border: "1px solid rgba(56,189,248,0.35)",
+              borderRadius: "24px",
+              padding: "24px",
+              boxShadow: "0 28px 80px rgba(0,0,0,0.55)",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                gap: "16px",
+                marginBottom: "18px",
+              }}
+            >
+              <div>
+                <div style={{ color: "#38bdf8", fontSize: "13px", fontWeight: 800 }}>
+                  NUEVA RUTINA
+                </div>
+                <h2 style={{ margin: "5px 0 4px" }}>
+                  Escoge el tipo de rutina para {socioSeleccionado?.nombres || "el socio"}
+                </h2>
+                <div style={{ color: "#94a3b8" }}>
+                  La opción seleccionada se crea como rutina activa. Después podrás agregar
+                  ejercicios desde cualquier músculo.
+                </div>
+              </div>
+
+              <button
+                type="button"
+                disabled={creandoRutina}
+                onClick={() => setMostrarSelectorRutina(false)}
+                style={{
+                  border: "1px solid #334155",
+                  background: "#0f172a",
+                  color: "#fff",
+                  borderRadius: "12px",
+                  width: "42px",
+                  height: "42px",
+                  cursor: creandoRutina ? "not-allowed" : "pointer",
+                  fontSize: "20px",
+                }}
+              >
+                ×
+              </button>
+            </div>
+
+            {errorRutina && (
+              <div
+                style={{
+                  marginBottom: "15px",
+                  padding: "12px 14px",
+                  borderRadius: "12px",
+                  background: "rgba(239,68,68,0.12)",
+                  border: "1px solid rgba(239,68,68,0.45)",
+                  color: "#fecaca",
+                }}
+              >
+                {errorRutina}
+              </div>
+            )}
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+                gap: "14px",
+              }}
+            >
+              {RUTINA_TEMPLATES.map((plantilla) => (
+                <button
+                  key={plantilla.id}
+                  type="button"
+                  disabled={creandoRutina}
+                  onClick={() => crearRutinaDesdePlantilla(plantilla)}
+                  style={{
+                    textAlign: "left",
+                    padding: "17px",
+                    minHeight: "185px",
+                    borderRadius: "18px",
+                    border: "1px solid #263449",
+                    background: "#0f172a",
+                    color: "#fff",
+                    cursor: creandoRutina ? "wait" : "pointer",
+                    transition: "0.18s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!creandoRutina) {
+                      e.currentTarget.style.borderColor = "#38bdf8";
+                      e.currentTarget.style.transform = "translateY(-2px)";
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "#263449";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
+                >
+                  <div style={{ fontSize: "18px", fontWeight: 800 }}>{plantilla.nombre}</div>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "7px",
+                      flexWrap: "wrap",
+                      marginTop: "10px",
+                    }}
+                  >
+                    <span
+                      style={{
+                        background: "rgba(37,99,235,.18)",
+                        border: "1px solid rgba(59,130,246,.35)",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        color: "#bfdbfe",
+                        fontSize: "12px",
+                      }}
+                    >
+                      {plantilla.nivel}
+                    </span>
+                    <span
+                      style={{
+                        background: "rgba(16,185,129,.12)",
+                        border: "1px solid rgba(16,185,129,.35)",
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        color: "#a7f3d0",
+                        fontSize: "12px",
+                      }}
+                    >
+                      {plantilla.dias}
+                    </span>
+                  </div>
+                  <div style={{ color: "#94a3b8", lineHeight: 1.5, marginTop: "12px" }}>
+                    {plantilla.descripcion}
+                  </div>
+                  <div
+                    style={{
+                      marginTop: "15px",
+                      color: "#38bdf8",
+                      fontWeight: "bold",
+                      fontSize: "13px",
+                    }}
+                  >
+                    Seleccionar y crear →
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            <div
+              style={{
+                marginTop: "17px",
+                padding: "12px 14px",
+                borderRadius: "12px",
+                background: "#020617",
+                color: "#94a3b8",
+                fontSize: "13px",
+                lineHeight: 1.5,
+              }}
+            >
+              Después de crearla, la verás en <strong style={{ color: "#fff" }}>Rutinas creadas</strong>.
+              Haz clic en cualquier rutina de esa lista para convertirla en la rutina activa.
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
