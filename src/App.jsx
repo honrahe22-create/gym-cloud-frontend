@@ -279,7 +279,7 @@ const ponerVideosLocales = (nombreMusculo, ejercicios = []) => {
 
 
 const esAnimacionGif = (url = "") =>
-  /\\.gif(?:$|\\?)/i.test(String(url || ""));
+  /\.gif(?:$|\?)/i.test(String(url || ""));
 
 function ExerciseAnimation({
   src,
