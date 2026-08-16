@@ -1,4 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { jsPDF } from "jspdf";
+import autoTable from "jspdf-autotable";
 
 const panel = {
   background: "#0f172a",
@@ -88,6 +90,49 @@ function downloadCsv(filename, rows) {
   URL.revokeObjectURL(url);
 }
 
+
+const safeFileName = (value = "reporte") =>
+  String(value)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-zA-Z0-9_-]+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .slice(0, 80) || "reporte";
+
+function agregarEncabezadoPdf(doc, titulo, subtitulo = "") {
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(17);
+  doc.text("SISTEMA GYM NUBE", 14, 16);
+
+  doc.setFontSize(13);
+  doc.text(titulo, 14, 24);
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(9);
+  if (subtitulo) doc.text(subtitulo, 14, 31);
+  doc.text(
+    `Generado: ${new Date().toLocaleString("es-EC")}`,
+    14,
+    subtitulo ? 37 : 31
+  );
+}
+
+function agregarPiePaginas(doc) {
+  const totalPaginas = doc.getNumberOfPages();
+
+  for (let pagina = 1; pagina <= totalPaginas; pagina += 1) {
+    doc.setPage(pagina);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8);
+    doc.text(
+      `Página ${pagina} de ${totalPaginas}`,
+      196,
+      290,
+      { align: "right" }
+    );
+  }
+}
+
 function StatusPill({ estado }) {
   const value = String(estado || "").toUpperCase();
   const bg =
@@ -137,6 +182,10 @@ export default function MembresiasReportes({
     estado: "TODOS",
   });
 
+  const [socioReporteId, setSocioReporteId] = useState(
+    socioSeleccionado?.id ? String(socioSeleccionado.id) : ""
+  );
+
   const [form, setForm] = useState({
     socio_id: socioSeleccionado?.id || "",
     plan_nombre: "Mensual",
@@ -163,6 +212,7 @@ export default function MembresiasReportes({
         ...prev,
         socio_id: String(socioSeleccionado.id),
       }));
+      setSocioReporteId(String(socioSeleccionado.id));
     }
   }, [socioSeleccionado?.id]);
 
@@ -315,6 +365,224 @@ export default function MembresiasReportes({
     whiteSpace: "nowrap",
   };
 
+
+  const descargarPdfSocio = () => {
+    if (!socioReporteId) {
+      setMensaje("Selecciona un socio para generar el PDF individual.");
+      return;
+    }
+
+    const socio = socioOptions.find(
+      (item) => String(item.id) === String(socioReporteId)
+    );
+
+    if (!socio) {
+      setMensaje("No se encontró el socio seleccionado.");
+      return;
+    }
+
+    const nombreSocio = `${socio.nombres || ""} ${socio.apellidos || ""}`.trim();
+
+    const membresiasSocio = membresias.filter(
+      (m) => String(m.socio_id) === String(socioReporteId)
+    );
+
+    const pagosSocio = pagos.filter(
+      (p) => String(p.socio_id) === String(socioReporteId)
+    );
+
+    const doc = new jsPDF({
+      orientation: "portrait",
+      unit: "mm",
+      format: "a4",
+    });
+
+    agregarEncabezadoPdf(
+      doc,
+      "Reporte individual de membresía",
+      `${nombreSocio}${socio.cedula ? ` · Cédula: ${socio.cedula}` : ""}`
+    );
+
+    doc.setFontSize(9);
+    doc.text(
+      `Período: ${dateText(filtros.desde)} al ${dateText(filtros.hasta)} · Estado: ${filtros.estado}`,
+      14,
+      44
+    );
+
+    const totalPlanes = membresiasSocio.reduce(
+      (acc, item) => acc + Number(item.monto || 0),
+      0
+    );
+    const totalPagado = pagosSocio.reduce(
+      (acc, item) => acc + Number(item.monto || 0),
+      0
+    );
+    const totalPendiente = membresiasSocio.reduce(
+      (acc, item) => acc + Number(item.saldo_pendiente || 0),
+      0
+    );
+
+    autoTable(doc, {
+      startY: 50,
+      head: [["Resumen", "Valor"]],
+      body: [
+        ["Membresías registradas", String(membresiasSocio.length)],
+        ["Valor total de planes", money(totalPlanes)],
+        ["Pagos registrados", money(totalPagado)],
+        ["Saldo pendiente", money(totalPendiente)],
+      ],
+      theme: "grid",
+      styles: { fontSize: 9 },
+      headStyles: { fillColor: [15, 23, 42] },
+    });
+
+    const yMembresias = (doc.lastAutoTable?.finalY || 75) + 8;
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.text("Membresías", 14, yMembresias);
+
+    autoTable(doc, {
+      startY: yMembresias + 3,
+      head: [["Plan", "Inicio", "Fin", "Valor", "Pagado", "Saldo", "Estado"]],
+      body:
+        membresiasSocio.length > 0
+          ? membresiasSocio.map((m) => [
+              m.plan_nombre || "",
+              dateText(m.fecha_inicio),
+              dateText(m.fecha_fin),
+              money(m.monto),
+              money(m.total_pagado),
+              money(m.saldo_pendiente),
+              m.estado_calculado || "",
+            ])
+          : [["Sin registros", "", "", "", "", "", ""]],
+      theme: "grid",
+      styles: { fontSize: 7.5 },
+      headStyles: { fillColor: [30, 41, 59] },
+    });
+
+    const yPagos = (doc.lastAutoTable?.finalY || yMembresias + 25) + 8;
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.text("Historial de pagos", 14, yPagos);
+
+    autoTable(doc, {
+      startY: yPagos + 3,
+      head: [["Fecha", "Plan", "Monto", "Método", "Referencia"]],
+      body:
+        pagosSocio.length > 0
+          ? pagosSocio.map((p) => [
+              String(p.fecha_pago || "").replace("T", " ").slice(0, 16),
+              p.plan_nombre || "",
+              money(p.monto),
+              p.metodo_pago || "",
+              p.referencia || "-",
+            ])
+          : [["Sin pagos", "", "", "", ""]],
+      theme: "grid",
+      styles: { fontSize: 8 },
+      headStyles: { fillColor: [30, 41, 59] },
+    });
+
+    agregarPiePaginas(doc);
+
+    doc.save(
+      `reporte_membresia_${safeFileName(nombreSocio)}_${todayISO()}.pdf`
+    );
+  };
+
+  const descargarPdfGrupal = () => {
+    const doc = new jsPDF({
+      orientation: "landscape",
+      unit: "mm",
+      format: "a4",
+    });
+
+    agregarEncabezadoPdf(
+      doc,
+      "Reporte grupal de membresías",
+      `Período: ${dateText(filtros.desde)} al ${dateText(filtros.hasta)} · Estado: ${filtros.estado}`
+    );
+
+    const totalPlanes = membresias.reduce(
+      (acc, item) => acc + Number(item.monto || 0),
+      0
+    );
+    const totalPagado = pagos.reduce(
+      (acc, item) => acc + Number(item.monto || 0),
+      0
+    );
+    const totalPendiente = membresias.reduce(
+      (acc, item) => acc + Number(item.saldo_pendiente || 0),
+      0
+    );
+
+    autoTable(doc, {
+      startY: 43,
+      head: [["Indicador", "Resultado"]],
+      body: [
+        ["Membresías del período", String(membresias.length)],
+        ["Valor total de planes", money(totalPlanes)],
+        ["Pagos recibidos", money(totalPagado)],
+        ["Saldo pendiente", money(totalPendiente)],
+        ["Membresías activas", String(resumen.activas || 0)],
+        ["Por vencer", String(resumen.por_vencer || 0)],
+        ["Vencidas", String(resumen.vencidas || 0)],
+      ],
+      theme: "grid",
+      styles: { fontSize: 8 },
+      headStyles: { fillColor: [15, 23, 42] },
+      tableWidth: 95,
+    });
+
+    const y = (doc.lastAutoTable?.finalY || 70) + 8;
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.text("Detalle general de membresías", 14, y);
+
+    autoTable(doc, {
+      startY: y + 3,
+      head: [
+        [
+          "Socio",
+          "Cédula",
+          "Plan",
+          "Inicio",
+          "Fin",
+          "Valor",
+          "Pagado",
+          "Saldo",
+          "Estado",
+        ],
+      ],
+      body:
+        membresias.length > 0
+          ? membresias.map((m) => [
+              m.socio_nombre || "",
+              m.cedula || "",
+              m.plan_nombre || "",
+              dateText(m.fecha_inicio),
+              dateText(m.fecha_fin),
+              money(m.monto),
+              money(m.total_pagado),
+              money(m.saldo_pendiente),
+              m.estado_calculado || "",
+            ])
+          : [["Sin registros", "", "", "", "", "", "", "", ""]],
+      theme: "grid",
+      styles: { fontSize: 7.2 },
+      headStyles: { fillColor: [30, 41, 59] },
+    });
+
+    agregarPiePaginas(doc);
+
+    doc.save(`reporte_grupal_membresias_${todayISO()}.pdf`);
+  };
+
   if (modo === "reportes") {
     return (
       <div style={{ display: "grid", gap: "18px" }}>
@@ -400,6 +668,57 @@ export default function MembresiasReportes({
             </label>
             <button type="button" style={secondaryButton} onClick={cargar}>
               Actualizar
+            </button>
+          </div>
+        </div>
+
+        <div style={panel}>
+          <h3 style={{ marginTop: 0 }}>📄 Descargar reportes PDF</h3>
+          <p style={{ color: "#94a3b8", marginTop: "-4px" }}>
+            Descarga el reporte de un socio específico o un consolidado grupal.
+          </p>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(220px,1fr) auto auto",
+              gap: "10px",
+              alignItems: "end",
+            }}
+          >
+            <label>
+              <span style={{ display: "block", marginBottom: "5px" }}>
+                Socio para PDF individual
+              </span>
+              <select
+                value={socioReporteId}
+                onChange={(e) => setSocioReporteId(e.target.value)}
+                style={{ ...input, marginBottom: 0 }}
+              >
+                <option value="">Seleccionar socio</option>
+                {socioOptions.map((s) => (
+                  <option key={s.id} value={s.id}>
+                    {s.nombres} {s.apellidos}
+                    {s.cedula ? ` · ${s.cedula}` : ""}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <button
+              type="button"
+              style={{ ...button, background: "#dc2626" }}
+              onClick={descargarPdfSocio}
+            >
+              Descargar PDF socio
+            </button>
+
+            <button
+              type="button"
+              style={{ ...button, background: "#7c3aed" }}
+              onClick={descargarPdfGrupal}
+            >
+              Descargar PDF grupal
             </button>
           </div>
         </div>
