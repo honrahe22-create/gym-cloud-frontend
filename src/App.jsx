@@ -266,7 +266,7 @@ const ponerVideosLocales = (nombreMusculo, ejercicios = []) => {
   const prefijo = VIDEO_PREFIX_POR_MUSCULO[nombreMusculo];
   if (!prefijo) return ejercicios;
 
-  return ejercicios.slice(0, 20).map((ejercicio, index) => ({
+  return ejercicios.slice(0, 30).map((ejercicio, index) => ({
     ...ejercicio,
     // A partir de la Fase 2 el backend entrega la ruta real generada.
     // Si por compatibilidad una fila antigua no tiene video_url,
@@ -276,6 +276,66 @@ const ponerVideosLocales = (nombreMusculo, ejercicios = []) => {
       `/videos/${prefijo}-${index + 1}.mp4`,
   }));
 };
+
+
+const esAnimacionGif = (url = "") =>
+  /\.gif(?:$|\?)/i.test(String(url || ""));
+
+function ExerciseAnimation({
+  src,
+  alt = "Animación del ejercicio",
+  controls = false,
+  pointerEvents = "auto",
+}) {
+  if (!src) return null;
+
+  if (esAnimacionGif(src)) {
+    return (
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        draggable={false}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
+          background: "#000",
+          pointerEvents,
+        }}
+      />
+    );
+  }
+
+  return (
+    <video
+      key={src}
+      src={src}
+      autoPlay
+      muted
+      loop
+      playsInline
+      controls={controls}
+      preload="metadata"
+      onLoadedMetadata={(event) => {
+        const video = event.currentTarget;
+        video.muted = true;
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      }}
+      onCanPlay={(event) => {
+        event.currentTarget.play().catch(() => {});
+      }}
+      style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "contain",
+        background: "#000",
+        pointerEvents,
+      }}
+    />
+  );
+}
 
 
 const getZoomStyleByMuscle = () => {
@@ -2500,33 +2560,10 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
         }}
       >
         {principalActivo?.video_url ? (
-          <video
-            key={`${principalActivo.id || principalActivo.nombre}-${principalActivo.video_url}`}
+          <ExerciseAnimation
             src={principalActivo.video_url}
-            autoPlay
-            muted
-            loop
-            playsInline
+            alt={principalActivo.nombre}
             controls
-            preload="auto"
-            onLoadedMetadata={(event) => {
-              const video = event.currentTarget;
-              video.muted = true;
-              video.currentTime = 0;
-              video.play().catch(() => {});
-            }}
-            onCanPlay={(event) => event.currentTarget.play().catch(() => {})}
-            onClick={(event) => {
-              if (event.currentTarget.paused) {
-                event.currentTarget.play().catch(() => {});
-              }
-            }}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "contain",
-              background: "#000",
-            }}
           />
         ) : principalActivo?.imagen_url ? (
           <img
@@ -2651,26 +2688,10 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
                 }}
               >
                 {ejercicio.video_url ? (
-                  <video
-                    key={`${ejercicio.id || ejercicio.nombre}-${ejercicio.video_url}`}
+                  <ExerciseAnimation
                     src={ejercicio.video_url}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="auto"
-                    onLoadedMetadata={(event) => {
-                      const video = event.currentTarget;
-                      video.muted = true;
-                      video.play().catch(() => {});
-                    }}
-                    onCanPlay={(event) => event.currentTarget.play().catch(() => {})}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "contain",
-                      pointerEvents: "none",
-                    }}
+                    alt={ejercicio.nombre}
+                    pointerEvents="none"
                   />
                 ) : ejercicio.imagen_url ? (
                   <img
