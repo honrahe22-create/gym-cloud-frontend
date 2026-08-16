@@ -399,6 +399,8 @@ const RUTINA_TEMPLATES = [
     nivel: "Principiante",
     dias: "3 días/semana",
     descripcion: "Rutina general para trabajar todo el cuerpo y aprender técnica.",
+    musculos: ["Pecho medio", "Espalda alta", "Hombros", "Cuádriceps", "Glúteos", "Abdomen"],
+    cantidad: 6,
   },
   {
     id: "hipertrofia",
@@ -407,6 +409,19 @@ const RUTINA_TEMPLATES = [
     nivel: "Intermedio",
     dias: "4-5 días/semana",
     descripcion: "Rutina orientada a volumen, control de repeticiones y progresión.",
+    musculos: [
+      "Pecho alto",
+      "Pecho medio",
+      "Espalda alta",
+      "Espalda media",
+      "Hombros",
+      "Bíceps",
+      "Tríceps",
+      "Cuádriceps",
+      "Isquiotibiales",
+      "Glúteos",
+    ],
+    cantidad: 10,
   },
   {
     id: "fuerza",
@@ -415,6 +430,8 @@ const RUTINA_TEMPLATES = [
     nivel: "Intermedio",
     dias: "3-4 días/semana",
     descripcion: "Prioriza movimientos compuestos, cargas progresivas y descansos amplios.",
+    musculos: ["Pecho medio", "Espalda media", "Hombros", "Cuádriceps", "Glúteos", "Abdomen"],
+    cantidad: 6,
   },
   {
     id: "perdida-grasa",
@@ -423,6 +440,8 @@ const RUTINA_TEMPLATES = [
     nivel: "Todos",
     dias: "4-5 días/semana",
     descripcion: "Combina fuerza, circuitos y trabajo metabólico para definición.",
+    musculos: ["Pecho medio", "Espalda alta", "Hombros", "Cuádriceps", "Glúteos", "Abdomen"],
+    cantidad: 6,
   },
   {
     id: "piernas-gluteos",
@@ -431,6 +450,8 @@ const RUTINA_TEMPLATES = [
     nivel: "Intermedio",
     dias: "2-3 días/semana",
     descripcion: "Enfoque en cuádriceps, glúteos, isquiotibiales y pantorrillas.",
+    musculos: ["Cuádriceps", "Glúteos", "Isquiotibiales", "Pantorrillas", "Pantorrillas posterior"],
+    cantidad: 8,
   },
   {
     id: "torso",
@@ -439,6 +460,8 @@ const RUTINA_TEMPLATES = [
     nivel: "Intermedio",
     dias: "2-3 días/semana",
     descripcion: "Pecho, espalda, hombros, bíceps, tríceps y abdomen.",
+    musculos: ["Pecho alto", "Pecho medio", "Espalda alta", "Espalda media", "Hombros", "Bíceps", "Tríceps", "Abdomen"],
+    cantidad: 8,
   },
   {
     id: "personalizada",
@@ -447,6 +470,8 @@ const RUTINA_TEMPLATES = [
     nivel: "Todos",
     dias: "Libre",
     descripcion: "Crea una rutina vacía y agrega manualmente los ejercicios que necesites.",
+    musculos: [],
+    cantidad: 0,
   },
 ];
 
@@ -470,6 +495,9 @@ function App() {
   const [mostrarSelectorRutina, setMostrarSelectorRutina] = useState(false);
   const [creandoRutina, setCreandoRutina] = useState(false);
   const [errorRutina, setErrorRutina] = useState("");
+  const [plantillaRutinaSeleccionada, setPlantillaRutinaSeleccionada] = useState(null);
+  const [ejerciciosPlantilla, setEjerciciosPlantilla] = useState([]);
+  const [cargandoPlantilla, setCargandoPlantilla] = useState(false);
   const [vistaCuerpo, setVistaCuerpo] = useState("front");
   const [generoMapa, setGeneroMapa] = useState("Masculino");
   const [modoAjuste, setModoAjuste] = useState(false);
@@ -849,7 +877,93 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
   const crearRutina = () => {
     if (!socioSeleccionado) return;
     setErrorRutina("");
+    setPlantillaRutinaSeleccionada(null);
+    setEjerciciosPlantilla([]);
     setMostrarSelectorRutina(true);
+  };
+
+  const prepararPlantillaRutina = async (plantilla) => {
+    if (!plantilla || cargandoPlantilla || creandoRutina) return;
+
+    setErrorRutina("");
+    setPlantillaRutinaSeleccionada(plantilla);
+    setEjerciciosPlantilla([]);
+
+    if (plantilla.id === "personalizada") {
+      return;
+    }
+
+    setCargandoPlantilla(true);
+
+    try {
+      const sugeridos = [];
+      const usados = new Set();
+
+      for (const musculo of plantilla.musculos || []) {
+        const res = await fetch(
+          `${API_URL}/api/ejercicios/musculo/${encodeURIComponent(musculo)}`
+        );
+        const data = await res.json();
+
+        if (!res.ok || !data.ok) continue;
+
+        const disponibles = ponerVideosLocales(
+          musculo,
+          Array.isArray(data.ejercicios) ? data.ejercicios : []
+        );
+
+        const candidato = disponibles.find(
+          (ejercicio) => !usados.has(String(ejercicio.id))
+        );
+
+        if (candidato) {
+          usados.add(String(candidato.id));
+          sugeridos.push({
+            ...candidato,
+            musculoPlantilla: musculo,
+          });
+        }
+      }
+
+      // Si la plantilla pide más ejercicios, completa con segundos ejercicios
+      // de los mismos músculos sin repetir IDs.
+      if (sugeridos.length < Number(plantilla.cantidad || 0)) {
+        for (const musculo of plantilla.musculos || []) {
+          if (sugeridos.length >= Number(plantilla.cantidad || 0)) break;
+
+          const res = await fetch(
+            `${API_URL}/api/ejercicios/musculo/${encodeURIComponent(musculo)}`
+          );
+          const data = await res.json();
+          if (!res.ok || !data.ok) continue;
+
+          const disponibles = ponerVideosLocales(
+            musculo,
+            Array.isArray(data.ejercicios) ? data.ejercicios : []
+          );
+
+          for (const ejercicio of disponibles) {
+            if (sugeridos.length >= Number(plantilla.cantidad || 0)) break;
+            if (usados.has(String(ejercicio.id))) continue;
+
+            usados.add(String(ejercicio.id));
+            sugeridos.push({
+              ...ejercicio,
+              musculoPlantilla: musculo,
+            });
+          }
+        }
+      }
+
+      setEjerciciosPlantilla(
+        sugeridos.slice(0, Number(plantilla.cantidad || sugeridos.length))
+      );
+    } catch (error) {
+      console.error("Error preparando plantilla:", error);
+      setErrorRutina("No se pudieron cargar los ejercicios de la plantilla.");
+    } finally {
+      setCargandoPlantilla(false);
+    }
   };
 
   const crearRutinaDesdePlantilla = async (plantilla) => {
@@ -891,12 +1005,54 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
         return;
       }
 
-      setRutinaActiva(data.rutina);
-      setDetalleRutina([]);
+      const nuevaRutina = data.rutina;
+      let agregados = 0;
+
+      if (plantilla.id !== "personalizada") {
+        for (const ejercicio of ejerciciosPlantilla) {
+          try {
+            const addRes = await fetch(`${API_URL}/api/rutina-detalle`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                rutina_id: nuevaRutina.id,
+                ejercicio_id: ejercicio.id,
+                series: plantilla.id === "fuerza" ? 4 : 3,
+                repeticiones:
+                  plantilla.id === "fuerza"
+                    ? "6-8"
+                    : plantilla.id === "hipertrofia"
+                    ? "8-12"
+                    : "12",
+                peso: "",
+                descanso:
+                  plantilla.id === "fuerza"
+                    ? "120 seg"
+                    : "60-90 seg",
+              }),
+            });
+
+            const addData = await addRes.json();
+            if (addRes.ok && addData.ok) agregados += 1;
+          } catch (error) {
+            console.error("Error agregando ejercicio de plantilla:", error);
+          }
+        }
+      }
+
+      setRutinaActiva(nuevaRutina);
       setMostrarSelectorRutina(false);
+      setPlantillaRutinaSeleccionada(null);
+      setEjerciciosPlantilla([]);
 
       await cargarRutinasSocio(socioSeleccionado.id);
-      await cargarDetalleRutina(data.rutina.id);
+      await cargarDetalleRutina(nuevaRutina.id);
+
+      if (plantilla.id !== "personalizada" && agregados === 0) {
+        setErrorRutina(
+          "La rutina se creó, pero no se pudieron agregar ejercicios automáticamente."
+        );
+      }
     } catch (error) {
       console.error("Error creando rutina:", error);
       setErrorRutina("Error de conexión al crear la rutina.");
@@ -1685,7 +1841,7 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                           key={plantilla.id}
                           type="button"
                           disabled={creandoRutina}
-                          onClick={() => crearRutinaDesdePlantilla(plantilla)}
+                          onClick={() => prepararPlantillaRutina(plantilla)}
                           style={{
                             width: "100%",
                             textAlign: "left",
@@ -1739,11 +1895,178 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                               marginTop: "5px",
                             }}
                           >
-                            Crear esta rutina →
+                            Ver ejercicios y animaciones →
                           </div>
                         </button>
                       ))}
                     </div>
+
+                    {plantillaRutinaSeleccionada && (
+                      <div
+                        style={{
+                          marginTop: "14px",
+                          padding: "14px",
+                          borderRadius: "14px",
+                          background: "#0b1220",
+                          border: "1px solid rgba(16,185,129,0.45)",
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            gap: "10px",
+                            alignItems: "center",
+                            flexWrap: "wrap",
+                          }}
+                        >
+                          <div>
+                            <strong style={{ color: "#6ee7b7" }}>
+                              {plantillaRutinaSeleccionada.nombre}
+                            </strong>
+                            <div
+                              style={{
+                                color: "#94a3b8",
+                                fontSize: "12px",
+                                marginTop: "4px",
+                              }}
+                            >
+                              Vista previa antes de crear y asignar al socio.
+                            </div>
+                          </div>
+
+                          <button
+                            type="button"
+                            disabled={
+                              creandoRutina ||
+                              cargandoPlantilla ||
+                              (plantillaRutinaSeleccionada.id !== "personalizada" &&
+                                ejerciciosPlantilla.length === 0)
+                            }
+                            onClick={() =>
+                              crearRutinaDesdePlantilla(
+                                plantillaRutinaSeleccionada
+                              )
+                            }
+                            style={{
+                              ...buttonPrimary,
+                              background: "#10b981",
+                              opacity:
+                                creandoRutina || cargandoPlantilla ? 0.65 : 1,
+                            }}
+                          >
+                            {creandoRutina
+                              ? "Creando..."
+                              : plantillaRutinaSeleccionada.id === "personalizada"
+                              ? "Crear rutina vacía"
+                              : `Crear y agregar ${ejerciciosPlantilla.length} ejercicios`}
+                          </button>
+                        </div>
+
+                        {cargandoPlantilla ? (
+                          <div
+                            style={{
+                              color: "#94a3b8",
+                              padding: "18px 0",
+                            }}
+                          >
+                            Cargando ejercicios y animaciones...
+                          </div>
+                        ) : plantillaRutinaSeleccionada.id !== "personalizada" ? (
+                          <div
+                            style={{
+                              display: "grid",
+                              gridTemplateColumns:
+                                "repeat(auto-fit,minmax(170px,1fr))",
+                              gap: "10px",
+                              marginTop: "12px",
+                            }}
+                          >
+                            {ejerciciosPlantilla.map((ejercicio, index) => (
+                              <div
+                                key={`${ejercicio.id}-${index}`}
+                                style={{
+                                  borderRadius: "12px",
+                                  overflow: "hidden",
+                                  border: "1px solid #263449",
+                                  background: "#07111f",
+                                }}
+                              >
+                                <div
+                                  style={{
+                                    height: "120px",
+                                    background: "#000",
+                                  }}
+                                >
+                                  {ejercicio.video_url ? (
+                                    <ExerciseAnimation
+                                      src={ejercicio.video_url}
+                                      alt={ejercicio.nombre}
+                                      pointerEvents="none"
+                                    />
+                                  ) : ejercicio.imagen_url ? (
+                                    <img
+                                      src={ejercicio.imagen_url}
+                                      alt={ejercicio.nombre}
+                                      style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        objectFit: "contain",
+                                      }}
+                                    />
+                                  ) : (
+                                    <div
+                                      style={{
+                                        height: "100%",
+                                        display: "grid",
+                                        placeItems: "center",
+                                        color: "#64748b",
+                                        fontSize: "12px",
+                                      }}
+                                    >
+                                      Sin animación
+                                    </div>
+                                  )}
+                                </div>
+
+                                <div style={{ padding: "9px" }}>
+                                  <div
+                                    style={{
+                                      color: "#fff",
+                                      fontWeight: 800,
+                                      fontSize: "12px",
+                                    }}
+                                  >
+                                    {index + 1}. {ejercicio.nombre}
+                                  </div>
+                                  <div
+                                    style={{
+                                      color: "#7dd3fc",
+                                      fontSize: "11px",
+                                      marginTop: "3px",
+                                    }}
+                                  >
+                                    {ejercicio.musculoPlantilla}
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div
+                            style={{
+                              color: "#94a3b8",
+                              fontSize: "12px",
+                              marginTop: "10px",
+                            }}
+                          >
+                            La rutina personalizada se crea vacía para que agregues
+                            manualmente los ejercicios que quieras.
+                          </div>
+                        )}
+                      </div>
+                    )}
+
                   </div>
                 )}
 
