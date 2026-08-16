@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import MembresiasReportes from "./MembresiasReportes";
 
 const API_URL = "https://gym-cloud-backend.onrender.com";
 
@@ -1152,6 +1153,20 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
         >
           🥊 Boxeo
         </button>
+
+        <button
+          style={{ ...buttonTab, ...(vista === "membresias" ? buttonTabActive : {}) }}
+          onClick={() => setVista("membresias")}
+        >
+          💳 Membresías
+        </button>
+
+        <button
+          style={{ ...buttonTab, ...(vista === "reportes" ? buttonTabActive : {}) }}
+          onClick={() => setVista("reportes")}
+        >
+          📊 Reportes
+        </button>
       </div>
 
       {vista === "socios" && (
@@ -1975,6 +1990,24 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
             </div>
           </div>
         </div>
+      )}
+
+      {vista === "membresias" && (
+        <MembresiasReportes
+          apiUrl={API_URL}
+          socios={socios}
+          socioSeleccionado={socioSeleccionado}
+          modo="membresias"
+        />
+      )}
+
+      {vista === "reportes" && (
+        <MembresiasReportes
+          apiUrl={API_URL}
+          socios={socios}
+          socioSeleccionado={socioSeleccionado}
+          modo="reportes"
+        />
       )}
 
       {(vista === "calistenia" || vista === "boxeo") && (
