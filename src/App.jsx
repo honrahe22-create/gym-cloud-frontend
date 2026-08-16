@@ -279,7 +279,7 @@ const ponerVideosLocales = (nombreMusculo, ejercicios = []) => {
 
 
 const esAnimacionGif = (url = "") =>
-  /\.gif(?:$|\?)/i.test(String(url || ""));
+  /\\.gif(?:$|\\?)/i.test(String(url || ""));
 
 function ExerciseAnimation({
   src,
@@ -2514,6 +2514,7 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
   const todos = [principalInicial, ...secundarios].filter(Boolean);
 
   const [principalActivo, setPrincipalActivo] = useState(principalInicial);
+  const principalVideoRef = useRef(null);
 
   useEffect(() => {
     setPrincipalActivo(principalInicial);
@@ -2521,7 +2522,17 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
 
   const seleccionarComoPrincipal = (ejercicio) => {
     if (!ejercicio) return;
+
     setPrincipalActivo(ejercicio);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        principalVideoRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      });
+    });
   };
 
   return (
@@ -2546,6 +2557,7 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
       </div>
 
       <div
+        ref={principalVideoRef}
         style={{
           width: "100%",
           height: "420px",
@@ -2557,6 +2569,7 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
           alignItems: "center",
           justifyContent: "center",
           boxShadow: "0 0 34px rgba(0,224,255,0.12)",
+          scrollMarginTop: "24px",
         }}
       >
         {principalActivo?.video_url ? (
