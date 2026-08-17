@@ -1164,6 +1164,12 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
 
   const abrirModuloDisciplina = async (nombreDisciplina) => {
     const nuevaVista = nombreDisciplina === "Calistenia" ? "calistenia" : "boxeo";
+
+    // Reinicia el estado visual antes de cargar la nueva disciplina.
+    // Evita que Boxeo conserve título/ejercicio seleccionado de Calistenia y viceversa.
+    setDisciplinaSeleccionada(null);
+    setPlanDisciplinaActivo(null);
+    setDetallePlanDisciplina([]);
     setVista(nuevaVista);
     setDisciplinaNivel("Todos");
     setMensajeDisciplina("");
@@ -1229,7 +1235,7 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
 
       setPlanDisciplinaActivo(data.plan);
       setDetallePlanDisciplina([]);
-      setMensajeDisciplina(`Plan de ${disciplina} creado correctamente.`);
+      setMensajeDisciplina(`Rutina de ${disciplina} creada correctamente. Ahora selecciona ejercicios con video y pulsa “Agregar a rutina”.`);
       await cargarPlanesDisciplina(socioSeleccionado.id);
     } catch (error) {
       console.error("Error creando plan de disciplina:", error);
@@ -1271,7 +1277,7 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
         return;
       }
 
-      setMensajeDisciplina(`${ejercicio.nombre} agregado al plan.`);
+      setMensajeDisciplina(`${ejercicio.nombre} agregado a la rutina activa.`);
       await cargarDetallePlanDisciplina(planDisciplinaActivo.id);
     } catch (error) {
       console.error("Error agregando ejercicio de disciplina:", error);
@@ -2335,7 +2341,8 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
 
       {(vista === "calistenia" || vista === "boxeo") && (
         <DisciplineModule
-          discipline={vista === "calistenia" ? "Calistenia" : "Boxeo"}
+          key={vista}
+          discipline={vista === "boxeo" ? "Boxeo" : "Calistenia"}
           icon={vista === "calistenia" ? "🤸" : "🥊"}
           accent={vista === "calistenia" ? "#22c55e" : "#ef4444"}
           socio={socioSeleccionado}
@@ -2385,42 +2392,114 @@ const CALISTHENICS_LOCAL_VIDEOS = {
   "Dominada ancho de hombros": "/videos/calistenia/dominada-ancho-hombros.mp4",
 };
 
+const CALISTHENICS_CATEGORY_REFERENCE = {
+  Empuje: "/videos/calistenia/flexiones-clasicas.mp4",
+  Piernas: "/videos/calistenia/sentadilla-aire.mp4",
+  Core: "/videos/calistenia/plancha-frontal.mp4",
+  Tirón: "/videos/calistenia/dominadas-estrictas.mp4",
+  Agarre: "/videos/calistenia/dominada-asistida.mp4",
+  Locomoción: "/videos/calistenia/zancadas-alternas.mp4",
+  Potencia: "/videos/calistenia/sentadilla-aire.mp4",
+  Metabólico: "/videos/calistenia/zancadas-alternas.mp4",
+  Habilidad: "/videos/calistenia/dominadas-estrictas.mp4",
+};
+
 const BOXING_LOCAL_VIDEOS = {
-  // PRINCIPIANTE
+  // 15 videos originales que ya tenía el módulo.
   "Guardia y movilidad": "/videos/boxeo/guardia-y-movilidad.mp4",
   "Jab directo": "/videos/boxeo/jab-directo.mp4",
   "Defensa en guardia": "/videos/boxeo/defensa-guardia.mp4",
   "Sombra básica": "/videos/boxeo/sombra-basica.mp4",
   "Trabajo en saco básico": "/videos/boxeo/trabajo-en-saco.mp4",
-
-  // INTERMEDIO
   "Golpes de potencia": "/videos/boxeo/golpes-potencia.mp4",
   "Saco con combinaciones": "/videos/boxeo/saco-combinaciones.mp4",
   "Combinaciones con pareja": "/videos/boxeo/combinaciones-con-pareja.mp4",
   "Manoplas - combinación": "/videos/boxeo/manoplas-combinacion.mp4",
   "Manoplas - velocidad": "/videos/boxeo/manoplas-velocidad.mp4",
-
-  // AVANZADO
   "Sparring defensa y contraataque": "/videos/boxeo/sparring-defensa-contraataque.mp4",
   "Sparring técnico": "/videos/boxeo/sparring-tecnico.mp4",
   "Boxeo de potencia avanzado": "/videos/boxeo/boxeo-potencia-avanzado.mp4",
   "Manoplas de alta intensidad": "/videos/boxeo/manoplas-intensidad.mp4",
   "Combinación avanzada": "/videos/boxeo/combinacion-avanzada.mp4",
+
+  // Videos humanos adicionales disponibles.
+  "Cross directo": "/videos/boxeo/cross.mp4",
+  "Jab-cross": "/videos/boxeo/jab-cross.mp4",
+  "Gancho de izquierda": "/videos/boxeo/hook-delantero.mp4",
+  "Uppercut de derecha": "/videos/boxeo/uppercut-trasero.mp4",
+  "Desplazamiento lateral": "/videos/boxeo/desplazamiento.mp4",
+  "Slip izquierda-derecha": "/videos/boxeo/slip-exterior.mp4",
+  "Roll bajo gancho": "/videos/boxeo/roll-bajo-hook.mp4",
+  "Doble jab-cross": "/videos/boxeo/doble-jab-cross.mp4",
+  "Jab-cross-gancho": "/videos/boxeo/combo-1-2-3.mp4",
+  "Pivot con contraataque": "/videos/boxeo/pivote-contraataque.mp4",
+  "Combinación 1-2-3-2": "/videos/boxeo/combo-1-2-3-2.mp4",
+  "Sombra con defensa activa": "/videos/boxeo/sombra-tecnica.mp4",
+  "Sombra por rounds": "/videos/boxeo/sombra-libre.mp4",
+  "Saco rounds de potencia": "/videos/boxeo/saco-potencia.mp4",
 };
 
-const getDisciplineLocalVideo = (discipline, ejercicio) => {
-  if (!ejercicio?.nombre) return "";
-
-  if (discipline === "Calistenia") {
-    return CALISTHENICS_LOCAL_VIDEOS[ejercicio.nombre] || "";
-  }
-
-  if (discipline === "Boxeo") {
-    return BOXING_LOCAL_VIDEOS[ejercicio.nombre] || "";
-  }
-
-  return "";
+const BOXING_CATEGORY_REFERENCE = {
+  Técnica: "/videos/boxeo/guardia-y-movilidad.mp4",
+  Golpes: "/videos/boxeo/jab-directo.mp4",
+  Defensa: "/videos/boxeo/defensa-guardia.mp4",
+  Sombra: "/videos/boxeo/sombra-basica.mp4",
+  Saco: "/videos/boxeo/trabajo-en-saco.mp4",
+  Combinaciones: "/videos/boxeo/combo-1-2-3.mp4",
+  Movilidad: "/videos/boxeo/desplazamiento.mp4",
+  Manoplas: "/videos/boxeo/manoplas-combinacion.mp4",
+  Coordinación: "/videos/boxeo/jab-cross.mp4",
+  Acondicionamiento: "/videos/boxeo/circuito-boxeo-hiit.mp4",
+  Contraataque: "/videos/boxeo/pivote-contraataque.mp4",
+  "Combate de entrenamiento": "/videos/boxeo/sparring-tecnico.mp4",
+  Sparring: "/videos/boxeo/sparring-tecnico.mp4",
+  Potencia: "/videos/boxeo/saco-potencia.mp4",
+  Táctica: "/videos/boxeo/sombra-tecnica.mp4",
 };
+
+const getDisciplineMedia = (discipline, ejercicio) => {
+  if (!ejercicio) return { src: "", exact: false, type: "" };
+
+  // Si PostgreSQL ya tiene video real para ese ejercicio, ese gana.
+  if (ejercicio.video_url) {
+    return {
+      src: ejercicio.video_url,
+      exact: true,
+      type: /\.gif(?:$|\?)/i.test(String(ejercicio.video_url)) ? "gif" : "video",
+    };
+  }
+
+  const exactMap =
+    discipline === "Calistenia"
+      ? CALISTHENICS_LOCAL_VIDEOS
+      : BOXING_LOCAL_VIDEOS;
+
+  const categoryMap =
+    discipline === "Calistenia"
+      ? CALISTHENICS_CATEGORY_REFERENCE
+      : BOXING_CATEGORY_REFERENCE;
+
+  const exactSrc = exactMap[ejercicio.nombre];
+  if (exactSrc) {
+    return { src: exactSrc, exact: true, type: "video" };
+  }
+
+  // Para los ejercicios nuevos todavía sin clip exacto mostramos una referencia
+  // del MISMO patrón/categoría y la marcamos claramente como referencia.
+  const refSrc = categoryMap[ejercicio.categoria] || "";
+  if (refSrc) {
+    return { src: refSrc, exact: false, type: "video" };
+  }
+
+  if (ejercicio.imagen_url) {
+    return { src: ejercicio.imagen_url, exact: false, type: "image" };
+  }
+
+  return { src: "", exact: false, type: "" };
+};
+
+const getDisciplineLocalVideo = (discipline, ejercicio) =>
+  getDisciplineMedia(discipline, ejercicio).src;
 
 function DisciplineModule({
   discipline,
@@ -2506,7 +2585,7 @@ function DisciplineModule({
             background: accent,
           }}
         >
-          + Crear plan de {discipline}
+          + Crear rutina de {discipline}
         </button>
 
         {mensaje && (
@@ -2526,9 +2605,9 @@ function DisciplineModule({
         )}
 
         <div style={{ marginTop: "20px" }}>
-          <h3 style={{ marginBottom: "10px" }}>Planes del socio</h3>
+          <h3 style={{ marginBottom: "10px" }}>Rutinas del socio</h3>
           {!planes.length ? (
-            <div style={{ color: "#64748b" }}>No hay planes de {discipline.toLowerCase()} todavía.</div>
+            <div style={{ color: "#64748b" }}>No hay rutinas de {discipline.toLowerCase()} todavía.</div>
           ) : (
             planes.map((plan) => (
               <button
@@ -2617,6 +2696,7 @@ function DisciplineModule({
         <div style={{ marginTop: "18px", display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "12px" }}>
           {ejerciciosUnicos.map((ejercicio) => {
             const activo = ejercicioSeleccionado?.id === ejercicio.id;
+            const media = getDisciplineMedia(discipline, ejercicio);
             return (
               <button
                 key={ejercicio.id}
@@ -2644,15 +2724,42 @@ function DisciplineModule({
                     overflow: "hidden",
                   }}
                 >
-                  {getDisciplineLocalVideo(discipline, ejercicio) ? (
+                  {media.src && media.type === "gif" ? (
+                    <img
+                      src={media.src}
+                      alt={ejercicio.nombre}
+                      loading="lazy"
+                      draggable={false}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        background: "#000",
+                        pointerEvents: "none",
+                      }}
+                    />
+                  ) : media.src && media.type === "image" ? (
+                    <img
+                      src={media.src}
+                      alt={ejercicio.nombre}
+                      loading="lazy"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        background: "#000",
+                        pointerEvents: "none",
+                      }}
+                    />
+                  ) : media.src ? (
                     <video
-                      key={getDisciplineLocalVideo(discipline, ejercicio)}
-                      src={getDisciplineLocalVideo(discipline, ejercicio)}
+                      key={media.src}
+                      src={media.src}
                       autoPlay
                       muted
                       loop
                       playsInline
-                      preload="auto"
+                      preload="metadata"
                       onLoadedData={(event) => {
                         const video = event.currentTarget;
                         video.muted = true;
@@ -2670,13 +2777,36 @@ function DisciplineModule({
                       }}
                     />
                   ) : (
-                    <span>{discipline === "Calistenia" ? "🤸" : "🥊"}</span>
+                    <div style={{ textAlign: "center" }}>
+                      <div style={{ fontSize: "30px" }}>
+                        {discipline === "Calistenia" ? "🤸" : "🥊"}
+                      </div>
+                      <div style={{ color: "#64748b", fontSize: "10px", marginTop: "5px" }}>
+                        Sin medio
+                      </div>
+                    </div>
                   )}
                 </div>
                 <div style={{ padding: "11px" }}>
                   <div style={{ fontWeight: "bold", fontSize: "14px" }}>{ejercicio.nombre}</div>
                   <div style={{ color: accent, fontSize: "11px", marginTop: "5px" }}>{ejercicio.categoria}</div>
                   <div style={{ color: "#94a3b8", fontSize: "11px", marginTop: "3px" }}>{ejercicio.nivel}</div>
+                  {!media.exact && media.src && (
+                    <div
+                      style={{
+                        display: "inline-block",
+                        marginTop: "6px",
+                        padding: "3px 6px",
+                        borderRadius: "999px",
+                        background: "rgba(245,158,11,.14)",
+                        color: "#fbbf24",
+                        fontSize: "9px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Referencia del patrón
+                    </div>
+                  )}
                 </div>
               </button>
             );
@@ -2703,40 +2833,84 @@ function DisciplineModule({
                 overflow: "hidden",
               }}
             >
-              {getDisciplineLocalVideo(discipline, ejercicioSeleccionado) ? (
-                <video
-                  key={getDisciplineLocalVideo(discipline, ejercicioSeleccionado)}
-                  src={getDisciplineLocalVideo(discipline, ejercicioSeleccionado)}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  controls
-                  preload="auto"
-                  onLoadedData={(event) => {
-                    const video = event.currentTarget;
-                    video.muted = true;
-                    video.currentTime = 0;
-                    video.play().catch(() => {});
-                  }}
-                  onCanPlay={(event) => {
-                    event.currentTarget.play().catch(() => {});
-                  }}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                    background: "#000",
-                  }}
-                />
-              ) : (
-                <span>{discipline === "Calistenia" ? "🤸" : "🥊"}</span>
-              )}
+              {(() => {
+                const media = getDisciplineMedia(discipline, ejercicioSeleccionado);
+
+                if (!media.src) {
+                  return (
+                    <div style={{ textAlign: "center", padding: "18px" }}>
+                      <div>{discipline === "Calistenia" ? "🤸" : "🥊"}</div>
+                      <div style={{ color: "#94a3b8", fontSize: "14px", marginTop: "10px" }}>
+                        Este ejercicio todavía no tiene un medio asociado.
+                      </div>
+                    </div>
+                  );
+                }
+
+                if (media.type === "gif" || media.type === "image") {
+                  return (
+                    <img
+                      src={media.src}
+                      alt={ejercicioSeleccionado.nombre}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        background: "#000",
+                      }}
+                    />
+                  );
+                }
+
+                return (
+                  <video
+                    key={media.src}
+                    src={media.src}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    controls
+                    preload="metadata"
+                    onLoadedData={(event) => {
+                      const video = event.currentTarget;
+                      video.muted = true;
+                      video.currentTime = 0;
+                      video.play().catch(() => {});
+                    }}
+                    onCanPlay={(event) => {
+                      event.currentTarget.play().catch(() => {});
+                    }}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      background: "#000",
+                    }}
+                  />
+                );
+              })()}
             </div>
 
             <h2 style={{ marginBottom: "5px" }}>{ejercicioSeleccionado.nombre}</h2>
             <div style={{ color: accent, fontWeight: "bold" }}>{ejercicioSeleccionado.categoria}</div>
             <div style={{ color: "#94a3b8", marginTop: "5px" }}>{ejercicioSeleccionado.nivel}</div>
+            {!getDisciplineMedia(discipline, ejercicioSeleccionado).exact &&
+              getDisciplineMedia(discipline, ejercicioSeleccionado).src && (
+                <div
+                  style={{
+                    marginTop: "8px",
+                    padding: "8px 10px",
+                    borderRadius: "10px",
+                    background: "rgba(245,158,11,.12)",
+                    color: "#fbbf24",
+                    fontSize: "12px",
+                  }}
+                >
+                  Animación de referencia del mismo patrón/categoría. La ejecución exacta se conservará cuando el ejercicio tenga su video específico.
+                </div>
+              )}
+
             <p style={{ color: "#cbd5e1", lineHeight: 1.6 }}>
               {ejercicioSeleccionado.descripcion}
             </p>
@@ -2746,13 +2920,13 @@ function DisciplineModule({
               onClick={() => onAdd(ejercicioSeleccionado)}
               style={{ ...buttonPrimary, width: "100%", background: accent }}
             >
-              Agregar al plan
+              Agregar a rutina
             </button>
           </>
         )}
 
         <div style={{ marginTop: "22px" }}>
-          <h3>Plan activo</h3>
+          <h3>Rutina activa</h3>
 
           {!planActivo ? (
             <div style={{ color: "#64748b" }}>Crea o selecciona un plan.</div>
