@@ -905,17 +905,88 @@ const handleChange = (e) => {
 const seleccionarMusculoPorNombre = async (nombreMusculo) => {
   setMusculoSeleccionado({ nombre: nombreMusculo });
   setZoomMusculo(nombreMusculo);
+  setEjerciciosMusculo([]);
+
+  const normalizarNombreMusculo = (valor = "") =>
+    String(valor)
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim()
+      .toLowerCase();
+
+  const aliasPorMusculo = {
+    "Bíceps": ["Bíceps", "Biceps"],
+    "Tríceps": ["Tríceps", "Triceps"],
+    "Cuádriceps": ["Cuádriceps", "Cuadriceps"],
+    "Glúteos": ["Glúteos", "Gluteos"],
+    "Pecho alto": ["Pecho alto", "Pecho Alto"],
+    "Pecho medio": ["Pecho medio", "Pecho Medio"],
+    "Pecho bajo": ["Pecho bajo", "Pecho Bajo"],
+    "Espalda alta": ["Espalda alta", "Espalda Alta"],
+    "Espalda media": ["Espalda media", "Espalda Media"],
+    "Espalda baja": ["Espalda baja", "Espalda Baja"],
+    "Pantorrillas posterior": [
+      "Pantorrillas posterior",
+      "Pantorrillas posteriores",
+      "Pantorrilla posterior",
+    ],
+  };
+
+  // También aprovecha el nombre exacto que venga de /api/musculos.
+  const musculoBackend = (musculos || []).find((item) => {
+    const nombre = item?.nombre || item?.name || item?.musculo || "";
+    return normalizarNombreMusculo(nombre) === normalizarNombreMusculo(nombreMusculo);
+  });
+
+  const candidatos = [
+    nombreMusculo,
+    ...(aliasPorMusculo[nombreMusculo] || []),
+    musculoBackend?.nombre,
+    musculoBackend?.name,
+    musculoBackend?.musculo,
+  ].filter(Boolean);
+
+  const nombresUnicos = [...new Set(candidatos)];
 
   try {
-    const res = await fetch(`${API_URL}/api/ejercicios/musculo/${encodeURIComponent(nombreMusculo)}`);
-    const data = await res.json();
+    let ejerciciosEncontrados = [];
 
-    if (data.ok) {
-      const ejerciciosBackend = Array.isArray(data.ejercicios) ? data.ejercicios : [];
-      setEjerciciosMusculo(ponerVideosLocales(nombreMusculo, ejerciciosBackend));
-    } else {
-      setEjerciciosMusculo([]);
+    for (const nombreConsulta of nombresUnicos) {
+      const res = await fetch(
+        `${API_URL}/api/ejercicios/musculo/${encodeURIComponent(nombreConsulta)}?t=${Date.now()}`,
+        { cache: "no-store" }
+      );
+
+      let data = null;
+      try {
+        data = await res.json();
+      } catch {
+        data = null;
+      }
+
+      const lista =
+        res.ok && data?.ok && Array.isArray(data.ejercicios)
+          ? data.ejercicios
+          : [];
+
+      if (lista.length > 0) {
+        ejerciciosEncontrados = lista;
+        break;
+      }
     }
+
+    if (ejerciciosEncontrados.length > 0) {
+      setEjerciciosMusculo(
+        ponerVideosLocales(nombreMusculo, ejerciciosEncontrados).slice(0, 30)
+      );
+      return;
+    }
+
+    console.warn(
+      `No se encontraron ejercicios para ${nombreMusculo}. Nombres consultados:`,
+      nombresUnicos
+    );
+    setEjerciciosMusculo([]);
   } catch (error) {
     console.error("Error cargando ejercicios:", error);
     setEjerciciosMusculo([]);
