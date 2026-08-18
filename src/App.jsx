@@ -2297,20 +2297,72 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
               ) : detalleRutina.length === 0 ? (
                 <div style={{ color: "#94a3b8" }}>Esta rutina aún no tiene ejercicios.</div>
               ) : (
-                <div style={{ display: "grid", gap: "10px" }}>
+                <div style={{ display: "grid", gap: "12px" }}>
                   {detalleRutina.map((item) => (
                     <div
                       key={item.id}
                       style={{
                         background: "#111827",
                         border: "1px solid #1f2937",
-                        borderRadius: "12px",
-                        padding: "12px",
+                        borderRadius: "14px",
+                        padding: "10px",
+                        display: "grid",
+                        gridTemplateColumns: "150px minmax(0,1fr)",
+                        gap: "14px",
+                        alignItems: "center",
                       }}
                     >
-                      <div><strong>{item.ejercicio_nombre}</strong></div>
-                      <div style={{ color: "#94a3b8", fontSize: "14px", marginTop: "4px" }}>
-                        Series: {item.series} | Reps: {item.repeticiones} | Descanso: {item.descanso}
+                      <div
+                        style={{
+                          width: "150px",
+                          height: "105px",
+                          borderRadius: "10px",
+                          overflow: "hidden",
+                          background: "#000",
+                          border: "1px solid #263449",
+                        }}
+                      >
+                        {item.video_url ? (
+                          <ExerciseAnimation
+                            src={item.video_url}
+                            alt={item.ejercicio_nombre}
+                            controls={false}
+                            pointerEvents="none"
+                          />
+                        ) : item.imagen_url ? (
+                          <img
+                            src={item.imagen_url}
+                            alt={item.ejercicio_nombre}
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "contain",
+                              background: "#000",
+                            }}
+                          />
+                        ) : (
+                          <div
+                            style={{
+                              height: "100%",
+                              display: "grid",
+                              placeItems: "center",
+                              color: "#64748b",
+                              fontSize: "12px",
+                              textAlign: "center",
+                            }}
+                          >
+                            Sin animación
+                          </div>
+                        )}
+                      </div>
+
+                      <div>
+                        <div style={{ fontSize: "16px" }}>
+                          <strong>{item.ejercicio_nombre}</strong>
+                        </div>
+                        <div style={{ color: "#94a3b8", fontSize: "14px", marginTop: "6px" }}>
+                          Series: {item.series} | Reps: {item.repeticiones} | Descanso: {item.descanso}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -2392,75 +2444,32 @@ const CALISTHENICS_LOCAL_VIDEOS = {
   "Dominada ancho de hombros": "/videos/calistenia/dominada-ancho-hombros.mp4",
 };
 
-const CALISTHENICS_CATEGORY_REFERENCE = {
-  Empuje: "/videos/calistenia/flexiones-clasicas.mp4",
-  Piernas: "/videos/calistenia/sentadilla-aire.mp4",
-  Core: "/videos/calistenia/plancha-frontal.mp4",
-  Tirón: "/videos/calistenia/dominadas-estrictas.mp4",
-  Agarre: "/videos/calistenia/dominada-asistida.mp4",
-  Locomoción: "/videos/calistenia/zancadas-alternas.mp4",
-  Potencia: "/videos/calistenia/sentadilla-aire.mp4",
-  Metabólico: "/videos/calistenia/zancadas-alternas.mp4",
-  Habilidad: "/videos/calistenia/dominadas-estrictas.mp4",
-};
-
 const BOXING_LOCAL_VIDEOS = {
-  // 15 videos originales que ya tenía el módulo.
+  // SOLO LOS VIDEOS REALES/ORIGINALES DEL MÓDULO.
+  // No se mezclan con las animaciones esquemáticas que se añadieron después.
   "Guardia y movilidad": "/videos/boxeo/guardia-y-movilidad.mp4",
   "Jab directo": "/videos/boxeo/jab-directo.mp4",
   "Defensa en guardia": "/videos/boxeo/defensa-guardia.mp4",
   "Sombra básica": "/videos/boxeo/sombra-basica.mp4",
   "Trabajo en saco básico": "/videos/boxeo/trabajo-en-saco.mp4",
+
   "Golpes de potencia": "/videos/boxeo/golpes-potencia.mp4",
   "Saco con combinaciones": "/videos/boxeo/saco-combinaciones.mp4",
   "Combinaciones con pareja": "/videos/boxeo/combinaciones-con-pareja.mp4",
   "Manoplas - combinación": "/videos/boxeo/manoplas-combinacion.mp4",
   "Manoplas - velocidad": "/videos/boxeo/manoplas-velocidad.mp4",
+
   "Sparring defensa y contraataque": "/videos/boxeo/sparring-defensa-contraataque.mp4",
   "Sparring técnico": "/videos/boxeo/sparring-tecnico.mp4",
   "Boxeo de potencia avanzado": "/videos/boxeo/boxeo-potencia-avanzado.mp4",
   "Manoplas de alta intensidad": "/videos/boxeo/manoplas-intensidad.mp4",
   "Combinación avanzada": "/videos/boxeo/combinacion-avanzada.mp4",
-
-  // Videos humanos adicionales disponibles.
-  "Cross directo": "/videos/boxeo/cross.mp4",
-  "Jab-cross": "/videos/boxeo/jab-cross.mp4",
-  "Gancho de izquierda": "/videos/boxeo/hook-delantero.mp4",
-  "Uppercut de derecha": "/videos/boxeo/uppercut-trasero.mp4",
-  "Desplazamiento lateral": "/videos/boxeo/desplazamiento.mp4",
-  "Slip izquierda-derecha": "/videos/boxeo/slip-exterior.mp4",
-  "Roll bajo gancho": "/videos/boxeo/roll-bajo-hook.mp4",
-  "Doble jab-cross": "/videos/boxeo/doble-jab-cross.mp4",
-  "Jab-cross-gancho": "/videos/boxeo/combo-1-2-3.mp4",
-  "Pivot con contraataque": "/videos/boxeo/pivote-contraataque.mp4",
-  "Combinación 1-2-3-2": "/videos/boxeo/combo-1-2-3-2.mp4",
-  "Sombra con defensa activa": "/videos/boxeo/sombra-tecnica.mp4",
-  "Sombra por rounds": "/videos/boxeo/sombra-libre.mp4",
-  "Saco rounds de potencia": "/videos/boxeo/saco-potencia.mp4",
-};
-
-const BOXING_CATEGORY_REFERENCE = {
-  Técnica: "/videos/boxeo/guardia-y-movilidad.mp4",
-  Golpes: "/videos/boxeo/jab-directo.mp4",
-  Defensa: "/videos/boxeo/defensa-guardia.mp4",
-  Sombra: "/videos/boxeo/sombra-basica.mp4",
-  Saco: "/videos/boxeo/trabajo-en-saco.mp4",
-  Combinaciones: "/videos/boxeo/combo-1-2-3.mp4",
-  Movilidad: "/videos/boxeo/desplazamiento.mp4",
-  Manoplas: "/videos/boxeo/manoplas-combinacion.mp4",
-  Coordinación: "/videos/boxeo/jab-cross.mp4",
-  Acondicionamiento: "/videos/boxeo/circuito-boxeo-hiit.mp4",
-  Contraataque: "/videos/boxeo/pivote-contraataque.mp4",
-  "Combate de entrenamiento": "/videos/boxeo/sparring-tecnico.mp4",
-  Sparring: "/videos/boxeo/sparring-tecnico.mp4",
-  Potencia: "/videos/boxeo/saco-potencia.mp4",
-  Táctica: "/videos/boxeo/sombra-tecnica.mp4",
 };
 
 const getDisciplineMedia = (discipline, ejercicio) => {
   if (!ejercicio) return { src: "", exact: false, type: "" };
 
-  // Si PostgreSQL ya tiene video real para ese ejercicio, ese gana.
+  // 1. Si la BD ya tiene un medio exacto, usarlo.
   if (ejercicio.video_url) {
     return {
       src: ejercicio.video_url,
@@ -2474,27 +2483,22 @@ const getDisciplineMedia = (discipline, ejercicio) => {
       ? CALISTHENICS_LOCAL_VIDEOS
       : BOXING_LOCAL_VIDEOS;
 
-  const categoryMap =
-    discipline === "Calistenia"
-      ? CALISTHENICS_CATEGORY_REFERENCE
-      : BOXING_CATEGORY_REFERENCE;
+  const exactSrc =
+    exactMap[ejercicio.nombre] ||
+    exactMap[ejercicio.ejercicio_nombre] ||
+    "";
 
-  const exactSrc = exactMap[ejercicio.nombre];
   if (exactSrc) {
     return { src: exactSrc, exact: true, type: "video" };
   }
 
-  // Para los ejercicios nuevos todavía sin clip exacto mostramos una referencia
-  // del MISMO patrón/categoría y la marcamos claramente como referencia.
-  const refSrc = categoryMap[ejercicio.categoria] || "";
-  if (refSrc) {
-    return { src: refSrc, exact: false, type: "video" };
-  }
-
   if (ejercicio.imagen_url) {
-    return { src: ejercicio.imagen_url, exact: false, type: "image" };
+    return { src: ejercicio.imagen_url, exact: true, type: "image" };
   }
 
+  // IMPORTANTE:
+  // Ya no reutilizamos el video de otro ejercicio "por categoría".
+  // Eso era lo que hacía que flexiones/dominadas/etc. parecieran repetidas.
   return { src: "", exact: false, type: "" };
 };
 
@@ -2652,7 +2656,7 @@ function DisciplineModule({
             {icon} Entrenamiento de {discipline}
           </h2>
           <div style={{ color: "#cbd5e1", lineHeight: 1.6 }}>
-            Selecciona el nivel, revisa la técnica y agrega ejercicios al plan personalizado del socio.
+            Selecciona el nivel, revisa el video exacto disponible y agrega ejercicios a la rutina del socio.
           </div>
         </div>
 
@@ -2782,7 +2786,7 @@ function DisciplineModule({
                         {discipline === "Calistenia" ? "🤸" : "🥊"}
                       </div>
                       <div style={{ color: "#64748b", fontSize: "10px", marginTop: "5px" }}>
-                        Sin medio
+                        Video pendiente
                       </div>
                     </div>
                   )}
@@ -2791,22 +2795,6 @@ function DisciplineModule({
                   <div style={{ fontWeight: "bold", fontSize: "14px" }}>{ejercicio.nombre}</div>
                   <div style={{ color: accent, fontSize: "11px", marginTop: "5px" }}>{ejercicio.categoria}</div>
                   <div style={{ color: "#94a3b8", fontSize: "11px", marginTop: "3px" }}>{ejercicio.nivel}</div>
-                  {!media.exact && media.src && (
-                    <div
-                      style={{
-                        display: "inline-block",
-                        marginTop: "6px",
-                        padding: "3px 6px",
-                        borderRadius: "999px",
-                        background: "rgba(245,158,11,.14)",
-                        color: "#fbbf24",
-                        fontSize: "9px",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      Referencia del patrón
-                    </div>
-                  )}
                 </div>
               </button>
             );
@@ -2841,7 +2829,7 @@ function DisciplineModule({
                     <div style={{ textAlign: "center", padding: "18px" }}>
                       <div>{discipline === "Calistenia" ? "🤸" : "🥊"}</div>
                       <div style={{ color: "#94a3b8", fontSize: "14px", marginTop: "10px" }}>
-                        Este ejercicio todavía no tiene un medio asociado.
+                        Este ejercicio todavía no tiene un video exacto asociado.
                       </div>
                     </div>
                   );
@@ -2895,21 +2883,6 @@ function DisciplineModule({
             <h2 style={{ marginBottom: "5px" }}>{ejercicioSeleccionado.nombre}</h2>
             <div style={{ color: accent, fontWeight: "bold" }}>{ejercicioSeleccionado.categoria}</div>
             <div style={{ color: "#94a3b8", marginTop: "5px" }}>{ejercicioSeleccionado.nivel}</div>
-            {!getDisciplineMedia(discipline, ejercicioSeleccionado).exact &&
-              getDisciplineMedia(discipline, ejercicioSeleccionado).src && (
-                <div
-                  style={{
-                    marginTop: "8px",
-                    padding: "8px 10px",
-                    borderRadius: "10px",
-                    background: "rgba(245,158,11,.12)",
-                    color: "#fbbf24",
-                    fontSize: "12px",
-                  }}
-                >
-                  Animación de referencia del mismo patrón/categoría. La ejecución exacta se conservará cuando el ejercicio tenga su video específico.
-                </div>
-              )}
 
             <p style={{ color: "#cbd5e1", lineHeight: 1.6 }}>
               {ejercicioSeleccionado.descripcion}
@@ -2937,26 +2910,89 @@ function DisciplineModule({
                 {planActivo.nivel || "-"} · {detallePlan.length} ejercicio(s)
               </div>
 
-              <div style={{ display: "grid", gap: "8px", marginTop: "12px" }}>
-                {detallePlan.map((item, index) => (
-                  <div
-                    key={item.id}
-                    style={{
-                      padding: "10px",
-                      borderRadius: "10px",
-                      background: "#111827",
-                      border: "1px solid #263449",
-                    }}
-                  >
-                    <div style={{ fontWeight: "bold" }}>
-                      {index + 1}. {item.ejercicio_nombre}
+              <div style={{ display: "grid", gap: "10px", marginTop: "12px" }}>
+                {detallePlan.map((item, index) => {
+                  const mediaDetalle = getDisciplineMedia(discipline, item);
+
+                  return (
+                    <div
+                      key={item.id}
+                      style={{
+                        padding: "9px",
+                        borderRadius: "12px",
+                        background: "#111827",
+                        border: "1px solid #263449",
+                        display: "grid",
+                        gridTemplateColumns: "105px minmax(0,1fr)",
+                        gap: "10px",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: "105px",
+                          height: "78px",
+                          borderRadius: "8px",
+                          overflow: "hidden",
+                          background: "#000",
+                        }}
+                      >
+                        {mediaDetalle.src && mediaDetalle.type === "gif" ? (
+                          <img
+                            src={mediaDetalle.src}
+                            alt={item.ejercicio_nombre}
+                            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                          />
+                        ) : mediaDetalle.src && mediaDetalle.type === "image" ? (
+                          <img
+                            src={mediaDetalle.src}
+                            alt={item.ejercicio_nombre}
+                            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                          />
+                        ) : mediaDetalle.src ? (
+                          <video
+                            key={mediaDetalle.src}
+                            src={mediaDetalle.src}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            preload="metadata"
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "contain",
+                              background: "#000",
+                            }}
+                          />
+                        ) : (
+                          <div
+                            style={{
+                              height: "100%",
+                              display: "grid",
+                              placeItems: "center",
+                              color: "#64748b",
+                              fontSize: "10px",
+                              textAlign: "center",
+                            }}
+                          >
+                            Video pendiente
+                          </div>
+                        )}
+                      </div>
+
+                      <div>
+                        <div style={{ fontWeight: "bold" }}>
+                          {index + 1}. {item.ejercicio_nombre}
+                        </div>
+                        <div style={{ color: "#94a3b8", fontSize: "12px", marginTop: "4px" }}>
+                          {item.series} series · {item.repeticiones}
+                          {item.duracion ? ` · ${item.duracion}` : ""} · descanso {item.descanso}
+                        </div>
+                      </div>
                     </div>
-                    <div style={{ color: "#94a3b8", fontSize: "12px", marginTop: "4px" }}>
-                      {item.series} series · {item.repeticiones}
-                      {item.duracion ? ` · ${item.duracion}` : ""} · descanso {item.descanso}
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </>
           )}
