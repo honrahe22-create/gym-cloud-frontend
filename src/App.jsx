@@ -1078,7 +1078,7 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
 
     if (yaExiste) {
       alert(
-        `${ejercicio.nombre} ya existe en la rutina "${rutinaActiva.nombre}". Escoge otro ejercicio para no repetirlo.`
+        `Este ejercicio ya existe en la rutina "${rutinaActiva.nombre}". Escoge otro ejercicio o selecciona otra rutina destino.`
       );
       return;
     }
@@ -1821,18 +1821,12 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                             </div>
                           </button>
 
-                          <div
-                            style={{
-                              display: "grid",
-                              gridTemplateColumns: "1fr 1fr",
-                              gap: "8px",
-                              marginTop: "10px",
-                            }}
-                          >
+                          <div style={{ marginTop: "10px" }}>
                             <button
                               type="button"
                               onClick={() => seleccionarRutina(rutina)}
                               style={{
+                                width: "100%",
                                 border: "1px solid #334155",
                                 borderRadius: "9px",
                                 padding: "8px 10px",
@@ -1843,33 +1837,6 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                               }}
                             >
                               Ver rutina
-                            </button>
-
-                            <button
-                              type="button"
-                              onClick={async () => {
-                                await seleccionarRutina(rutina);
-
-                                requestAnimationFrame(() => {
-                                  requestAnimationFrame(() => {
-                                    mapRef.current?.scrollIntoView({
-                                      behavior: "smooth",
-                                      block: "start",
-                                    });
-                                  });
-                                });
-                              }}
-                              style={{
-                                border: "none",
-                                borderRadius: "9px",
-                                padding: "8px 10px",
-                                background: "#10b981",
-                                color: "#fff",
-                                fontWeight: "bold",
-                                cursor: "pointer",
-                              }}
-                            >
-                              + Agregar ejercicios
                             </button>
                           </div>
                         </div>
@@ -2229,7 +2196,7 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                       fontWeight: "bold",
                     }}
                   >
-                    Agregando ejercicios a: {rutinaActiva.nombre}
+                    Rutina destino actual: {rutinaActiva.nombre}
                   </div>
                 )}
               </div>
@@ -2413,6 +2380,9 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                     group={grupo}
                     selectedMuscle={musculoSeleccionado.nombre}
                     onAdd={agregarEjercicioARutina}
+                    rutinas={rutinasSocio}
+                    rutinaActiva={rutinaActiva}
+                    onSelectRutina={seleccionarRutina}
                   />
                 ))}
               </div>
@@ -3227,7 +3197,14 @@ const RealBodyMap = React.forwardRef(function RealBodyMap(
   );
 });
 
-function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
+function ExerciseGroupCard({
+  group,
+  selectedMuscle,
+  onAdd,
+  rutinas = [],
+  rutinaActiva,
+  onSelectRutina,
+}) {
   const principalInicial = group.principal;
   const secundarios = group.secundarios || [];
   const todos = [principalInicial, ...secundarios].filter(Boolean);
@@ -3469,26 +3446,88 @@ function ExerciseGroupCard({ group, selectedMuscle, onAdd }) {
                   {ejercicio.nivel || selectedMuscle}
                 </div>
 
-                <button
-                  type="button"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    onAdd(ejercicio);
-                  }}
+                <div
                   style={{
-                    width: "100%",
                     marginTop: "11px",
-                    padding: "10px",
-                    border: "none",
+                    padding: "9px",
                     borderRadius: "10px",
-                    background: "#10b981",
-                    color: "#fff",
-                    fontWeight: "bold",
-                    cursor: "pointer",
+                    background: "#081322",
+                    border: "1px solid #263449",
                   }}
+                  onClick={(event) => event.stopPropagation()}
                 >
-                  Agregar a rutina
-                </button>
+                  <div
+                    style={{
+                      color: "#94a3b8",
+                      fontSize: "11px",
+                      marginBottom: "6px",
+                    }}
+                  >
+                    Rutina destino
+                  </div>
+
+                  <select
+                    value={rutinaActiva?.id || ""}
+                    onChange={async (event) => {
+                      event.stopPropagation();
+
+                      const id = Number(event.target.value);
+                      const seleccionada = rutinas.find(
+                        (rutina) => Number(rutina.id) === id
+                      );
+
+                      if (seleccionada) {
+                        await onSelectRutina(seleccionada);
+                      }
+                    }}
+                    style={{
+                      width: "100%",
+                      boxSizing: "border-box",
+                      padding: "8px",
+                      borderRadius: "8px",
+                      border: "1px solid #334155",
+                      background: "#0f172a",
+                      color: "#fff",
+                      marginBottom: "8px",
+                    }}
+                  >
+                    <option value="">Seleccionar rutina</option>
+                    {rutinas.map((rutina) => (
+                      <option key={rutina.id} value={rutina.id}>
+                        {rutina.nombre}
+                      </option>
+                    ))}
+                  </select>
+
+                  <button
+                    type="button"
+                    disabled={!rutinaActiva}
+                    onClick={(event) => {
+                      event.stopPropagation();
+
+                      if (!rutinaActiva) {
+                        alert("Selecciona primero la rutina destino.");
+                        return;
+                      }
+
+                      onAdd(ejercicio);
+                    }}
+                    style={{
+                      width: "100%",
+                      padding: "10px",
+                      border: "none",
+                      borderRadius: "10px",
+                      background: rutinaActiva ? "#10b981" : "#334155",
+                      color: "#fff",
+                      fontWeight: "bold",
+                      cursor: rutinaActiva ? "pointer" : "not-allowed",
+                    }}
+                  >
+                    {rutinaActiva
+                      ? `Agregar a: ${rutinaActiva.nombre}`
+                      : "Selecciona una rutina"}
+                  </button>
+                </div>
               </div>
             </div>
           );
