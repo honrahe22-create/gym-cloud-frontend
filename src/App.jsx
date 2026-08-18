@@ -1077,7 +1077,9 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
     );
 
     if (yaExiste) {
-      alert("Este ejercicio ya está agregado a la rutina activa.");
+      alert(
+        `${ejercicio.nombre} ya existe en la rutina "${rutinaActiva.nombre}". Escoge otro ejercicio para no repetirlo.`
+      );
       return;
     }
 
@@ -1749,26 +1751,130 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                   {rutinasSocio.length === 0 ? (
                     <div style={{ color: "#94a3b8" }}>Este socio aún no tiene rutinas.</div>
                   ) : (
-                    rutinasSocio.map((rutina) => (
-                      <button
-                        key={rutina.id}
-                        style={{
-                          width: "100%",
-                          textAlign: "left",
-                          marginBottom: "10px",
-                          padding: "12px",
-                          borderRadius: "10px",
-                          border: rutinaActiva?.id === rutina.id ? "2px solid #10b981" : "1px solid #374151",
-                          background: "#0f172a",
-                          color: "#fff",
-                          cursor: "pointer",
-                        }}
-                        onClick={() => seleccionarRutina(rutina)}
-                      >
-                        <div><strong>{rutina.nombre}</strong></div>
-                        <div style={{ color: "#94a3b8", fontSize: "13px" }}>{formatDate(rutina.fecha)}</div>
-                      </button>
-                    ))
+                    rutinasSocio.map((rutina) => {
+                      const esActiva = rutinaActiva?.id === rutina.id;
+
+                      return (
+                        <div
+                          key={rutina.id}
+                          style={{
+                            width: "100%",
+                            boxSizing: "border-box",
+                            marginBottom: "10px",
+                            padding: "12px",
+                            borderRadius: "12px",
+                            border: esActiva
+                              ? "2px solid #10b981"
+                              : "1px solid #374151",
+                            background: esActiva ? "#0b1f1c" : "#0f172a",
+                            color: "#fff",
+                          }}
+                        >
+                          <button
+                            type="button"
+                            onClick={() => seleccionarRutina(rutina)}
+                            style={{
+                              width: "100%",
+                              textAlign: "left",
+                              padding: 0,
+                              border: "none",
+                              background: "transparent",
+                              color: "#fff",
+                              cursor: "pointer",
+                            }}
+                          >
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                gap: "8px",
+                                alignItems: "center",
+                              }}
+                            >
+                              <strong>{rutina.nombre}</strong>
+
+                              {esActiva && (
+                                <span
+                                  style={{
+                                    padding: "3px 7px",
+                                    borderRadius: "999px",
+                                    background: "rgba(16,185,129,.16)",
+                                    color: "#6ee7b7",
+                                    fontSize: "10px",
+                                    fontWeight: "bold",
+                                    whiteSpace: "nowrap",
+                                  }}
+                                >
+                                  RUTINA ACTIVA
+                                </span>
+                              )}
+                            </div>
+
+                            <div
+                              style={{
+                                color: "#94a3b8",
+                                fontSize: "13px",
+                                marginTop: "4px",
+                              }}
+                            >
+                              {formatDate(rutina.fecha)}
+                            </div>
+                          </button>
+
+                          <div
+                            style={{
+                              display: "grid",
+                              gridTemplateColumns: "1fr 1fr",
+                              gap: "8px",
+                              marginTop: "10px",
+                            }}
+                          >
+                            <button
+                              type="button"
+                              onClick={() => seleccionarRutina(rutina)}
+                              style={{
+                                border: "1px solid #334155",
+                                borderRadius: "9px",
+                                padding: "8px 10px",
+                                background: "#111827",
+                                color: "#cbd5e1",
+                                fontWeight: "bold",
+                                cursor: "pointer",
+                              }}
+                            >
+                              Ver rutina
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={async () => {
+                                await seleccionarRutina(rutina);
+
+                                requestAnimationFrame(() => {
+                                  requestAnimationFrame(() => {
+                                    mapRef.current?.scrollIntoView({
+                                      behavior: "smooth",
+                                      block: "start",
+                                    });
+                                  });
+                                });
+                              }}
+                              style={{
+                                border: "none",
+                                borderRadius: "9px",
+                                padding: "8px 10px",
+                                background: "#10b981",
+                                color: "#fff",
+                                fontWeight: "bold",
+                                cursor: "pointer",
+                              }}
+                            >
+                              + Agregar ejercicios
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })
                   )}
                 </div>
 
@@ -2112,7 +2218,21 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
 
           <div ref={mapRef} style={{ ...cardStyle, scrollMarginTop: "24px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-              <h2 style={{ margin: 0 }}>Mapa muscular</h2>
+              <div>
+                <h2 style={{ margin: 0 }}>Mapa muscular</h2>
+                {rutinaActiva && (
+                  <div
+                    style={{
+                      marginTop: "5px",
+                      color: "#6ee7b7",
+                      fontSize: "13px",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Agregando ejercicios a: {rutinaActiva.nombre}
+                  </div>
+                )}
+              </div>
 
               <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", justifyContent: "flex-end" }}>
                 <button
@@ -2309,30 +2429,20 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
                   marginBottom: "12px",
                 }}
               >
-                <h3 style={{ margin: 0 }}>Detalle de rutina activa</h3>
-
-                {rutinaActiva && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      mapRef.current?.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start",
-                      });
-                    }}
-                    style={{
-                      border: "none",
-                      borderRadius: "10px",
-                      padding: "10px 14px",
-                      background: "#10b981",
-                      color: "#fff",
-                      fontWeight: "bold",
-                      cursor: "pointer",
-                    }}
-                  >
-                    + Agregar ejercicios a rutina
-                  </button>
-                )}
+                <div>
+                  <h3 style={{ margin: 0 }}>Detalle de rutina activa</h3>
+                  {rutinaActiva && (
+                    <div
+                      style={{
+                        color: "#6ee7b7",
+                        fontSize: "13px",
+                        marginTop: "4px",
+                      }}
+                    >
+                      {rutinaActiva.nombre}
+                    </div>
+                  )}
+                </div>
               </div>
 
               {!rutinaActiva ? (
