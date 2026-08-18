@@ -287,8 +287,54 @@ function ExerciseAnimation({
   alt = "Animación del ejercicio",
   controls = false,
   pointerEvents = "auto",
+  fallbackSrc = "",
 }) {
-  if (!src) return null;
+  const [mediaError, setMediaError] = useState(false);
+
+  useEffect(() => {
+    setMediaError(false);
+  }, [src]);
+
+  if ((!src || mediaError) && fallbackSrc) {
+    return (
+      <img
+        src={fallbackSrc}
+        alt={alt}
+        loading="lazy"
+        draggable={false}
+        onError={() => setMediaError(true)}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
+          background: "#000",
+          pointerEvents,
+        }}
+      />
+    );
+  }
+
+  if (!src || mediaError) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "grid",
+          placeItems: "center",
+          background: "#000",
+          color: "#64748b",
+          fontSize: "11px",
+          textAlign: "center",
+          padding: "8px",
+          boxSizing: "border-box",
+          pointerEvents,
+        }}
+      >
+        Animación no disponible
+      </div>
+    );
+  }
 
   if (esAnimacionGif(src)) {
     return (
@@ -297,6 +343,7 @@ function ExerciseAnimation({
         alt={alt}
         loading="lazy"
         draggable={false}
+        onError={() => setMediaError(true)}
         style={{
           width: "100%",
           height: "100%",
@@ -318,6 +365,7 @@ function ExerciseAnimation({
       playsInline
       controls={controls}
       preload="metadata"
+      onError={() => setMediaError(true)}
       onLoadedMetadata={(event) => {
         const video = event.currentTarget;
         video.muted = true;
@@ -1066,45 +1114,78 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
     await cargarDetalleRutina(rutina.id);
   };
 
-  const agregarEjercicioARutina = async (ejercicio) => {
-    if (!rutinaActiva) {
-      alert("Primero debes crear o seleccionar una rutina.");
-      return;
+  const agregarEjercicioARutinaDestino = async (ejercicio, rutinaDestino) => {
+    if (!rutinaDestino?.id) {
+      alert("Selecciona primero la rutina destino.");
+      return false;
     }
 
-    const yaExiste = (detalleRutina || []).some(
-      (item) => Number(item.ejercicio_id) === Number(ejercicio.id)
-    );
+    const ejercicioId = Number(ejercicio?.id || ejercicio?.ejercicio_id);
 
-    if (yaExiste) {
-      alert(
-        `Este ejercicio ya existe en la rutina "${rutinaActiva.nombre}". Escoge otro ejercicio o selecciona otra rutina destino.`
-      );
-      return;
+    if (!ejercicioId) {
+      alert("No se pudo identificar el ejercicio.");
+      return false;
     }
 
     try {
+      const detalleRes = await fetch(
+        `${API_URL}/api/rutina-detalle/${rutinaDestino.id}`
+      );
+      const detalleData = await detalleRes.json();
+      const detalleDestino = detalleData.ok ? detalleData.detalles || [] : [];
+
+      const yaExiste = detalleDestino.some(
+        (item) => Number(item.ejercicio_id) === ejercicioId
+      );
+
+      if (yaExiste) {
+        alert(
+          `Este ejercicio ya existe en la rutina "${rutinaDestino.nombre}". Escoge otra rutina o selecciona otro ejercicio.`
+        );
+        return false;
+      }
+
       const res = await fetch(`${API_URL}/api/rutina-detalle`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          rutina_id: rutinaActiva.id,
-          ejercicio_id: ejercicio.id,
-          series: 3,
-          repeticiones: "12",
-          peso: "",
-          descanso: "60 seg",
+          rutina_id: rutinaDestino.id,
+          ejercicio_id: ejercicioId,
+          series: Number(ejercicio?.series || 3),
+          repeticiones: String(ejercicio?.repeticiones || "12"),
+          peso: String(ejercicio?.peso || ""),
+          descanso: String(ejercicio?.descanso || "60 seg"),
         }),
       });
 
       const data = await res.json();
 
-      if (data.ok) {
-        await cargarDetalleRutina(rutinaActiva.id);
+      if (!data.ok) {
+        alert(data.error || "No se pudo agregar el ejercicio a la rutina.");
+        return false;
       }
+
+      if (Number(rutinaActiva?.id) === Number(rutinaDestino.id)) {
+        await cargarDetalleRutina(rutinaDestino.id);
+      }
+
+      alert(`Ejercicio agregado correctamente a "${rutinaDestino.nombre}".`);
+      return true;
     } catch (error) {
-      console.error("Error agregando ejercicio:", error);
+      console.error("Error agregando ejercicio a rutina destino:", error);
+      alert("Error de conexión agregando el ejercicio.");
+      return false;
     }
+  };
+
+
+  const agregarEjercicioARutina = async (ejercicio) => {
+    if (!rutinaActiva) {
+      alert("Selecciona primero la rutina destino.");
+      return;
+    }
+
+    await agregarEjercicioARutinaDestino(ejercicio, rutinaActiva);
   };
 
 
@@ -2422,72 +2503,13 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
               ) : (
                 <div style={{ display: "grid", gap: "12px" }}>
                   {detalleRutina.map((item) => (
-                    <div
+                    <RoutineActiveExerciseCard
                       key={item.id}
-                      style={{
-                        background: "#111827",
-                        border: "1px solid #1f2937",
-                        borderRadius: "14px",
-                        padding: "10px",
-                        display: "grid",
-                        gridTemplateColumns: "150px minmax(0,1fr)",
-                        gap: "14px",
-                        alignItems: "center",
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: "150px",
-                          height: "105px",
-                          borderRadius: "10px",
-                          overflow: "hidden",
-                          background: "#000",
-                          border: "1px solid #263449",
-                        }}
-                      >
-                        {item.video_url ? (
-                          <ExerciseAnimation
-                            src={item.video_url}
-                            alt={item.ejercicio_nombre}
-                            controls={false}
-                            pointerEvents="none"
-                          />
-                        ) : item.imagen_url ? (
-                          <img
-                            src={item.imagen_url}
-                            alt={item.ejercicio_nombre}
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "contain",
-                              background: "#000",
-                            }}
-                          />
-                        ) : (
-                          <div
-                            style={{
-                              height: "100%",
-                              display: "grid",
-                              placeItems: "center",
-                              color: "#64748b",
-                              fontSize: "12px",
-                              textAlign: "center",
-                            }}
-                          >
-                            Sin animación
-                          </div>
-                        )}
-                      </div>
-
-                      <div>
-                        <div style={{ fontSize: "16px" }}>
-                          <strong>{item.ejercicio_nombre}</strong>
-                        </div>
-                        <div style={{ color: "#94a3b8", fontSize: "14px", marginTop: "6px" }}>
-                          Series: {item.series} | Reps: {item.repeticiones} | Descanso: {item.descanso}
-                        </div>
-                      </div>
-                    </div>
+                      item={item}
+                      rutinaActual={rutinaActiva}
+                      rutinas={rutinasSocio}
+                      onAddToRoutine={agregarEjercicioARutinaDestino}
+                    />
                   ))}
                 </div>
               )}
@@ -3197,6 +3219,157 @@ const RealBodyMap = React.forwardRef(function RealBodyMap(
   );
 });
 
+function RoutineActiveExerciseCard({
+  item,
+  rutinaActual,
+  rutinas = [],
+  onAddToRoutine,
+}) {
+  const [rutinaDestinoId, setRutinaDestinoId] = useState(
+    String(rutinaActual?.id || "")
+  );
+
+  useEffect(() => {
+    setRutinaDestinoId(String(rutinaActual?.id || ""));
+  }, [rutinaActual?.id, item?.id]);
+
+  const rutinaDestino = rutinas.find(
+    (rutina) => String(rutina.id) === String(rutinaDestinoId)
+  );
+
+  const esMismaRutina =
+    Number(rutinaDestino?.id) === Number(rutinaActual?.id);
+
+  return (
+    <div
+      style={{
+        background: "#111827",
+        border: "1px solid #1f2937",
+        borderRadius: "14px",
+        padding: "10px",
+        display: "grid",
+        gridTemplateColumns: "150px minmax(0,1fr)",
+        gap: "14px",
+        alignItems: "center",
+      }}
+    >
+      <div
+        style={{
+          width: "150px",
+          height: "105px",
+          borderRadius: "10px",
+          overflow: "hidden",
+          background: "#000",
+          border: "1px solid #263449",
+        }}
+      >
+        <ExerciseAnimation
+          src={item.video_url}
+          fallbackSrc={item.imagen_url}
+          alt={item.ejercicio_nombre}
+          controls={false}
+          pointerEvents="none"
+        />
+      </div>
+
+      <div>
+        <div style={{ fontSize: "16px" }}>
+          <strong>{item.ejercicio_nombre}</strong>
+        </div>
+
+        <div
+          style={{
+            color: "#94a3b8",
+            fontSize: "14px",
+            marginTop: "6px",
+          }}
+        >
+          Series: {item.series} | Reps: {item.repeticiones} | Descanso:{" "}
+          {item.descanso}
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "minmax(160px,1fr) minmax(170px,1fr)",
+            gap: "8px",
+            marginTop: "10px",
+          }}
+        >
+          <select
+            value={rutinaDestinoId}
+            onChange={(event) => setRutinaDestinoId(event.target.value)}
+            style={{
+              width: "100%",
+              padding: "9px",
+              borderRadius: "9px",
+              border: "1px solid #334155",
+              background: "#0f172a",
+              color: "#fff",
+            }}
+          >
+            {rutinas.map((rutina) => (
+              <option key={rutina.id} value={rutina.id}>
+                {rutina.nombre}
+              </option>
+            ))}
+          </select>
+
+          <button
+            type="button"
+            disabled={!rutinaDestino || esMismaRutina}
+            onClick={async () => {
+              if (!rutinaDestino) {
+                alert("Selecciona una rutina destino.");
+                return;
+              }
+
+              if (esMismaRutina) {
+                alert(
+                  `Este ejercicio ya existe en la rutina "${rutinaActual.nombre}". Escoge otra rutina destino.`
+                );
+                return;
+              }
+
+              await onAddToRoutine(
+                {
+                  id: item.ejercicio_id,
+                  nombre: item.ejercicio_nombre,
+                  series: item.series,
+                  repeticiones: item.repeticiones,
+                  peso: item.peso,
+                  descanso: item.descanso,
+                },
+                rutinaDestino
+              );
+            }}
+            style={{
+              border: "none",
+              borderRadius: "9px",
+              padding: "9px 10px",
+              background:
+                !rutinaDestino || esMismaRutina ? "#334155" : "#10b981",
+              color: "#fff",
+              fontWeight: "bold",
+              cursor:
+                !rutinaDestino || esMismaRutina
+                  ? "not-allowed"
+                  : "pointer",
+            }}
+          >
+            {esMismaRutina
+              ? "✓ Ya existe en esta rutina"
+              : rutinaDestino
+              ? `Agregar a: ${rutinaDestino.nombre}`
+              : "Selecciona rutina"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 function ExerciseGroupCard({
   group,
   selectedMuscle,
@@ -3399,6 +3572,7 @@ function ExerciseGroupCard({
                 {ejercicio.video_url ? (
                   <ExerciseAnimation
                     src={ejercicio.video_url}
+                    fallbackSrc={ejercicio.imagen_url}
                     alt={ejercicio.nombre}
                     pointerEvents="none"
                   />
