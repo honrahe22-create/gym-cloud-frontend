@@ -1072,6 +1072,15 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
       return;
     }
 
+    const yaExiste = (detalleRutina || []).some(
+      (item) => Number(item.ejercicio_id) === Number(ejercicio.id)
+    );
+
+    if (yaExiste) {
+      alert("Este ejercicio ya está agregado a la rutina activa.");
+      return;
+    }
+
     try {
       const res = await fetch(`${API_URL}/api/rutina-detalle`, {
         method: "POST",
@@ -2101,7 +2110,7 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
             )}
           </div>
 
-          <div style={cardStyle}>
+          <div ref={mapRef} style={{ ...cardStyle, scrollMarginTop: "24px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
               <h2 style={{ margin: 0 }}>Mapa muscular</h2>
 
@@ -2290,7 +2299,41 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
             )}
 
             <div style={{ marginTop: "24px" }}>
-              <h3>Detalle de rutina activa</h3>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  gap: "10px",
+                  flexWrap: "wrap",
+                  marginBottom: "12px",
+                }}
+              >
+                <h3 style={{ margin: 0 }}>Detalle de rutina activa</h3>
+
+                {rutinaActiva && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      mapRef.current?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
+                    }}
+                    style={{
+                      border: "none",
+                      borderRadius: "10px",
+                      padding: "10px 14px",
+                      background: "#10b981",
+                      color: "#fff",
+                      fontWeight: "bold",
+                      cursor: "pointer",
+                    }}
+                  >
+                    + Agregar ejercicios a rutina
+                  </button>
+                )}
+              </div>
 
               {!rutinaActiva ? (
                 <div style={{ color: "#94a3b8" }}>Crea o selecciona una rutina para empezar a agregar ejercicios.</div>
