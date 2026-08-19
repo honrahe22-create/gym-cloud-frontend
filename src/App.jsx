@@ -264,17 +264,17 @@ const VIDEO_PREFIX_POR_MUSCULO = {
 };
 
 const ponerVideosLocales = (nombreMusculo, ejercicios = []) => {
-  const prefijo = VIDEO_PREFIX_POR_MUSCULO[nombreMusculo];
-  if (!prefijo) return ejercicios;
-
-  return ejercicios.slice(0, 30).map((ejercicio, index) => ({
+  // El catálogo GYM 30 actual ya entrega el medio exacto desde PostgreSQL
+  // (video_url / imagen_url), proveniente de gym30-generated.json.
+  //
+  // IMPORTANTE:
+  // Ya NO inventamos /videos/biceps-17.mp4, /videos/abdomen-22.mp4, etc.
+  // Esas rutas correlativas provocaban tarjetas negras cuando el archivo
+  // físico no existía y podían ocultar el GIF real enviado por el backend.
+  return (ejercicios || []).slice(0, 30).map((ejercicio) => ({
     ...ejercicio,
-    // A partir de la Fase 2 el backend entrega la ruta real generada.
-    // Si por compatibilidad una fila antigua no tiene video_url,
-    // usamos el nombre local correlativo como respaldo.
-    video_url:
-      ejercicio.video_url ||
-      `/videos/${prefijo}-${index + 1}.mp4`,
+    video_url: String(ejercicio?.video_url || "").trim(),
+    imagen_url: String(ejercicio?.imagen_url || "").trim(),
   }));
 };
 
@@ -660,7 +660,7 @@ useEffect(() => {
 
   const cargarRutinasSocio = async (socioId) => {
     try {
-      const res = await fetch(`${API_URL}/api/rutinas/socio/${socioId}`);
+      const res = await fetch(`${API_URL}/api/rutinas/socio/${socioId}?t=${Date.now()}`, { cache: "no-store" });
       const data = await res.json();
       if (data.ok) {
         setRutinasSocio(data.rutinas || []);
@@ -672,7 +672,7 @@ useEffect(() => {
 
   const cargarDetalleRutina = async (rutinaId) => {
     try {
-      const res = await fetch(`${API_URL}/api/rutina-detalle/${rutinaId}`);
+      const res = await fetch(`${API_URL}/api/rutina-detalle/${rutinaId}?t=${Date.now()}`, { cache: "no-store" });
       const data = await res.json();
       if (data.ok) {
         setDetalleRutina(data.detalles || []);
@@ -1266,7 +1266,7 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
       if (nivel && nivel !== "Todos") params.set("nivel", nivel);
 
       const res = await fetch(
-        `${API_URL}/api/disciplinas/${encodeURIComponent(nombreDisciplina)}/ejercicios?${params.toString()}`
+        `${API_URL}/api/disciplinas/${encodeURIComponent(nombreDisciplina)}/ejercicios?${params.toString()}&t=${Date.now()}`
       );
       const data = await res.json();
 
@@ -1294,7 +1294,7 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
     }
 
     try {
-      const res = await fetch(`${API_URL}/api/planes-disciplina/socio/${socioId}`);
+      const res = await fetch(`${API_URL}/api/planes-disciplina/socio/${socioId}?t=${Date.now()}`, { cache: "no-store" });
       const data = await res.json();
 
       if (data.ok) {
@@ -1317,7 +1317,7 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
 
   const cargarDetallePlanDisciplina = async (planId) => {
     try {
-      const res = await fetch(`${API_URL}/api/planes-disciplina/${planId}/detalle`);
+      const res = await fetch(`${API_URL}/api/planes-disciplina/${planId}/detalle?t=${Date.now()}`, { cache: "no-store" });
       const data = await res.json();
       if (data.ok) setDetallePlanDisciplina(data.detalles || []);
     } catch (error) {
@@ -1340,7 +1340,7 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
 
     if (socioSeleccionado?.id) {
       try {
-        const res = await fetch(`${API_URL}/api/planes-disciplina/socio/${socioSeleccionado.id}`);
+        const res = await fetch(`${API_URL}/api/planes-disciplina/socio/${socioSeleccionado.id}?t=${Date.now()}`, { cache: "no-store" });
         const data = await res.json();
         if (data.ok) {
           const planes = (data.planes || []).filter((p) => p.disciplina === nombreDisciplina);
