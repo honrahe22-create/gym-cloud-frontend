@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 250" role="img" aria-label="Planche lean">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop stop-color="#020617"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="420" height="250" rx="18" fill="url(#bg)"/>
+  <rect x="12" y="12" width="396" height="226" rx="15" fill="none" stroke="#22c55e" opacity=".45"/>
+  <text x="24" y="34" fill="#22c55e" font-family="Arial, sans-serif" font-size="13" font-weight="700">CALISTENIA · Avanzado</text>
+  <g transform="translate(12,25)">
+    
+        <g class="athlete">
+          <circle cx="120" cy="58" r="13" fill="#e2e8f0"/>
+          <path d="M120 142 L120 66 M94 92 L146 92" stroke="#e2e8f0" stroke-width="8" stroke-linecap="round" fill="none"/>
+          <path d="M120 84 L93 108 M120 84 L147 108 M120 122 L98 154 M120 122 L144 154"
+                stroke="#e2e8f0" stroke-width="7" stroke-linecap="round" fill="none"/>
+        </g>
+  </g>
+  <g filter="url(#glow)">
+    <path d="M250 92 C300 60 345 70 378 92" stroke="#22c55e" stroke-width="3" fill="none" stroke-dasharray="7 7" class="arrow"/>
+    <polygon points="378,92 365,84 368,100" fill="#22c55e"/>
+  </g>
+  <text x="250" y="122" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="15" font-weight="700">EQUILIBRIO</text>
+  <text x="250" y="146" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">Habilidad</text>
+  <foreignObject x="24" y="192" width="372" height="45">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial,sans-serif;font-size:15px;font-weight:700;color:white;line-height:1.15;overflow:hidden;">Planche lean</div>
+  </foreignObject>
+  <style>
+    .athlete {
+      transform-origin: 132px 120px;
+      animation: move 1.45s ease-in-out 0.60s infinite alternate;
+    }
+    .arm1 { animation: punch .75s ease-in-out 0.60s infinite alternate; transform-origin: 120px 86px; }
+    .arrow { animation: dash 1s linear infinite; }
+    .target { animation: pulse 1s ease-in-out infinite alternate; }
+    @keyframes move { from { transform:rotate(-5deg); } to { transform:rotate(5deg); } }
+    @keyframes punch { from { opacity:.72; } to { opacity:1; } }
+    @keyframes dash { to { stroke-dashoffset:-28; } }
+    @keyframes pulse { from { opacity:.35; } to { opacity:1; } }
+  </style>
+</svg>

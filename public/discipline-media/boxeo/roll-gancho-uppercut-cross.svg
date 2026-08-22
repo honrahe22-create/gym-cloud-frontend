@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 250" role="img" aria-label="Roll-gancho-uppercut-cross">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop stop-color="#020617"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="420" height="250" rx="18" fill="url(#bg)"/>
+  <rect x="12" y="12" width="396" height="226" rx="15" fill="none" stroke="#ef4444" opacity=".45"/>
+  <text x="24" y="34" fill="#ef4444" font-family="Arial, sans-serif" font-size="13" font-weight="700">BOXEO · Avanzado</text>
+  <g transform="translate(12,25)">
+    
+        <g class="athlete">
+          <circle cx="120" cy="55" r="14" fill="#f8fafc"/>
+          <path d="M120 70 L120 130 M120 128 L98 160 M120 128 L145 160"
+                stroke="#f8fafc" stroke-width="8" stroke-linecap="round" fill="none"/>
+          <path d="M120 90 Q155 112 166 66" stroke="#ef4444" stroke-width="10" stroke-linecap="round" fill="none" class="arm1"/>
+          <path d="M120 90 L84 100" stroke="#f8fafc" stroke-width="9" stroke-linecap="round" fill="none" class="arm2"/>
+          <circle cx="178" cy="76" r="9" fill="#ef4444" opacity=".85" class="target"/>
+        </g>
+  </g>
+  <g filter="url(#glow)">
+    <path d="M250 92 C300 60 345 70 378 92" stroke="#ef4444" stroke-width="3" fill="none" stroke-dasharray="7 7" class="arrow"/>
+    <polygon points="378,92 365,84 368,100" fill="#ef4444"/>
+  </g>
+  <text x="250" y="122" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="15" font-weight="700">↗ UPPERCUT</text>
+  <text x="250" y="146" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">Combinaciones</text>
+  <foreignObject x="24" y="192" width="372" height="45">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial,sans-serif;font-size:15px;font-weight:700;color:white;line-height:1.15;overflow:hidden;">Roll-gancho-uppercut-cross</div>
+  </foreignObject>
+  <style>
+    .athlete {
+      transform-origin: 132px 120px;
+      animation: move 1.45s ease-in-out 0.60s infinite alternate;
+    }
+    .arm1 { animation: punch .75s ease-in-out 0.60s infinite alternate; transform-origin: 120px 86px; }
+    .arrow { animation: dash 1s linear infinite; }
+    .target { animation: pulse 1s ease-in-out infinite alternate; }
+    @keyframes move { from { transform:translate(-3px 2px); } to { transform:translate(5px -2px); } }
+    @keyframes punch { from { opacity:.72; } to { opacity:1; } }
+    @keyframes dash { to { stroke-dashoffset:-28; } }
+    @keyframes pulse { from { opacity:.35; } to { opacity:1; } }
+  </style>
+</svg>
