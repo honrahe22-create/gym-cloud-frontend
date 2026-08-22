@@ -2658,11 +2658,18 @@ const CALISTHENICS_LOCAL_VIDEOS = {
   "Dominada supina": "/videos/calistenia/dominada-supina.mp4",
   "Fondos escapulares": "/videos/calistenia/fondos-escapulares.mp4",
   "Dominada ancho de hombros": "/videos/calistenia/dominada-ancho-hombros.mp4",
+
+  "Elevación de pantorrillas": "/videos/calistenia/elevacion-pantorrillas.gif",
+  "Remo invertido con rodillas flexionadas": "/videos/calistenia/remo-invertido-sillas.gif",
+  "Crunch invertido": "/videos/calistenia/crunch-invertido.gif",
+  "Flexiones diamante": "/videos/calistenia/flexiones-diamante-cerradas.gif",
+  "Burpee controlado": "/videos/calistenia/burpee.gif",
+  "Knee raises colgado": "/videos/calistenia/elevacion-rodillas-colgado.gif",
+  "Fondos en banco": "/videos/calistenia/fondos-en-banco.gif",
 };
 
 const BOXING_LOCAL_VIDEOS = {
-  // SOLO LOS VIDEOS REALES/ORIGINALES DEL MÓDULO.
-  // No se mezclan con las animaciones esquemáticas que se añadieron después.
+  // SOLO los videos reales/originales del módulo.
   "Guardia y movilidad": "/videos/boxeo/guardia-y-movilidad.mp4",
   "Jab directo": "/videos/boxeo/jab-directo.mp4",
   "Defensa en guardia": "/videos/boxeo/defensa-guardia.mp4",
@@ -2685,15 +2692,6 @@ const BOXING_LOCAL_VIDEOS = {
 const getDisciplineMedia = (discipline, ejercicio) => {
   if (!ejercicio) return { src: "", exact: false, type: "" };
 
-  // 1. Si la BD ya tiene un medio exacto, usarlo.
-  if (ejercicio.video_url) {
-    return {
-      src: ejercicio.video_url,
-      exact: true,
-      type: /\.gif(?:$|\?)/i.test(String(ejercicio.video_url)) ? "gif" : "video",
-    };
-  }
-
   const exactMap =
     discipline === "Calistenia"
       ? CALISTHENICS_LOCAL_VIDEOS
@@ -2704,17 +2702,31 @@ const getDisciplineMedia = (discipline, ejercicio) => {
     exactMap[ejercicio.ejercicio_nombre] ||
     "";
 
+  // PRIORIDAD 1:
+  // Si conocemos un archivo local REAL y exacto, siempre gana.
+  // Así un imagen_url SVG antiguo de PostgreSQL nunca tapa el medio real.
   if (exactSrc) {
-    return { src: exactSrc, exact: true, type: "video" };
+    return {
+      src: exactSrc,
+      exact: true,
+      type: /\.gif(?:$|\?)/i.test(String(exactSrc)) ? "gif" : "video",
+    };
   }
 
+  // PRIORIDAD 2: video exacto entregado por backend.
+  if (ejercicio.video_url) {
+    return {
+      src: ejercicio.video_url,
+      exact: true,
+      type: /\.gif(?:$|\?)/i.test(String(ejercicio.video_url)) ? "gif" : "video",
+    };
+  }
+
+  // PRIORIDAD 3: respaldo visual cuando aún no existe video real.
   if (ejercicio.imagen_url) {
-    return { src: ejercicio.imagen_url, exact: true, type: "image" };
+    return { src: ejercicio.imagen_url, exact: false, type: "image" };
   }
 
-  // IMPORTANTE:
-  // Ya no reutilizamos el video de otro ejercicio "por categoría".
-  // Eso era lo que hacía que flexiones/dominadas/etc. parecieran repetidas.
   return { src: "", exact: false, type: "" };
 };
 
