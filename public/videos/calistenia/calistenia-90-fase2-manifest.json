@@ -1,0 +1,618 @@
+[
+  {
+    "nombre": "Bird dog",
+    "nivel": "Principiante",
+    "terminos": [
+      "bird dog",
+      "quadruped bird dog"
+    ],
+    "forbid": [
+      "band",
+      "cable",
+      "machine"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Plancha alta",
+    "nivel": "Principiante",
+    "terminos": [
+      "high plank",
+      "plank",
+      "front plank",
+      "straight arm plank"
+    ],
+    "forbid": [
+      "side",
+      "incline",
+      "decline",
+      "ball",
+      "weighted"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Plancha con rodillas apoyadas",
+    "nivel": "Principiante",
+    "terminos": [
+      "knee plank",
+      "plank on knees",
+      "kneeling plank",
+      "modified plank",
+      "plank knees"
+    ],
+    "forbid": [
+      "side",
+      "ball"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Sentadilla isométrica en pared",
+    "nivel": "Principiante",
+    "terminos": [
+      "wall sit",
+      "wall squat hold"
+    ],
+    "forbid": [
+      "smith",
+      "barbell",
+      "dumbbell"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Step-up bajo",
+    "nivel": "Principiante",
+    "terminos": [
+      "step up",
+      "step-up",
+      "bodyweight step up"
+    ],
+    "forbid": [
+      "curl",
+      "dumbbell",
+      "barbell",
+      "kettlebell",
+      "weighted"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Colgado pasivo",
+    "nivel": "Principiante",
+    "terminos": [
+      "dead hang",
+      "passive hang"
+    ],
+    "forbid": [
+      "weighted"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Superman",
+    "nivel": "Principiante",
+    "terminos": [
+      "superman"
+    ],
+    "forbid": [],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Elevación de rodillas de pie",
+    "nivel": "Principiante",
+    "terminos": [
+      "standing knee raise",
+      "standing knee raises",
+      "standing knee drive"
+    ],
+    "forbid": [
+      "cable",
+      "machine"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Buenos días sin peso",
+    "nivel": "Principiante",
+    "terminos": [
+      "bodyweight good morning",
+      "good morning",
+      "good morning bodyweight"
+    ],
+    "forbid": [
+      "smith",
+      "barbell",
+      "band",
+      "dumbbell"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Desplante atrás asistido",
+    "nivel": "Principiante",
+    "terminos": [
+      "reverse lunge",
+      "backward lunge",
+      "assisted reverse lunge"
+    ],
+    "forbid": [
+      "barbell",
+      "dumbbell",
+      "kettlebell"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Sentadilla sumo",
+    "nivel": "Principiante",
+    "terminos": [
+      "sumo squat",
+      "bodyweight sumo squat"
+    ],
+    "forbid": [
+      "smith",
+      "barbell",
+      "dumbbell",
+      "kettlebell"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Hollow hold básico",
+    "nivel": "Principiante",
+    "terminos": [
+      "hollow hold",
+      "hollow body hold"
+    ],
+    "forbid": [
+      "weighted"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Pike push-up",
+    "nivel": "Intermedio",
+    "terminos": [
+      "pike push up",
+      "pike push-up",
+      "pike press"
+    ],
+    "forbid": [
+      "ball",
+      "bosu",
+      "dumbbell"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Sentadilla búlgara",
+    "nivel": "Intermedio",
+    "terminos": [
+      "bulgarian split squat",
+      "bodyweight bulgarian split squat"
+    ],
+    "forbid": [
+      "barbell",
+      "dumbbell",
+      "smith"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Pistol squat asistida",
+    "nivel": "Intermedio",
+    "terminos": [
+      "assisted pistol squat",
+      "pistol squat assisted"
+    ],
+    "forbid": [
+      "kettlebell",
+      "dumbbell",
+      "barbell"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Zancada lateral",
+    "nivel": "Intermedio",
+    "terminos": [
+      "lateral lunge",
+      "side lunge",
+      "bodyweight lateral lunge"
+    ],
+    "forbid": [
+      "barbell",
+      "dumbbell",
+      "smith"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Salto al cajón",
+    "nivel": "Intermedio",
+    "terminos": [
+      "box jump"
+    ],
+    "forbid": [
+      "down",
+      "stabilization",
+      "dumbbell",
+      "weighted"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Hollow rocks",
+    "nivel": "Intermedio",
+    "terminos": [
+      "hollow rock",
+      "hollow rocks",
+      "hollow body rock"
+    ],
+    "forbid": [
+      "weighted"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Toes to bar asistido",
+    "nivel": "Intermedio",
+    "terminos": [
+      "toes to bar",
+      "toes-to-bar",
+      "assisted toes to bar",
+      "toes to bar progression"
+    ],
+    "forbid": [
+      "weighted"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Dominada negativa",
+    "nivel": "Intermedio",
+    "terminos": [
+      "negative pull up",
+      "negative pull-up",
+      "eccentric pull up"
+    ],
+    "forbid": [
+      "machine"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Dominada agarre neutro",
+    "nivel": "Intermedio",
+    "terminos": [
+      "neutral grip pull up",
+      "neutral grip pull-up",
+      "parallel grip pull up"
+    ],
+    "forbid": [
+      "machine"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Plancha con toque de hombros",
+    "nivel": "Intermedio",
+    "terminos": [
+      "plank shoulder tap",
+      "shoulder tap plank",
+      "shoulder taps"
+    ],
+    "forbid": [
+      "incline",
+      "ball"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "L-sit tuck",
+    "nivel": "Intermedio",
+    "terminos": [
+      "tuck l sit",
+      "tuck l-sit"
+    ],
+    "forbid": [
+      "barbell",
+      "dumbbell",
+      "bosu",
+      "curl"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Handstand asistido",
+    "nivel": "Intermedio",
+    "terminos": [
+      "assisted handstand",
+      "wall handstand"
+    ],
+    "forbid": [
+      "push up"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Planche lean",
+    "nivel": "Avanzado",
+    "terminos": [
+      "planche lean",
+      "planche lean hold"
+    ],
+    "forbid": [],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Tuck planche",
+    "nivel": "Avanzado",
+    "terminos": [
+      "tuck planche"
+    ],
+    "forbid": [],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Pseudo planche push-up",
+    "nivel": "Avanzado",
+    "terminos": [
+      "pseudo planche push up",
+      "pseudo planche push-up"
+    ],
+    "forbid": [
+      "machine"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Flexiones a una mano asistidas",
+    "nivel": "Avanzado",
+    "terminos": [
+      "assisted one arm push up",
+      "one arm push up",
+      "one arm push up assisted"
+    ],
+    "forbid": [
+      "dumbbell",
+      "machine"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Flexiones a una mano",
+    "nivel": "Avanzado",
+    "terminos": [
+      "one arm push up",
+      "one-arm push-up"
+    ],
+    "forbid": [
+      "assisted",
+      "dumbbell",
+      "machine"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Dominada explosiva al pecho",
+    "nivel": "Avanzado",
+    "terminos": [
+      "explosive pull up",
+      "chest to bar pull up"
+    ],
+    "forbid": [
+      "machine"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Dominada typewriter",
+    "nivel": "Avanzado",
+    "terminos": [
+      "typewriter pull up",
+      "typewriter pull-up"
+    ],
+    "forbid": [
+      "machine"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Dominada L-sit",
+    "nivel": "Avanzado",
+    "terminos": [
+      "l sit pull up",
+      "l-sit pull-up"
+    ],
+    "forbid": [
+      "machine"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Fondos profundos",
+    "nivel": "Avanzado",
+    "terminos": [
+      "deep dip",
+      "deep dips",
+      "deep parallel bar dip"
+    ],
+    "forbid": [
+      "bench"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Pistol squat",
+    "nivel": "Avanzado",
+    "terminos": [
+      "pistol squat",
+      "bodyweight pistol squat"
+    ],
+    "forbid": [
+      "kettlebell",
+      "dumbbell",
+      "barbell"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Shrimp squat",
+    "nivel": "Avanzado",
+    "terminos": [
+      "shrimp squat"
+    ],
+    "forbid": [
+      "weighted"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Nordic curl asistido",
+    "nivel": "Avanzado",
+    "terminos": [
+      "assisted nordic curl",
+      "nordic hamstring curl",
+      "assisted nordic hamstring curl"
+    ],
+    "forbid": [
+      "machine"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Nordic curl",
+    "nivel": "Avanzado",
+    "terminos": [
+      "nordic curl",
+      "nordic hamstring curl"
+    ],
+    "forbid": [
+      "assisted",
+      "machine"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Dragon flag",
+    "nivel": "Avanzado",
+    "terminos": [
+      "dragon flag"
+    ],
+    "forbid": [],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Toes to bar estricto",
+    "nivel": "Avanzado",
+    "terminos": [
+      "toes to bar",
+      "toes-to-bar",
+      "strict toes to bar"
+    ],
+    "forbid": [
+      "assisted"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "L-sit completo",
+    "nivel": "Avanzado",
+    "terminos": [
+      "l sit",
+      "l-sit",
+      "l sit hold"
+    ],
+    "forbid": [
+      "barbell",
+      "dumbbell",
+      "bosu",
+      "curl",
+      "leg raise"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "V-sit progresión",
+    "nivel": "Avanzado",
+    "terminos": [
+      "v sit",
+      "v-sit",
+      "v sit hold"
+    ],
+    "forbid": [
+      "dumbbell",
+      "bosu",
+      "curl",
+      "biceps"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Human flag tuck",
+    "nivel": "Avanzado",
+    "terminos": [
+      "tuck human flag",
+      "human flag",
+      "human flag tuck"
+    ],
+    "forbid": [],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Human flag progresión",
+    "nivel": "Avanzado",
+    "terminos": [
+      "human flag",
+      "human flag progression"
+    ],
+    "forbid": [],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  }
+]

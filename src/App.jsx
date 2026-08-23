@@ -2638,6 +2638,14 @@ const seleccionarMusculoPorNombre = async (nombreMusculo) => {
 
 
 
+const slugDisciplinaFinal = (valor = "") =>
+  String(valor || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 const CALISTHENICS_LOCAL_VIDEOS = {
   "Flexiones inclinadas": "/videos/calistenia/flexiones-inclinadas.mp4",
   "Sentadilla al aire": "/videos/calistenia/sentadilla-aire.mp4",
@@ -2658,7 +2666,6 @@ const CALISTHENICS_LOCAL_VIDEOS = {
   "Dominada supina": "/videos/calistenia/dominada-supina.mp4",
   "Fondos escapulares": "/videos/calistenia/fondos-escapulares.mp4",
   "Dominada ancho de hombros": "/videos/calistenia/dominada-ancho-hombros.mp4",
-
   "Elevación de pantorrillas": "/videos/calistenia/elevacion-pantorrillas.gif",
   "Remo invertido con rodillas flexionadas": "/videos/calistenia/remo-invertido-sillas.gif",
   "Crunch invertido": "/videos/calistenia/crunch-invertido.gif",
@@ -2666,45 +2673,49 @@ const CALISTHENICS_LOCAL_VIDEOS = {
   "Burpee controlado": "/videos/calistenia/burpee.gif",
   "Knee raises colgado": "/videos/calistenia/elevacion-rodillas-colgado.gif",
   "Fondos en banco": "/videos/calistenia/fondos-en-banco.gif",
+  "Dead bug": "/videos/calistenia/cal-dead-bug.gif",
+  "Flexión escapular": "/videos/calistenia/cal-flexion-escapular.gif",
+  "Colgado activo": "/videos/calistenia/cal-colgado-activo.gif",
+  "Mountain climber lento": "/videos/calistenia/cal-mountain-climber-lento.gif",
+  "Bear crawl básico": "/videos/calistenia/cal-bear-crawl-basico.gif",
+  "Flexiones declinadas": "/videos/calistenia/cal-flexiones-declinadas.gif",
+  "Flexiones archer asistidas": "/videos/calistenia/cal-flexiones-archer-asistidas.gif",
+  "Remo australiano pies elevados": "/videos/calistenia/cal-remo-australiano-pies-elevados.gif",
+  "Bear crawl lateral": "/videos/calistenia/cal-bear-crawl-lateral.gif",
+  "Muscle-up estricto": "/videos/calistenia/cal-muscle-up-estricto.gif",
+  "Muscle-up explosivo": "/videos/calistenia/cal-muscle-up-explosivo.gif",
+  "Handstand push-up": "/videos/calistenia/cal-handstand-push-up.gif",
+  "Handstand libre": "/videos/calistenia/cal-handstand-libre.gif",
+  "Front lever tuck": "/videos/calistenia/cal-front-lever-tuck.gif",
+  "Front lever avanzado": "/videos/calistenia/cal-front-lever-avanzado.gif",
+  "Back lever tuck": "/videos/calistenia/cal-back-lever-tuck.gif",
+  "Back lever avanzado": "/videos/calistenia/cal-back-lever-avanzado.gif",
+  "Flexiones archer": "/videos/calistenia/cal-flexiones-archer.gif",
+  "Dominada archer": "/videos/calistenia/cal-dominada-archer.gif",
+  "Fondos coreanos": "/videos/calistenia/cal-fondos-coreanos.gif",
 };
 
 const BOXING_LOCAL_VIDEOS = {
-  // SOLO los videos reales/originales del módulo.
-  "Guardia y movilidad": "/videos/boxeo/guardia-y-movilidad.mp4",
-  "Jab directo": "/videos/boxeo/jab-directo.mp4",
-  "Defensa en guardia": "/videos/boxeo/defensa-guardia.mp4",
-  "Sombra básica": "/videos/boxeo/sombra-basica.mp4",
-  "Trabajo en saco básico": "/videos/boxeo/trabajo-en-saco.mp4",
-
-  "Golpes de potencia": "/videos/boxeo/golpes-potencia.mp4",
-  "Saco con combinaciones": "/videos/boxeo/saco-combinaciones.mp4",
-  "Combinaciones con pareja": "/videos/boxeo/combinaciones-con-pareja.mp4",
-  "Manoplas - combinación": "/videos/boxeo/manoplas-combinacion.mp4",
-  "Manoplas - velocidad": "/videos/boxeo/manoplas-velocidad.mp4",
-
-  "Sparring defensa y contraataque": "/videos/boxeo/sparring-defensa-contraataque.mp4",
-  "Sparring técnico": "/videos/boxeo/sparring-tecnico.mp4",
-  "Boxeo de potencia avanzado": "/videos/boxeo/boxeo-potencia-avanzado.mp4",
-  "Manoplas de alta intensidad": "/videos/boxeo/manoplas-intensidad.mp4",
-  "Combinación avanzada": "/videos/boxeo/combinacion-avanzada.mp4",
+  // Boxeo final: los 90 ejercicios usan videos derivados de los clips reales
+  // existentes en /public/videos/boxeo. El generador crea un archivo por ejercicio.
 };
 
 const getDisciplineMedia = (discipline, ejercicio) => {
   if (!ejercicio) return { src: "", exact: false, type: "" };
 
-  const exactMap =
-    discipline === "Calistenia"
-      ? CALISTHENICS_LOCAL_VIDEOS
-      : BOXING_LOCAL_VIDEOS;
-
-  const exactSrc =
-    exactMap[ejercicio.nombre] ||
-    exactMap[ejercicio.ejercicio_nombre] ||
+  const nombre =
+    ejercicio.nombre ||
+    ejercicio.ejercicio_nombre ||
     "";
 
-  // PRIORIDAD 1:
-  // Si conocemos un archivo local REAL y exacto, siempre gana.
-  // Así un imagen_url SVG antiguo de PostgreSQL nunca tapa el medio real.
+  if (discipline === "Boxeo") {
+    // El generador final crea 90 MP4, uno por ejercicio.
+    const src = `/discipline-final/boxeo/${slugDisciplinaFinal(nombre)}.mp4`;
+    return { src, exact: true, type: "video" };
+  }
+
+  const exactSrc = CALISTHENICS_LOCAL_VIDEOS[nombre] || "";
+
   if (exactSrc) {
     return {
       src: exactSrc,
@@ -2713,21 +2724,12 @@ const getDisciplineMedia = (discipline, ejercicio) => {
     };
   }
 
-  // PRIORIDAD 2: video exacto entregado por backend.
-  if (ejercicio.video_url) {
-    return {
-      src: ejercicio.video_url,
-      exact: true,
-      type: /\.gif(?:$|\?)/i.test(String(ejercicio.video_url)) ? "gif" : "video",
-    };
-  }
+  // Cuando no existe un demo real verificado, mostramos una animación técnica
+  // propia del movimiento, nunca un GIF de otro ejercicio.
+  const src =
+    `/discipline-final/calistenia/${slugDisciplinaFinal(nombre)}.svg`;
 
-  // PRIORIDAD 3: respaldo visual cuando aún no existe video real.
-  if (ejercicio.imagen_url) {
-    return { src: ejercicio.imagen_url, exact: false, type: "image" };
-  }
-
-  return { src: "", exact: false, type: "" };
+  return { src, exact: false, type: "image" };
 };
 
 const getDisciplineLocalVideo = (discipline, ejercicio) =>

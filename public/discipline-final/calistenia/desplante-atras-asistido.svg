@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 240">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1"><stop stop-color="#020617"/><stop offset="1" stop-color="#111827"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="420" height="240" rx="18" fill="url(#bg)"/>
+  <rect x="12" y="12" width="396" height="216" rx="14" fill="none" stroke="#22c55e" opacity=".45"/>
+  <text x="22" y="34" fill="#22c55e" font-size="13" font-weight="700" font-family="Arial">PRINCIPIANTE · PIERNAS</text>
+  <g filter="url(#glow)">
+    <circle cx="195" cy="58" r="15" fill="#e5e7eb"/>
+    <path d="M195 78 L195 125 L160 158 M195 125 L235 158" fill="none" stroke="#e5e7eb" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 -5;0 0" dur="1.6s" repeatCount="indefinite"/>
+    </path>
+    <circle cx="195" cy="58" r="15" fill="#e5e7eb">
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 -5;0 0" dur="1.6s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  <path d="M315 92 C350 80 370 88 388 105" fill="none" stroke="#22c55e" stroke-width="4" stroke-dasharray="7 7">
+    <animate attributeName="stroke-dashoffset" values="0;-28" dur="1s" repeatCount="indefinite"/>
+  </path>
+  <polygon points="388,105 374,97 378,114" fill="#22c55e"/>
+  <text x="22" y="197" fill="#f8fafc" font-size="17" font-weight="700" font-family="Arial">Desplante atrás asistido</text>
+  <text x="22" y="219" fill="#94a3b8" font-size="11" font-family="Arial">Animación técnica específica · no reemplaza demostración de entrenador</text>
+</svg>

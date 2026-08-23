@@ -1,0 +1,752 @@
+[
+  {
+    "nombre": "Dead bug",
+    "nivel": "Principiante",
+    "terminos": [
+      "dead bug"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-dead-bug.gif",
+    "exerciseId": "iny3m5y",
+    "fuente": "dead bug",
+    "score": 10100
+  },
+  {
+    "nombre": "Bird dog",
+    "nivel": "Principiante",
+    "terminos": [
+      "bird dog"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Plancha alta",
+    "nivel": "Principiante",
+    "terminos": [
+      "high plank",
+      "plank"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-plancha-alta.gif",
+    "exerciseId": "5VXmnV5",
+    "fuente": "bodyweight incline side plank",
+    "score": 7100
+  },
+  {
+    "nombre": "Plancha con rodillas apoyadas",
+    "nivel": "Principiante",
+    "terminos": [
+      "knee plank",
+      "plank on knees"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Sentadilla isométrica en pared",
+    "nivel": "Principiante",
+    "terminos": [
+      "wall sit"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Step-up bajo",
+    "nivel": "Principiante",
+    "terminos": [
+      "step up",
+      "step-up"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-step-up-bajo.gif",
+    "exerciseId": "76vfTdU",
+    "fuente": "dumbbell step up single leg balance with bicep curl",
+    "score": 7100
+  },
+  {
+    "nombre": "Flexión de rodillas apoyadas",
+    "nivel": "Principiante",
+    "terminos": [
+      "knee push up",
+      "kneeling push up"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-flexion-de-rodillas-apoyadas.gif",
+    "exerciseId": "ZOuKWir",
+    "fuente": "kneeling push-up (male)",
+    "score": 7100
+  },
+  {
+    "nombre": "Flexión escapular",
+    "nivel": "Principiante",
+    "terminos": [
+      "scapular push up",
+      "scapula push-up"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-flexion-escapular.gif",
+    "exerciseId": "jV65tKx",
+    "fuente": "scapula push-up",
+    "score": 10100
+  },
+  {
+    "nombre": "Colgado pasivo",
+    "nivel": "Principiante",
+    "terminos": [
+      "dead hang",
+      "passive hang"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Colgado activo",
+    "nivel": "Principiante",
+    "terminos": [
+      "active hang",
+      "scapular pull up"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-colgado-activo.gif",
+    "exerciseId": "uTBt1HV",
+    "fuente": "scapular pull-up",
+    "score": 10100
+  },
+  {
+    "nombre": "Superman",
+    "nivel": "Principiante",
+    "terminos": [
+      "superman"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-superman.gif",
+    "exerciseId": "4GqRrAk",
+    "fuente": "superman push-up",
+    "score": 7100
+  },
+  {
+    "nombre": "Mountain climber lento",
+    "nivel": "Principiante",
+    "terminos": [
+      "mountain climber"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-mountain-climber-lento.gif",
+    "exerciseId": "RJgzwny",
+    "fuente": "mountain climber",
+    "score": 10100
+  },
+  {
+    "nombre": "Elevación de rodillas de pie",
+    "nivel": "Principiante",
+    "terminos": [
+      "standing knee raise",
+      "standing knee raises"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Buenos días sin peso",
+    "nivel": "Principiante",
+    "terminos": [
+      "bodyweight good morning",
+      "good morning"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-buenos-dias-sin-peso.gif",
+    "exerciseId": "1bQkKZK",
+    "fuente": "smith bent knee good morning",
+    "score": 7100
+  },
+  {
+    "nombre": "Desplante atrás asistido",
+    "nivel": "Principiante",
+    "terminos": [
+      "reverse lunge",
+      "backward lunge"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Sentadilla sumo",
+    "nivel": "Principiante",
+    "terminos": [
+      "sumo squat"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-sentadilla-sumo.gif",
+    "exerciseId": "dzz6BiV",
+    "fuente": "smith sumo squat",
+    "score": 7100
+  },
+  {
+    "nombre": "Bear crawl básico",
+    "nivel": "Principiante",
+    "terminos": [
+      "bear crawl"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-bear-crawl-basico.gif",
+    "exerciseId": "0Yz8WdV",
+    "fuente": "bear crawl",
+    "score": 10100
+  },
+  {
+    "nombre": "Hollow hold básico",
+    "nivel": "Principiante",
+    "terminos": [
+      "hollow hold",
+      "hollow body hold"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Flexiones declinadas",
+    "nivel": "Intermedio",
+    "terminos": [
+      "decline push up",
+      "decline push-up"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-flexiones-declinadas.gif",
+    "exerciseId": "i5cEhka",
+    "fuente": "decline push-up",
+    "score": 10100
+  },
+  {
+    "nombre": "Flexiones archer asistidas",
+    "nivel": "Intermedio",
+    "terminos": [
+      "archer push up",
+      "archer push-up"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-flexiones-archer-asistidas.gif",
+    "exerciseId": "A9qxk2F",
+    "fuente": "archer push up",
+    "score": 10100
+  },
+  {
+    "nombre": "Pike push-up",
+    "nivel": "Intermedio",
+    "terminos": [
+      "pike push up",
+      "pike push-up"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-pike-push-up.gif",
+    "exerciseId": "sVvXT5J",
+    "fuente": "exercise ball pike push up",
+    "score": 7100
+  },
+  {
+    "nombre": "Sentadilla búlgara",
+    "nivel": "Intermedio",
+    "terminos": [
+      "bulgarian split squat"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Pistol squat asistida",
+    "nivel": "Intermedio",
+    "terminos": [
+      "assisted pistol squat",
+      "pistol squat assisted"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Zancada lateral",
+    "nivel": "Intermedio",
+    "terminos": [
+      "lateral lunge",
+      "side lunge"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-zancada-lateral.gif",
+    "exerciseId": "py1HSzx",
+    "fuente": "barbell lateral lunge",
+    "score": 7100
+  },
+  {
+    "nombre": "Salto al cajón",
+    "nivel": "Intermedio",
+    "terminos": [
+      "box jump"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-salto-al-cajon.gif",
+    "exerciseId": "iPm26QU",
+    "fuente": "box jump down with one leg stabilization",
+    "score": 7100
+  },
+  {
+    "nombre": "Hollow rocks",
+    "nivel": "Intermedio",
+    "terminos": [
+      "hollow rock",
+      "hollow rocks"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Toes to bar asistido",
+    "nivel": "Intermedio",
+    "terminos": [
+      "toes to bar",
+      "toes-to-bar"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Remo australiano pies elevados",
+    "nivel": "Intermedio",
+    "terminos": [
+      "feet elevated inverted row",
+      "inverted row"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-remo-australiano-pies-elevados.gif",
+    "exerciseId": "bZGHsAZ",
+    "fuente": "inverted row",
+    "score": 10100
+  },
+  {
+    "nombre": "Dominada negativa",
+    "nivel": "Intermedio",
+    "terminos": [
+      "negative pull up",
+      "negative pull-up"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Dominada agarre neutro",
+    "nivel": "Intermedio",
+    "terminos": [
+      "neutral grip pull up",
+      "neutral grip pull-up"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Plancha con toque de hombros",
+    "nivel": "Intermedio",
+    "terminos": [
+      "plank shoulder tap",
+      "shoulder tap plank"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "L-sit tuck",
+    "nivel": "Intermedio",
+    "terminos": [
+      "tuck l sit",
+      "tuck l-sit"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Handstand asistido",
+    "nivel": "Intermedio",
+    "terminos": [
+      "assisted handstand",
+      "wall handstand"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Bear crawl lateral",
+    "nivel": "Intermedio",
+    "terminos": [
+      "lateral bear crawl",
+      "bear crawl"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-bear-crawl-lateral.gif",
+    "exerciseId": "0Yz8WdV",
+    "fuente": "bear crawl",
+    "score": 10100
+  },
+  {
+    "nombre": "Muscle-up estricto",
+    "nivel": "Avanzado",
+    "terminos": [
+      "muscle up",
+      "muscle-up"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-muscle-up-estricto.gif",
+    "exerciseId": "yJUHKTn",
+    "fuente": "muscle up",
+    "score": 10100
+  },
+  {
+    "nombre": "Muscle-up explosivo",
+    "nivel": "Avanzado",
+    "terminos": [
+      "explosive muscle up",
+      "muscle-up"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-muscle-up-explosivo.gif",
+    "exerciseId": "yJUHKTn",
+    "fuente": "muscle up",
+    "score": 10100
+  },
+  {
+    "nombre": "Handstand push-up",
+    "nivel": "Avanzado",
+    "terminos": [
+      "handstand push up",
+      "handstand push-up"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-handstand-push-up.gif",
+    "exerciseId": "rQxwMxO",
+    "fuente": "handstand push-up",
+    "score": 10100
+  },
+  {
+    "nombre": "Handstand libre",
+    "nivel": "Avanzado",
+    "terminos": [
+      "handstand"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-handstand-libre.gif",
+    "exerciseId": "XooAdhl",
+    "fuente": "handstand",
+    "score": 10100
+  },
+  {
+    "nombre": "Front lever tuck",
+    "nivel": "Avanzado",
+    "terminos": [
+      "tuck front lever",
+      "front lever"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-front-lever-tuck.gif",
+    "exerciseId": "PkCN2lv",
+    "fuente": "front lever",
+    "score": 10100
+  },
+  {
+    "nombre": "Front lever avanzado",
+    "nivel": "Avanzado",
+    "terminos": [
+      "front lever"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-front-lever-avanzado.gif",
+    "exerciseId": "PkCN2lv",
+    "fuente": "front lever",
+    "score": 10100
+  },
+  {
+    "nombre": "Back lever tuck",
+    "nivel": "Avanzado",
+    "terminos": [
+      "tuck back lever",
+      "back lever"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-back-lever-tuck.gif",
+    "exerciseId": "GaSzzuh",
+    "fuente": "back lever",
+    "score": 10100
+  },
+  {
+    "nombre": "Back lever avanzado",
+    "nivel": "Avanzado",
+    "terminos": [
+      "back lever"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-back-lever-avanzado.gif",
+    "exerciseId": "GaSzzuh",
+    "fuente": "back lever",
+    "score": 10100
+  },
+  {
+    "nombre": "Planche lean",
+    "nivel": "Avanzado",
+    "terminos": [
+      "planche lean"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Tuck planche",
+    "nivel": "Avanzado",
+    "terminos": [
+      "tuck planche"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Pseudo planche push-up",
+    "nivel": "Avanzado",
+    "terminos": [
+      "pseudo planche push up",
+      "pseudo planche push-up"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Flexiones archer",
+    "nivel": "Avanzado",
+    "terminos": [
+      "archer push up",
+      "archer push-up"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-flexiones-archer.gif",
+    "exerciseId": "A9qxk2F",
+    "fuente": "archer push up",
+    "score": 10100
+  },
+  {
+    "nombre": "Flexiones a una mano asistidas",
+    "nivel": "Avanzado",
+    "terminos": [
+      "assisted one arm push up",
+      "one arm push up"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Flexiones a una mano",
+    "nivel": "Avanzado",
+    "terminos": [
+      "one arm push up",
+      "one-arm push-up"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Dominada explosiva al pecho",
+    "nivel": "Avanzado",
+    "terminos": [
+      "explosive pull up",
+      "chest to bar pull up"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Dominada archer",
+    "nivel": "Avanzado",
+    "terminos": [
+      "archer pull up",
+      "archer pull-up"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-dominada-archer.gif",
+    "exerciseId": "72BC5Za",
+    "fuente": "archer pull up",
+    "score": 10100
+  },
+  {
+    "nombre": "Dominada typewriter",
+    "nivel": "Avanzado",
+    "terminos": [
+      "typewriter pull up",
+      "typewriter pull-up"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Dominada L-sit",
+    "nivel": "Avanzado",
+    "terminos": [
+      "l sit pull up",
+      "l-sit pull-up"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Fondos coreanos",
+    "nivel": "Avanzado",
+    "terminos": [
+      "korean dip",
+      "korean dips"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-fondos-coreanos.gif",
+    "exerciseId": "rWoBmi5",
+    "fuente": "korean dips",
+    "score": 10100
+  },
+  {
+    "nombre": "Fondos profundos",
+    "nivel": "Avanzado",
+    "terminos": [
+      "deep dip",
+      "deep dips"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Pistol squat",
+    "nivel": "Avanzado",
+    "terminos": [
+      "pistol squat"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-pistol-squat.gif",
+    "exerciseId": "5bpPTHv",
+    "fuente": "kettlebell pistol squat",
+    "score": 7100
+  },
+  {
+    "nombre": "Shrimp squat",
+    "nivel": "Avanzado",
+    "terminos": [
+      "shrimp squat"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Nordic curl asistido",
+    "nivel": "Avanzado",
+    "terminos": [
+      "assisted nordic curl",
+      "nordic hamstring curl"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Nordic curl",
+    "nivel": "Avanzado",
+    "terminos": [
+      "nordic curl",
+      "nordic hamstring curl"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Dragon flag",
+    "nivel": "Avanzado",
+    "terminos": [
+      "dragon flag"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Toes to bar estricto",
+    "nivel": "Avanzado",
+    "terminos": [
+      "toes to bar",
+      "toes-to-bar"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "L-sit completo",
+    "nivel": "Avanzado",
+    "terminos": [
+      "l sit",
+      "l-sit"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-l-sit-completo.gif",
+    "exerciseId": "BCs0G2F",
+    "fuente": "barbell sitted alternate leg raise (female)",
+    "score": 7100
+  },
+  {
+    "nombre": "V-sit progresión",
+    "nivel": "Avanzado",
+    "terminos": [
+      "v sit",
+      "v-sit"
+    ],
+    "estado": "OK",
+    "archivo": "/videos/calistenia/cal-v-sit-progresion.gif",
+    "exerciseId": "H1XAdpk",
+    "fuente": "dumbbell biceps curl v sit on bosu ball",
+    "score": 7100
+  },
+  {
+    "nombre": "Human flag tuck",
+    "nivel": "Avanzado",
+    "terminos": [
+      "tuck human flag",
+      "human flag"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  },
+  {
+    "nombre": "Human flag progresión",
+    "nivel": "Avanzado",
+    "terminos": [
+      "human flag"
+    ],
+    "estado": "SIN_COINCIDENCIA",
+    "archivo": "",
+    "exerciseId": ""
+  }
+]
