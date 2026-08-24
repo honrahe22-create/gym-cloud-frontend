@@ -1,0 +1,2292 @@
+[
+  {
+    "nombre": "Flexiones inclinadas",
+    "categoria": "Empuje",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Flexiones inclinadas",
+      "incline push up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Incline Push-up",
+    "exerciseId": "exr_41n2hXXpvbykPY3q",
+    "score": 10000,
+    "archivo": "/media-v2/calistenia/principiante/flexiones-inclinadas.mp4"
+  },
+  {
+    "nombre": "Sentadilla al aire",
+    "categoria": "Piernas",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Sentadilla al aire",
+      "bodyweight squat",
+      "air squat"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Plancha frontal",
+    "categoria": "Core",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Plancha frontal",
+      "front plank",
+      "plank"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Front Plank",
+    "exerciseId": "exr_41n2hXQw5yAbbXL8",
+    "score": 10000,
+    "archivo": "/media-v2/calistenia/principiante/plancha-frontal.mp4"
+  },
+  {
+    "nombre": "Remo australiano",
+    "categoria": "Tirón",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Remo australiano",
+      "inverted row",
+      "australian pull up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Pull-up",
+    "exerciseId": "exr_41n2hsBtDXapcADg",
+    "score": 8533,
+    "archivo": "/media-v2/calistenia/principiante/remo-australiano.mp4"
+  },
+  {
+    "nombre": "Puente de glúteos",
+    "categoria": "Piernas",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Puente de glúteos",
+      "glute bridge"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Flexiones clásicas",
+    "categoria": "Empuje",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Flexiones clásicas",
+      "push up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Push-up",
+    "exerciseId": "exr_41n2hNXJadYcfjnd",
+    "score": 10000,
+    "archivo": "/media-v2/calistenia/principiante/flexiones-clasicas.mp4"
+  },
+  {
+    "nombre": "Dominada asistida",
+    "categoria": "Tirón",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Dominada asistida",
+      "assisted pull up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Commando Pull-up",
+    "exerciseId": "exr_41n2hVCJfpAvJcdU",
+    "score": 8533,
+    "archivo": "/media-v2/calistenia/principiante/dominada-asistida.mp4"
+  },
+  {
+    "nombre": "Fondos asistidos",
+    "categoria": "Empuje",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Fondos asistidos",
+      "assisted dip"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Zancadas alternas",
+    "categoria": "Piernas",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Zancadas alternas",
+      "alternating lunge"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Dead bug",
+    "categoria": "Core",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Dead bug",
+      "dead bug"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Bird dog",
+    "categoria": "Core",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Bird dog",
+      "bird dog"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Plancha alta",
+    "categoria": "Core",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Plancha alta",
+      "high plank",
+      "straight arm plank"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Plancha con rodillas apoyadas",
+    "categoria": "Core",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Plancha con rodillas apoyadas",
+      "kneeling plank",
+      "plank on knees"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Sentadilla isométrica en pared",
+    "categoria": "Piernas",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Sentadilla isométrica en pared",
+      "wall sit"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Step-up bajo",
+    "categoria": "Piernas",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Step-up bajo",
+      "step up"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Elevación de pantorrillas",
+    "categoria": "Piernas",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Elevación de pantorrillas",
+      "calf raise"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Seated Calf Raise",
+    "exerciseId": "exr_41n2hTs4q3ihihZs",
+    "score": 8533,
+    "archivo": "/media-v2/calistenia/principiante/elevacion-de-pantorrillas.mp4"
+  },
+  {
+    "nombre": "Flexión de rodillas apoyadas",
+    "categoria": "Empuje",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Flexión de rodillas apoyadas",
+      "knee push up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Decline Push-Up",
+    "exerciseId": "exr_41n2hGUso7JFmuYR",
+    "score": 8533,
+    "archivo": "/media-v2/calistenia/principiante/flexion-de-rodillas-apoyadas.mp4"
+  },
+  {
+    "nombre": "Flexión escapular",
+    "categoria": "Empuje",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Flexión escapular",
+      "scapular push up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Clap Push Up",
+    "exerciseId": "exr_41n2hkmMrSwcHkZ8",
+    "score": 8533,
+    "archivo": "/media-v2/calistenia/principiante/flexion-escapular.mp4"
+  },
+  {
+    "nombre": "Remo invertido con rodillas flexionadas",
+    "categoria": "Tirón",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Remo invertido con rodillas flexionadas",
+      "inverted row knees bent"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Colgado pasivo",
+    "categoria": "Agarre",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Colgado pasivo",
+      "dead hang"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Colgado activo",
+    "categoria": "Agarre",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Colgado activo",
+      "active hang",
+      "scapular pull up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Commando Pull-up",
+    "exerciseId": "exr_41n2hVCJfpAvJcdU",
+    "score": 8533,
+    "archivo": "/media-v2/calistenia/principiante/colgado-activo.mp4"
+  },
+  {
+    "nombre": "Superman",
+    "categoria": "Core",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Superman",
+      "superman"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Mountain climber lento",
+    "categoria": "Core",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Mountain climber lento",
+      "mountain climber"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Bridge - Mountain Climber ",
+    "exerciseId": "exr_41n2ha5iPFpN3hEJ",
+    "score": 8533,
+    "archivo": "/media-v2/calistenia/principiante/mountain-climber-lento.mp4"
+  },
+  {
+    "nombre": "Crunch invertido",
+    "categoria": "Core",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Crunch invertido",
+      "reverse crunch"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Elevación de rodillas de pie",
+    "categoria": "Core",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Elevación de rodillas de pie",
+      "standing knee raise"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Standing Calf Raise",
+    "exerciseId": "exr_41n2hdWu3oaCGdWT",
+    "score": 8533,
+    "archivo": "/media-v2/calistenia/principiante/elevacion-de-rodillas-de-pie.mp4"
+  },
+  {
+    "nombre": "Buenos días sin peso",
+    "categoria": "Piernas",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Buenos días sin peso",
+      "bodyweight good morning"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Desplante atrás asistido",
+    "categoria": "Piernas",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Desplante atrás asistido",
+      "assisted reverse lunge",
+      "reverse lunge"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Reverse Lunge ",
+    "exerciseId": "exr_41n2hGNrmUnF58Yy",
+    "score": 10000,
+    "archivo": "/media-v2/calistenia/principiante/desplante-atras-asistido.mp4"
+  },
+  {
+    "nombre": "Sentadilla sumo",
+    "categoria": "Piernas",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Sentadilla sumo",
+      "bodyweight sumo squat"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Sumo Squat",
+    "exerciseId": "exr_41n2hYAP9oGEZk2P",
+    "score": 8533,
+    "archivo": "/media-v2/calistenia/principiante/sentadilla-sumo.mp4"
+  },
+  {
+    "nombre": "Bear crawl básico",
+    "categoria": "Locomoción",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Bear crawl básico",
+      "bear crawl"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Hollow hold básico",
+    "categoria": "Core",
+    "nivel": "Principiante",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Hollow hold básico",
+      "hollow body hold"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Fondos en paralelas",
+    "categoria": "Empuje",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Fondos en paralelas",
+      "parallel bar dip"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Dominadas estrictas",
+    "categoria": "Tirón",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Dominadas estrictas",
+      "strict pull up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Commando Pull-up",
+    "exerciseId": "exr_41n2hVCJfpAvJcdU",
+    "score": 8533,
+    "archivo": "/media-v2/calistenia/intermedio/dominadas-estrictas.mp4"
+  },
+  {
+    "nombre": "V-Up",
+    "categoria": "Core",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "V-Up",
+      "v up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "V-up ",
+    "exerciseId": "exr_41n2huc12BsuDNYQ",
+    "score": 10000,
+    "archivo": "/media-v2/calistenia/intermedio/v-up.mp4"
+  },
+  {
+    "nombre": "Flexiones cerradas",
+    "categoria": "Empuje",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Flexiones cerradas",
+      "close grip push up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Close-grip Push-up",
+    "exerciseId": "exr_41n2hPgRbN1KtJuD",
+    "score": 10000,
+    "archivo": "/media-v2/calistenia/intermedio/flexiones-cerradas.mp4"
+  },
+  {
+    "nombre": "Elevación vertical de piernas",
+    "categoria": "Core",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Elevación vertical de piernas",
+      "vertical leg raise"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Plancha lateral",
+    "categoria": "Core",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Plancha lateral",
+      "side plank"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Dominada commando",
+    "categoria": "Tirón",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Dominada commando",
+      "commando pull up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Commando Pull-up",
+    "exerciseId": "exr_41n2hVCJfpAvJcdU",
+    "score": 10000,
+    "archivo": "/media-v2/calistenia/intermedio/dominada-commando.mp4"
+  },
+  {
+    "nombre": "Fondos escapulares",
+    "categoria": "Empuje",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Fondos escapulares",
+      "scapular dip"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Dominada supina",
+    "categoria": "Tirón",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Dominada supina",
+      "chin up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Chin-Up",
+    "exerciseId": "exr_41n2hXszY7TgwKy4",
+    "score": 10000,
+    "archivo": "/media-v2/calistenia/intermedio/dominada-supina.mp4"
+  },
+  {
+    "nombre": "Dominada ancho de hombros",
+    "categoria": "Tirón",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Dominada ancho de hombros",
+      "shoulder width pull up"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Flexiones diamante",
+    "categoria": "Empuje",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Flexiones diamante",
+      "diamond push up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Diamond Push up ",
+    "exerciseId": "exr_41n2hnbt5GwwY7gr",
+    "score": 10000,
+    "archivo": "/media-v2/calistenia/intermedio/flexiones-diamante.mp4"
+  },
+  {
+    "nombre": "Flexiones declinadas",
+    "categoria": "Empuje",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Flexiones declinadas",
+      "decline push up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Decline Push-Up",
+    "exerciseId": "exr_41n2hGUso7JFmuYR",
+    "score": 10000,
+    "archivo": "/media-v2/calistenia/intermedio/flexiones-declinadas.mp4"
+  },
+  {
+    "nombre": "Flexiones archer asistidas",
+    "categoria": "Empuje",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Flexiones archer asistidas",
+      "assisted archer push up"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Pike push-up",
+    "categoria": "Empuje",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Pike push-up",
+      "pike push up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Pike Push up ",
+    "exerciseId": "exr_41n2hmvGdVRvvnNY",
+    "score": 10000,
+    "archivo": "/media-v2/calistenia/intermedio/pike-push-up.mp4"
+  },
+  {
+    "nombre": "Sentadilla búlgara",
+    "categoria": "Piernas",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Sentadilla búlgara",
+      "bulgarian split squat"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Bulgarian Split Squat",
+    "exerciseId": "exr_41n2hpLLs1uU5atr",
+    "score": 10000,
+    "archivo": "/media-v2/calistenia/intermedio/sentadilla-bulgara.mp4"
+  },
+  {
+    "nombre": "Pistol squat asistida",
+    "categoria": "Piernas",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Pistol squat asistida",
+      "assisted pistol squat"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Jumping Pistol Squat",
+    "exerciseId": "exr_41n2hGRSg9WCoTYT",
+    "score": 8533,
+    "archivo": "/media-v2/calistenia/intermedio/pistol-squat-asistida.mp4"
+  },
+  {
+    "nombre": "Zancada lateral",
+    "categoria": "Piernas",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Zancada lateral",
+      "lateral lunge"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Salto al cajón",
+    "categoria": "Potencia",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Salto al cajón",
+      "box jump"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Burpee controlado",
+    "categoria": "Metabólico",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Burpee controlado",
+      "burpee"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Burpee",
+    "exerciseId": "exr_41n2hqYdxG87hXz1",
+    "score": 10000,
+    "archivo": "/media-v2/calistenia/intermedio/burpee-controlado.mp4"
+  },
+  {
+    "nombre": "Hollow rocks",
+    "categoria": "Core",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Hollow rocks",
+      "hollow rock"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Toes to bar asistido",
+    "categoria": "Core",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Toes to bar asistido",
+      "assisted toes to bar"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Knee raises colgado",
+    "categoria": "Core",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Knee raises colgado",
+      "hanging knee raise"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Remo australiano pies elevados",
+    "categoria": "Tirón",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Remo australiano pies elevados",
+      "feet elevated inverted row"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Dominada negativa",
+    "categoria": "Tirón",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Dominada negativa",
+      "negative pull up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Commando Pull-up",
+    "exerciseId": "exr_41n2hVCJfpAvJcdU",
+    "score": 8533,
+    "archivo": "/media-v2/calistenia/intermedio/dominada-negativa.mp4"
+  },
+  {
+    "nombre": "Dominada agarre neutro",
+    "categoria": "Tirón",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Dominada agarre neutro",
+      "neutral grip pull up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Wide Grip Pull-Up",
+    "exerciseId": "exr_41n2hftBVLiXgtRQ",
+    "score": 9375,
+    "archivo": "/media-v2/calistenia/intermedio/dominada-agarre-neutro.mp4"
+  },
+  {
+    "nombre": "Fondos en banco",
+    "categoria": "Empuje",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Fondos en banco",
+      "bench dip"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Plancha con toque de hombros",
+    "categoria": "Core",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Plancha con toque de hombros",
+      "plank shoulder tap"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "L-sit tuck",
+    "categoria": "Habilidad",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "L-sit tuck",
+      "tuck l sit"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Handstand asistido",
+    "categoria": "Habilidad",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Handstand asistido",
+      "wall handstand"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Bear crawl lateral",
+    "categoria": "Locomoción",
+    "nivel": "Intermedio",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Bear crawl lateral",
+      "lateral bear crawl"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Muscle-up estricto",
+    "categoria": "Habilidad",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Muscle-up estricto",
+      "strict muscle up"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Muscle-up explosivo",
+    "categoria": "Habilidad",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Muscle-up explosivo",
+      "explosive muscle up"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Handstand push-up",
+    "categoria": "Empuje",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Handstand push-up",
+      "handstand push up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Handstand Push-Up",
+    "exerciseId": "exr_41n2hushK9NGVfyK",
+    "score": 10000,
+    "archivo": "/media-v2/calistenia/avanzado/handstand-push-up.mp4"
+  },
+  {
+    "nombre": "Handstand libre",
+    "categoria": "Habilidad",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Handstand libre",
+      "handstand"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Front lever tuck",
+    "categoria": "Habilidad",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Front lever tuck",
+      "tuck front lever"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Front lever avanzado",
+    "categoria": "Habilidad",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Front lever avanzado",
+      "front lever"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Back lever tuck",
+    "categoria": "Habilidad",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Back lever tuck",
+      "tuck back lever"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Back lever avanzado",
+    "categoria": "Habilidad",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Back lever avanzado",
+      "back lever"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Planche lean",
+    "categoria": "Habilidad",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Planche lean",
+      "planche lean"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Tuck planche",
+    "categoria": "Habilidad",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Tuck planche",
+      "tuck planche"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Pseudo planche push-up",
+    "categoria": "Empuje",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Pseudo planche push-up",
+      "pseudo planche push up"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Flexiones archer",
+    "categoria": "Empuje",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Flexiones archer",
+      "archer push up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Clap Push Up",
+    "exerciseId": "exr_41n2hkmMrSwcHkZ8",
+    "score": 8533,
+    "archivo": "/media-v2/calistenia/avanzado/flexiones-archer.mp4"
+  },
+  {
+    "nombre": "Flexiones a una mano asistidas",
+    "categoria": "Empuje",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Flexiones a una mano asistidas",
+      "assisted one arm push up"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Flexiones a una mano",
+    "categoria": "Empuje",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Flexiones a una mano",
+      "one arm push up"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Dominada explosiva al pecho",
+    "categoria": "Tirón",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Dominada explosiva al pecho",
+      "chest to bar pull up"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Dominada archer",
+    "categoria": "Tirón",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Dominada archer",
+      "archer pull up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Commando Pull-up",
+    "exerciseId": "exr_41n2hVCJfpAvJcdU",
+    "score": 8533,
+    "archivo": "/media-v2/calistenia/avanzado/dominada-archer.mp4"
+  },
+  {
+    "nombre": "Dominada typewriter",
+    "categoria": "Tirón",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Dominada typewriter",
+      "typewriter pull up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Pull-up",
+    "exerciseId": "exr_41n2hsBtDXapcADg",
+    "score": 8533,
+    "archivo": "/media-v2/calistenia/avanzado/dominada-typewriter.mp4"
+  },
+  {
+    "nombre": "Dominada L-sit",
+    "categoria": "Tirón",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Dominada L-sit",
+      "l sit pull up"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "L-Pull-up",
+    "exerciseId": "exr_41n2hxg75dFGERdp",
+    "score": 9375,
+    "archivo": "/media-v2/calistenia/avanzado/dominada-l-sit.mp4"
+  },
+  {
+    "nombre": "Fondos coreanos",
+    "categoria": "Empuje",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Fondos coreanos",
+      "korean dip"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Fondos profundos",
+    "categoria": "Empuje",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Fondos profundos",
+      "deep dip"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Pistol squat",
+    "categoria": "Piernas",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Pistol squat",
+      "pistol squat"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Jumping Pistol Squat",
+    "exerciseId": "exr_41n2hGRSg9WCoTYT",
+    "score": 8533,
+    "archivo": "/media-v2/calistenia/avanzado/pistol-squat.mp4"
+  },
+  {
+    "nombre": "Shrimp squat",
+    "categoria": "Piernas",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Shrimp squat",
+      "shrimp squat"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Nordic curl asistido",
+    "categoria": "Piernas",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Nordic curl asistido",
+      "assisted nordic curl"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Nordic curl",
+    "categoria": "Piernas",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Nordic curl",
+      "nordic curl"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Dragon flag",
+    "categoria": "Core",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Dragon flag",
+      "dragon flag"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Toes to bar estricto",
+    "categoria": "Core",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Toes to bar estricto",
+      "strict toes to bar"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "L-sit completo",
+    "categoria": "Habilidad",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "L-sit completo",
+      "l sit"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "V-sit progresión",
+    "categoria": "Habilidad",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "V-sit progresión",
+      "v sit"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Human flag tuck",
+    "categoria": "Habilidad",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Human flag tuck",
+      "tuck human flag"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Human flag progresión",
+    "categoria": "Habilidad",
+    "nivel": "Avanzado",
+    "disciplina": "Calistenia",
+    "queries": [
+      "Human flag progresión",
+      "human flag"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Guardia y movilidad",
+    "categoria": "Técnica",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Guardia y movilidad",
+      "boxing stance footwork"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Jab directo",
+    "categoria": "Golpes",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Jab directo",
+      "boxing jab"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Defensa en guardia",
+    "categoria": "Defensa",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Defensa en guardia",
+      "boxing guard defense"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Sombra básica",
+    "categoria": "Sombra",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Sombra básica",
+      "shadow boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Trabajo en saco básico",
+    "categoria": "Saco",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Trabajo en saco básico",
+      "heavy bag boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Cross directo",
+    "categoria": "Golpes",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Cross directo",
+      "boxing cross"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Right Cross. Boxing",
+    "exerciseId": "exr_41n2hdo2vCtq4F3E",
+    "score": 8783,
+    "archivo": "/media-v2/boxeo/principiante/cross-directo.mp4"
+  },
+  {
+    "nombre": "Jab-cross",
+    "categoria": "Combinaciones",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Jab-cross",
+      "jab cross boxing"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Right Cross. Boxing",
+    "exerciseId": "exr_41n2hdo2vCtq4F3E",
+    "score": 8783,
+    "archivo": "/media-v2/boxeo/principiante/jab-cross.mp4"
+  },
+  {
+    "nombre": "Gancho de izquierda",
+    "categoria": "Golpes",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Gancho de izquierda",
+      "left hook boxing"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Left hook. Boxing",
+    "exerciseId": "exr_41n2hM8vgMA6MREd",
+    "score": 10250,
+    "archivo": "/media-v2/boxeo/principiante/gancho-de-izquierda.mp4"
+  },
+  {
+    "nombre": "Gancho de derecha",
+    "categoria": "Golpes",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Gancho de derecha",
+      "right hook boxing"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Right Hook. Boxing",
+    "exerciseId": "exr_41n2hwio5ECAfLuS",
+    "score": 10250,
+    "archivo": "/media-v2/boxeo/principiante/gancho-de-derecha.mp4"
+  },
+  {
+    "nombre": "Uppercut de izquierda",
+    "categoria": "Golpes",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Uppercut de izquierda",
+      "left uppercut boxing"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Left hook. Boxing",
+    "exerciseId": "exr_41n2hM8vgMA6MREd",
+    "score": 8783,
+    "archivo": "/media-v2/boxeo/principiante/uppercut-de-izquierda.mp4"
+  },
+  {
+    "nombre": "Uppercut de derecha",
+    "categoria": "Golpes",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Uppercut de derecha",
+      "right uppercut boxing"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Right Hook. Boxing",
+    "exerciseId": "exr_41n2hwio5ECAfLuS",
+    "score": 8783,
+    "archivo": "/media-v2/boxeo/principiante/uppercut-de-derecha.mp4"
+  },
+  {
+    "nombre": "Paso adelante y atrás",
+    "categoria": "Movilidad",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Paso adelante y atrás",
+      "boxing forward backward footwork"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Desplazamiento lateral",
+    "categoria": "Movilidad",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Desplazamiento lateral",
+      "boxing lateral footwork"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Pivot básico",
+    "categoria": "Movilidad",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Pivot básico",
+      "boxing pivot"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Slip izquierda-derecha",
+    "categoria": "Defensa",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Slip izquierda-derecha",
+      "boxing slip"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Bloqueo de jab",
+    "categoria": "Defensa",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Bloqueo de jab",
+      "boxing jab block"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Bloqueo de cross",
+    "categoria": "Defensa",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Bloqueo de cross",
+      "boxing cross block"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Right Cross. Boxing",
+    "exerciseId": "exr_41n2hdo2vCtq4F3E",
+    "score": 8783,
+    "archivo": "/media-v2/boxeo/principiante/bloqueo-de-cross.mp4"
+  },
+  {
+    "nombre": "Parry de jab",
+    "categoria": "Defensa",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Parry de jab",
+      "boxing jab parry"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Roll bajo gancho",
+    "categoria": "Defensa",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Roll bajo gancho",
+      "boxing roll under hook"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Entrada con jab",
+    "categoria": "Técnica",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Entrada con jab",
+      "Entrada con jab boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Salida con paso lateral",
+    "categoria": "Técnica",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Salida con paso lateral",
+      "Salida con paso lateral boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Sombra 1-2",
+    "categoria": "Sombra",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Sombra 1-2",
+      "Sombra 1-2 boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Sombra con desplazamiento",
+    "categoria": "Sombra",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Sombra con desplazamiento",
+      "Sombra con desplazamiento boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Saco jab-cross",
+    "categoria": "Saco",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Saco jab-cross",
+      "Saco jab-cross boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Saco golpes al cuerpo",
+    "categoria": "Saco",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Saco golpes al cuerpo",
+      "Saco golpes al cuerpo boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Manoplas básicas 1-2",
+    "categoria": "Manoplas",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Manoplas básicas 1-2",
+      "Manoplas básicas 1-2 boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Coordinación mano-ojo",
+    "categoria": "Coordinación",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Coordinación mano-ojo",
+      "Coordinación mano-ojo boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Salto de cuerda básico",
+    "categoria": "Acondicionamiento",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Salto de cuerda básico",
+      "boxing jump rope"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Jump Rope",
+    "exerciseId": "exr_41n2hN468sP27Sac",
+    "score": 8533,
+    "archivo": "/media-v2/boxeo/principiante/salto-de-cuerda-basico.mp4"
+  },
+  {
+    "nombre": "Guardia alta en movimiento",
+    "categoria": "Defensa",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Guardia alta en movimiento",
+      "Guardia alta en movimiento boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Respiración y ritmo",
+    "categoria": "Técnica",
+    "nivel": "Principiante",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Respiración y ritmo",
+      "Respiración y ritmo boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Golpes de potencia",
+    "categoria": "Golpes",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Golpes de potencia",
+      "boxing power punches"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Saco con combinaciones",
+    "categoria": "Saco",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Saco con combinaciones",
+      "heavy bag combinations"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Combinaciones con pareja",
+    "categoria": "Combinaciones",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Combinaciones con pareja",
+      "Combinaciones con pareja boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Manoplas - combinación",
+    "categoria": "Manoplas",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Manoplas - combinación",
+      "boxing mitt combinations"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Manoplas - velocidad",
+    "categoria": "Manoplas",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Manoplas - velocidad",
+      "boxing mitt speed"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Doble jab-cross",
+    "categoria": "Combinaciones",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Doble jab-cross",
+      "Doble jab-cross boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Jab-cross-gancho",
+    "categoria": "Combinaciones",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Jab-cross-gancho",
+      "Jab-cross-gancho boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Jab al cuerpo-cross arriba",
+    "categoria": "Combinaciones",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Jab al cuerpo-cross arriba",
+      "Jab al cuerpo-cross arriba boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Cross-gancho-cross",
+    "categoria": "Combinaciones",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Cross-gancho-cross",
+      "Cross-gancho-cross boxing"
+    ],
+    "estado": "OK",
+    "fuenteNombre": "Right Cross. Boxing",
+    "exerciseId": "exr_41n2hdo2vCtq4F3E",
+    "score": 8783,
+    "archivo": "/media-v2/boxeo/intermedio/cross-gancho-cross.mp4"
+  },
+  {
+    "nombre": "Uppercut-gancho-cross",
+    "categoria": "Combinaciones",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Uppercut-gancho-cross",
+      "Uppercut-gancho-cross boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Slip y contra cross",
+    "categoria": "Contraataque",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Slip y contra cross",
+      "Slip y contra cross boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Parry y contra jab",
+    "categoria": "Contraataque",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Parry y contra jab",
+      "Parry y contra jab boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Roll y gancho al cuerpo",
+    "categoria": "Contraataque",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Roll y gancho al cuerpo",
+      "Roll y gancho al cuerpo boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Pivot con contraataque",
+    "categoria": "Contraataque",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Pivot con contraataque",
+      "Pivot con contraataque boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Cambio de ángulo 45 grados",
+    "categoria": "Movilidad",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Cambio de ángulo 45 grados",
+      "Cambio de ángulo 45 grados boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Entrada-salida con combinación",
+    "categoria": "Técnica",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Entrada-salida con combinación",
+      "Entrada-salida con combinación boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Sombra con defensa activa",
+    "categoria": "Sombra",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Sombra con defensa activa",
+      "Sombra con defensa activa boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Sombra por rounds",
+    "categoria": "Sombra",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Sombra por rounds",
+      "Sombra por rounds boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Saco intervalos 30-30",
+    "categoria": "Saco",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Saco intervalos 30-30",
+      "Saco intervalos 30-30 boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Saco potencia al cuerpo",
+    "categoria": "Saco",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Saco potencia al cuerpo",
+      "Saco potencia al cuerpo boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Saco precisión por zonas",
+    "categoria": "Saco",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Saco precisión por zonas",
+      "Saco precisión por zonas boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Manoplas reacción",
+    "categoria": "Manoplas",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Manoplas reacción",
+      "Manoplas reacción boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Manoplas defensa-contra",
+    "categoria": "Manoplas",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Manoplas defensa-contra",
+      "Manoplas defensa-contra boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Trabajo de cuerda intermedio",
+    "categoria": "Acondicionamiento",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Trabajo de cuerda intermedio",
+      "Trabajo de cuerda intermedio boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Footwork en escalera",
+    "categoria": "Movilidad",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Footwork en escalera",
+      "Footwork en escalera boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Esquivas con cuerda",
+    "categoria": "Defensa",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Esquivas con cuerda",
+      "Esquivas con cuerda boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Combinación 1-2-3-2",
+    "categoria": "Combinaciones",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Combinación 1-2-3-2",
+      "Combinación 1-2-3-2 boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Combinación 1-1-2-3",
+    "categoria": "Combinaciones",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Combinación 1-1-2-3",
+      "Combinación 1-1-2-3 boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Combinación cuerpo-cabeza",
+    "categoria": "Combinaciones",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Combinación cuerpo-cabeza",
+      "Combinación cuerpo-cabeza boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Sparring técnico condicionado",
+    "categoria": "Sparring",
+    "nivel": "Intermedio",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Sparring técnico condicionado",
+      "Sparring técnico condicionado boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Sparring defensa y contraataque",
+    "categoria": "Sparring",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Sparring defensa y contraataque",
+      "boxing sparring defense counter"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Sparring técnico",
+    "categoria": "Sparring",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Sparring técnico",
+      "technical sparring boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Boxeo de potencia avanzado",
+    "categoria": "Potencia",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Boxeo de potencia avanzado",
+      "Boxeo de potencia avanzado boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Manoplas de alta intensidad",
+    "categoria": "Manoplas",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Manoplas de alta intensidad",
+      "Manoplas de alta intensidad boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Combinación avanzada",
+    "categoria": "Combinaciones",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Combinación avanzada",
+      "Combinación avanzada boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Sparring libre controlado",
+    "categoria": "Sparring",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Sparring libre controlado",
+      "Sparring libre controlado boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Sparring por objetivos",
+    "categoria": "Sparring",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Sparring por objetivos",
+      "Sparring por objetivos boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Sparring solo contraataque",
+    "categoria": "Sparring",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Sparring solo contraataque",
+      "Sparring solo contraataque boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Sparring presión y salida",
+    "categoria": "Sparring",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Sparring presión y salida",
+      "Sparring presión y salida boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Cambio de guardia en combinación",
+    "categoria": "Técnica",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Cambio de guardia en combinación",
+      "Cambio de guardia en combinación boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Contraataque en segundo tiempo",
+    "categoria": "Contraataque",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Contraataque en segundo tiempo",
+      "Contraataque en segundo tiempo boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Doble contraataque",
+    "categoria": "Contraataque",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Doble contraataque",
+      "Doble contraataque boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Check hook y salida",
+    "categoria": "Contraataque",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Check hook y salida",
+      "Check hook y salida boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Pull counter",
+    "categoria": "Contraataque",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Pull counter",
+      "Pull counter boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Slip-cross-gancho-cross",
+    "categoria": "Combinaciones",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Slip-cross-gancho-cross",
+      "Slip-cross-gancho-cross boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Roll-gancho-uppercut-cross",
+    "categoria": "Combinaciones",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Roll-gancho-uppercut-cross",
+      "Roll-gancho-uppercut-cross boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Combinación de 6 golpes",
+    "categoria": "Combinaciones",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Combinación de 6 golpes",
+      "Combinación de 6 golpes boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Combinación de 8 golpes",
+    "categoria": "Combinaciones",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Combinación de 8 golpes",
+      "Combinación de 8 golpes boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Ángulos después de combinación",
+    "categoria": "Movilidad",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Ángulos después de combinación",
+      "Ángulos después de combinación boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Pivot ofensivo avanzado",
+    "categoria": "Movilidad",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Pivot ofensivo avanzado",
+      "Pivot ofensivo avanzado boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Footwork pendular avanzado",
+    "categoria": "Movilidad",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Footwork pendular avanzado",
+      "Footwork pendular avanzado boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Saco rounds de potencia",
+    "categoria": "Saco",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Saco rounds de potencia",
+      "Saco rounds de potencia boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Saco rounds de velocidad",
+    "categoria": "Saco",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Saco rounds de velocidad",
+      "Saco rounds de velocidad boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Saco reacción por señal",
+    "categoria": "Saco",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Saco reacción por señal",
+      "Saco reacción por señal boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Manoplas abiertas avanzadas",
+    "categoria": "Manoplas",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Manoplas abiertas avanzadas",
+      "Manoplas abiertas avanzadas boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Manoplas con desplazamiento",
+    "categoria": "Manoplas",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Manoplas con desplazamiento",
+      "Manoplas con desplazamiento boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Defensa de múltiples golpes",
+    "categoria": "Defensa",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Defensa de múltiples golpes",
+      "Defensa de múltiples golpes boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Corte de ring",
+    "categoria": "Táctica",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Corte de ring",
+      "Corte de ring boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Control de distancia avanzado",
+    "categoria": "Táctica",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Control de distancia avanzado",
+      "Control de distancia avanzado boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  },
+  {
+    "nombre": "Ritmo y cambios de tempo",
+    "categoria": "Táctica",
+    "nivel": "Avanzado",
+    "disciplina": "Boxeo",
+    "queries": [
+      "Ritmo y cambios de tempo",
+      "Ritmo y cambios de tempo boxing"
+    ],
+    "estado": "PENDIENTE",
+    "motivo": "SIN_COINCIDENCIA_SEGURA"
+  }
+]
