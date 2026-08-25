@@ -2647,59 +2647,57 @@ const slugDisciplinaFinal = (valor = "") =>
     .replace(/^-+|-+$/g, "");
 
 const CALISTHENICS_LOCAL_VIDEOS = {
-  "Flexiones inclinadas": "/media-v2/calistenia/principiante/flexiones-inclinadas.mp4",
+  "Flexiones inclinadas": "/videos/calistenia/flexiones-inclinadas.mp4",
   "Sentadilla al aire": "/videos/calistenia/sentadilla-aire.mp4",
-  "Plancha frontal": "/media-v2/calistenia/principiante/plancha-frontal.mp4",
+  "Plancha frontal": "/videos/calistenia/plancha-frontal.mp4",
   "Remo australiano": "/videos/calistenia/remo-australiano.mp4",
   "Puente de glúteos": "/videos/calistenia/puente-gluteos.mp4",
-  "Flexiones clásicas": "/media-v2/calistenia/principiante/flexiones-clasicas.mp4",
+  "Flexiones clásicas": "/videos/calistenia/flexiones-clasicas.mp4",
   "Dominada asistida": "/videos/calistenia/dominada-asistida.mp4",
   "Fondos asistidos": "/videos/calistenia/fondos-asistidos.mp4",
   "Zancadas alternas": "/videos/calistenia/zancadas-alternas.mp4",
-  "V-Up": "/media-v2/calistenia/intermedio/v-up.mp4",
+  "V-Up": "/videos/calistenia/v-up.mp4",
   "Dominadas estrictas": "/videos/calistenia/dominadas-estrictas.mp4",
   "Fondos en paralelas": "/videos/calistenia/fondos-paralelas.mp4",
-  "Flexiones cerradas": "/media-v2/calistenia/intermedio/flexiones-cerradas.mp4",
+  "Flexiones cerradas": "/videos/calistenia/flexiones-cerradas.mp4",
   "Elevación vertical de piernas": "/videos/calistenia/elevacion-vertical-piernas.mp4",
   "Plancha lateral": "/videos/calistenia/plancha-lateral.mp4",
-  "Dominada commando": "/media-v2/calistenia/intermedio/dominada-commando.mp4",
-  "Dominada supina": "/media-v2/calistenia/intermedio/dominada-supina.mp4",
+  "Dominada commando": "/videos/calistenia/dominada-commando.mp4",
+  "Dominada supina": "/videos/calistenia/dominada-supina.mp4",
   "Fondos escapulares": "/videos/calistenia/fondos-escapulares.mp4",
   "Dominada ancho de hombros": "/videos/calistenia/dominada-ancho-hombros.mp4",
   "Elevación de pantorrillas": "/videos/calistenia/elevacion-pantorrillas.gif",
   "Remo invertido con rodillas flexionadas": "/videos/calistenia/remo-invertido-sillas.gif",
   "Crunch invertido": "/videos/calistenia/crunch-invertido.gif",
-  "Flexiones diamante": "/media-v2/calistenia/intermedio/flexiones-diamante.mp4",
-  "Burpee controlado": "/media-v2/calistenia/intermedio/burpee-controlado.mp4",
+  "Flexiones diamante": "/videos/calistenia/flexiones-diamante-cerradas.gif",
+  "Burpee controlado": "/videos/calistenia/burpee.gif",
   "Knee raises colgado": "/videos/calistenia/elevacion-rodillas-colgado.gif",
   "Fondos en banco": "/videos/calistenia/fondos-en-banco.gif",
-  "Desplante atrás asistido": "/media-v2/calistenia/principiante/desplante-atras-asistido.mp4",
-  "Flexiones declinadas": "/media-v2/calistenia/intermedio/flexiones-declinadas.mp4",
-  "Pike push-up": "/media-v2/calistenia/intermedio/pike-push-up.mp4",
-  "Sentadilla búlgara": "/media-v2/calistenia/intermedio/sentadilla-bulgara.mp4",
-  "Handstand push-up": "/media-v2/calistenia/avanzado/handstand-push-up.mp4",
+  "Dead bug": "/videos/calistenia/cal-dead-bug.gif",
+  "Flexión escapular": "/videos/calistenia/cal-flexion-escapular.gif",
+  "Colgado activo": "/videos/calistenia/cal-colgado-activo.gif",
+  "Mountain climber lento": "/videos/calistenia/cal-mountain-climber-lento.gif",
+  "Bear crawl básico": "/videos/calistenia/cal-bear-crawl-basico.gif",
+  "Flexiones declinadas": "/videos/calistenia/cal-flexiones-declinadas.gif",
+  "Flexiones archer asistidas": "/videos/calistenia/cal-flexiones-archer-asistidas.gif",
+  "Remo australiano pies elevados": "/videos/calistenia/cal-remo-australiano-pies-elevados.gif",
+  "Bear crawl lateral": "/videos/calistenia/cal-bear-crawl-lateral.gif",
+  "Muscle-up estricto": "/videos/calistenia/cal-muscle-up-estricto.gif",
+  "Muscle-up explosivo": "/videos/calistenia/cal-muscle-up-explosivo.gif",
+  "Handstand push-up": "/videos/calistenia/cal-handstand-push-up.gif",
+  "Handstand libre": "/videos/calistenia/cal-handstand-libre.gif",
+  "Front lever tuck": "/videos/calistenia/cal-front-lever-tuck.gif",
+  "Front lever avanzado": "/videos/calistenia/cal-front-lever-avanzado.gif",
+  "Back lever tuck": "/videos/calistenia/cal-back-lever-tuck.gif",
+  "Back lever avanzado": "/videos/calistenia/cal-back-lever-avanzado.gif",
+  "Flexiones archer": "/videos/calistenia/cal-flexiones-archer.gif",
+  "Dominada archer": "/videos/calistenia/cal-dominada-archer.gif",
+  "Fondos coreanos": "/videos/calistenia/cal-fondos-coreanos.gif",
 };
 
 const BOXING_LOCAL_VIDEOS = {
-  "Guardia y movilidad": "/videos/boxeo/guardia-y-movilidad.mp4",
-  "Jab directo": "/videos/boxeo/jab-directo.mp4",
-  "Defensa en guardia": "/videos/boxeo/defensa-guardia.mp4",
-  "Sombra básica": "/videos/boxeo/sombra-basica.mp4",
-  "Trabajo en saco básico": "/videos/boxeo/trabajo-en-saco.mp4",
-  "Golpes de potencia": "/videos/boxeo/golpes-potencia.mp4",
-  "Saco con combinaciones": "/videos/boxeo/saco-combinaciones.mp4",
-  "Combinaciones con pareja": "/videos/boxeo/combinaciones-con-pareja.mp4",
-  "Manoplas - combinación": "/videos/boxeo/manoplas-combinacion.mp4",
-  "Manoplas - velocidad": "/videos/boxeo/manoplas-velocidad.mp4",
-  "Sparring defensa y contraataque": "/videos/boxeo/sparring-defensa-contraataque.mp4",
-  "Sparring técnico": "/videos/boxeo/sparring-tecnico.mp4",
-  "Boxeo de potencia avanzado": "/videos/boxeo/boxeo-potencia-avanzado.mp4",
-  "Manoplas de alta intensidad": "/videos/boxeo/manoplas-intensidad.mp4",
-  "Combinación avanzada": "/videos/boxeo/combinacion-avanzada.mp4",
-  "Gancho de izquierda": "/media-v2/boxeo/principiante/gancho-de-izquierda.mp4",
-  "Gancho de derecha": "/media-v2/boxeo/principiante/gancho-de-derecha.mp4",
-  "Cross directo": "/media-v2/boxeo/principiante/cross-directo.mp4",
-  "Salto de cuerda básico": "/media-v2/boxeo/principiante/salto-de-cuerda-basico.mp4",
+  // Boxeo final: los 90 ejercicios usan videos derivados de los clips reales
+  // existentes en /public/videos/boxeo. El generador crea un archivo por ejercicio.
 };
 
 const getDisciplineMedia = (discipline, ejercicio) => {
@@ -2710,26 +2708,28 @@ const getDisciplineMedia = (discipline, ejercicio) => {
     ejercicio.ejercicio_nombre ||
     "";
 
-  const exactMap =
-    discipline === "Calistenia"
-      ? CALISTHENICS_LOCAL_VIDEOS
-      : BOXING_LOCAL_VIDEOS;
-
-  const src = exactMap[nombre] || "";
-
-  // IMPORTANTE:
-  // Solo mostramos un medio cuando fue verificado para ESTE ejercicio.
-  // Se eliminan los SVG/MP4 generados artificialmente y cualquier
-  // coincidencia aproximada incorrecta del manifest-v2.
-  if (!src) {
-    return { src: "", exact: false, type: "" };
+  if (discipline === "Boxeo") {
+    // El generador final crea 90 MP4, uno por ejercicio.
+    const src = `/discipline-final/boxeo/${slugDisciplinaFinal(nombre)}.mp4`;
+    return { src, exact: true, type: "video" };
   }
 
-  return {
-    src,
-    exact: true,
-    type: /\.gif(?:$|\?)/i.test(String(src)) ? "gif" : "video",
-  };
+  const exactSrc = CALISTHENICS_LOCAL_VIDEOS[nombre] || "";
+
+  if (exactSrc) {
+    return {
+      src: exactSrc,
+      exact: true,
+      type: /\.gif(?:$|\?)/i.test(String(exactSrc)) ? "gif" : "video",
+    };
+  }
+
+  // Cuando no existe un demo real verificado, mostramos una animación técnica
+  // propia del movimiento, nunca un GIF de otro ejercicio.
+  const src =
+    `/discipline-final/calistenia/${slugDisciplinaFinal(nombre)}.svg`;
+
+  return { src, exact: false, type: "image" };
 };
 
 const getDisciplineLocalVideo = (discipline, ejercicio) =>
