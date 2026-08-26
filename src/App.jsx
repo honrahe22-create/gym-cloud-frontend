@@ -2673,67 +2673,67 @@ const CALISTHENICS_LOCAL_VIDEOS = {
   "Burpee controlado": "/videos/calistenia/burpee.gif",
   "Knee raises colgado": "/videos/calistenia/elevacion-rodillas-colgado.gif",
   "Fondos en banco": "/videos/calistenia/fondos-en-banco.gif",
-  "Dead bug": "/videos/calistenia/cal-dead-bug.gif",
-  "Flexión escapular": "/videos/calistenia/cal-flexion-escapular.gif",
-  "Colgado activo": "/videos/calistenia/cal-colgado-activo.gif",
-  "Mountain climber lento": "/videos/calistenia/cal-mountain-climber-lento.gif",
-  "Bear crawl básico": "/videos/calistenia/cal-bear-crawl-basico.gif",
-  "Flexiones declinadas": "/videos/calistenia/cal-flexiones-declinadas.gif",
-  "Flexiones archer asistidas": "/videos/calistenia/cal-flexiones-archer-asistidas.gif",
-  "Remo australiano pies elevados": "/videos/calistenia/cal-remo-australiano-pies-elevados.gif",
-  "Bear crawl lateral": "/videos/calistenia/cal-bear-crawl-lateral.gif",
-  "Muscle-up estricto": "/videos/calistenia/cal-muscle-up-estricto.gif",
-  "Muscle-up explosivo": "/videos/calistenia/cal-muscle-up-explosivo.gif",
-  "Handstand push-up": "/videos/calistenia/cal-handstand-push-up.gif",
-  "Handstand libre": "/videos/calistenia/cal-handstand-libre.gif",
-  "Front lever tuck": "/videos/calistenia/cal-front-lever-tuck.gif",
-  "Front lever avanzado": "/videos/calistenia/cal-front-lever-avanzado.gif",
-  "Back lever tuck": "/videos/calistenia/cal-back-lever-tuck.gif",
-  "Back lever avanzado": "/videos/calistenia/cal-back-lever-avanzado.gif",
-  "Flexiones archer": "/videos/calistenia/cal-flexiones-archer.gif",
-  "Dominada archer": "/videos/calistenia/cal-dominada-archer.gif",
-  "Fondos coreanos": "/videos/calistenia/cal-fondos-coreanos.gif",
+  "Crunch suelo": "/videos/calistenia/crunch-suelo.gif",
+  "Elevación piernas suelo": "/videos/calistenia/elevacion-piernas-suelo.gif",
+  "Flexión profunda": "/videos/calistenia/flexion-profunda.gif",
+  "Jumping jack": "/videos/calistenia/jumping-jack.gif",
 };
-
 const BOXING_LOCAL_VIDEOS = {
-  // Boxeo final: los 90 ejercicios usan videos derivados de los clips reales
-  // existentes en /public/videos/boxeo. El generador crea un archivo por ejercicio.
+  "Guardia y movilidad": "/videos/boxeo/guardia-y-movilidad.mp4",
+  "Jab directo": "/videos/boxeo/jab-directo.mp4",
+  "Defensa en guardia": "/videos/boxeo/defensa-guardia.mp4",
+  "Sombra básica": "/videos/boxeo/sombra-basica.mp4",
+  "Trabajo en saco básico": "/videos/boxeo/trabajo-en-saco.mp4",
+  "Golpes de potencia": "/videos/boxeo/golpes-potencia.mp4",
+  "Saco con combinaciones": "/videos/boxeo/saco-combinaciones.mp4",
+  "Combinaciones con pareja": "/videos/boxeo/combinaciones-con-pareja.mp4",
+  "Manoplas - combinación": "/videos/boxeo/manoplas-combinacion.mp4",
+  "Manoplas - velocidad": "/videos/boxeo/manoplas-velocidad.mp4",
+  "Sparring defensa y contraataque": "/videos/boxeo/sparring-defensa-contraataque.mp4",
+  "Sparring técnico": "/videos/boxeo/sparring-tecnico.mp4",
+  "Boxeo de potencia avanzado": "/videos/boxeo/boxeo-potencia-avanzado.mp4",
+  "Manoplas de alta intensidad": "/videos/boxeo/manoplas-intensidad.mp4",
+  "Combinación avanzada": "/videos/boxeo/combinacion-avanzada.mp4",
 };
-
+const BOXING_REAL_FINAL_SLUGS = new Set(["bloqueo-de-jab", "boxeo-de-potencia-avanzado", "cambio-de-guardia-en-combinacion", "combinacion-avanzada", "combinacion-cuerpo-cabeza", "combinacion-de-8-golpes", "combinaciones-con-pareja", "contraataque-en-segundo-tiempo", "defensa-en-guardia", "doble-contraataque", "entrada-con-jab", "golpes-de-potencia", "guardia-alta-en-movimiento", "guardia-y-movilidad", "jab-directo", "manoplas-abiertas-avanzadas", "manoplas-basicas-1-2", "manoplas-combinacion", "manoplas-de-alta-intensidad", "manoplas-defensa-contra", "manoplas-reaccion", "manoplas-velocidad", "parry-de-jab", "parry-y-contra-jab", "saco-con-combinaciones", "saco-golpes-al-cuerpo", "saco-intervalos-30-30", "saco-precision-por-zonas", "saco-reaccion-por-senal", "saco-rounds-de-velocidad", "sparring-defensa-y-contraataque", "sparring-libre-controlado", "sparring-por-objetivos", "sparring-solo-contraataque", "sparring-tecnico", "sparring-tecnico-condicionado", "trabajo-en-saco-basico"]);
 const getDisciplineMedia = (discipline, ejercicio) => {
   if (!ejercicio) return { src: "", exact: false, type: "" };
-
-  const nombre =
-    ejercicio.nombre ||
-    ejercicio.ejercicio_nombre ||
-    "";
-
+  const nombre = ejercicio.nombre || ejercicio.ejercicio_nombre || "";
+  if (discipline === "Calistenia") {
+    const src = CALISTHENICS_LOCAL_VIDEOS[nombre] || "";
+    if (!src) return { src: "", exact: false, type: "" };
+    return { src, exact: true, type: /\.gif(?:$|\?)/i.test(String(src)) ? "gif" : "video" };
+  }
   if (discipline === "Boxeo") {
-    // El generador final crea 90 MP4, uno por ejercicio.
-    const src = `/discipline-final/boxeo/${slugDisciplinaFinal(nombre)}.mp4`;
-    return { src, exact: true, type: "video" };
+    const exactSrc = BOXING_LOCAL_VIDEOS[nombre] || "";
+    if (exactSrc) return { src: exactSrc, exact: true, type: "video" };
+    const slug = slugDisciplinaFinal(nombre);
+    if (BOXING_REAL_FINAL_SLUGS.has(slug)) return { src: `/discipline-final/boxeo/${slug}.mp4`, exact: true, type: "video" };
+    return { src: "", exact: false, type: "" };
   }
-
-  const exactSrc = CALISTHENICS_LOCAL_VIDEOS[nombre] || "";
-
-  if (exactSrc) {
-    return {
-      src: exactSrc,
-      exact: true,
-      type: /\.gif(?:$|\?)/i.test(String(exactSrc)) ? "gif" : "video",
-    };
-  }
-
-  // Cuando no existe un demo real verificado, mostramos una animación técnica
-  // propia del movimiento, nunca un GIF de otro ejercicio.
-  const src =
-    `/discipline-final/calistenia/${slugDisciplinaFinal(nombre)}.svg`;
-
-  return { src, exact: false, type: "image" };
+  return { src: "", exact: false, type: "" };
 };
-
 const getDisciplineLocalVideo = (discipline, ejercicio) =>
   getDisciplineMedia(discipline, ejercicio).src;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function DisciplineModule({
   discipline,
